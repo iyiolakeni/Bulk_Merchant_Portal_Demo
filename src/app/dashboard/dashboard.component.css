@@ -1,0 +1,21 @@
+.dash-wrapper{
+    color: white;
+    background-color: #501996;
+    width: 40%;
+    padding: 10px;
+    position: relative;
+    border-top-left-radius: 100%;
+    left: 75%;
+    top: 20%;
+    border-bottom-right-radius: 7px;
+}
+.dash-icon{
+    margin-left: 20px;
+    font-size: 23px;
+    justify-items: center;
+}
+.dash-card h5, .dash-card h1{
+    position: relative;
+    top: 25%;
+    margin: 5px;
+}

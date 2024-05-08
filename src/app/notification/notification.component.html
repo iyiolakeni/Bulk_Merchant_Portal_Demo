@@ -1,0 +1,28 @@
+<div class="container-fluid border">
+    <div style="margin-bottom: 0;" class="navbar">
+        <h6 style="margin-bottom: 0;">Notification</h6>
+        <p style="margin-bottom: 0;">
+            <a class="text-dark" href="">See All</a>
+        </p>
+    </div>
+    <hr style="margin-top: 0;">
+    <div class="row">
+            <div>
+                <div *ngFor="let notification of notifications | slice:0:n" class="card-body pl-2 m-0">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4>{{notification.amount}}</h4>
+                            <p style="font-size: 14px;">Request {{notification.requestId}} has been {{notification.status}} by {{notification.officerDesignation}}</p>
+                        </div>
+                        <div class="col-4 align-middle">
+                            <p style="font-size: 12px;">
+                                <i [class]="getStatusClass(notification.status)" style="font-size: 10px;"></i>
+                                Request {{notification.status}}</p>
+                        </div>
+                    </div>
+                    <hr style="margin-top:0">
+                </div>
+            </div>
+        </div>
+
+</div>
