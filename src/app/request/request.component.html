@@ -8,13 +8,13 @@
             <th scope="col">Handle</th>
           </tr>
         </thead>
-        <tbody *ngFor="let item of refinedData">
-          <tr *ngFor="let request of item">
+        <tbody *ngFor="let item of refinedData | slice:0:n">
+          <tr *ngFor="let request of item | slice:0:n">
               <td>{{request.requestId}}</td>
               <td>{{request.numberOfPosRequest}}</td>
               <td>{{request.accountOfficer}}</td>
               <td>{{request.userType}}</td>
           </tr>
-        </tbody>
+      </tbody>
       </table>
 </div>
