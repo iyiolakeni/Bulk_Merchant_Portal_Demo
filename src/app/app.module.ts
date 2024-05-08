@@ -14,6 +14,7 @@ import { RequestComponent } from './request/request.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RequestpageComponent } from './paths/requestpage/requestpage.component';
 import { NotificationPageComponent } from './paths/notification-page/notification-page.component';
+import { HomePageComponent } from './paths/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NotificationPageComponent } from './paths/notification-page/notificatio
     NavbarComponent,
     RequestComponent,
     RequestpageComponent,
-    NotificationPageComponent
+    NotificationPageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

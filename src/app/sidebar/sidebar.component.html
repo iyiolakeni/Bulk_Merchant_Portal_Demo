@@ -3,22 +3,16 @@
   <div id="sidebar" class="d-none d-md-block">
       <ul class="nav flex-column ">
           <li class="nav-item">
-              <a class="nav-link text-white active" href="#">Dashboard</a>
+              <a class="nav-link text-white active" [routerLink]="['']">Dashboard</a>
           </li>
-          <li class="nav-item dropdown">
-                <a class="nav-link text-white dropdown-toggle" role="bu" type="button" data-bs-toggle="dropdown" aria-expanded="false">Request</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">New Request</a></li>
-                    <li><a class="dropdown-item" href="#">Pending Request</a></li>
-                    <li><a class="dropdown-item" href="#">Approved Request</a></li>
-                    <li><a class="dropdown-item" href="#">Rejected Request</a></li>
-                </ul>
+          <li class="nav-item">
+                <a class="nav-link text-white" [routerLink]="['/request']">Request</a>
           </li>
           <li class="nav-item">
               <a class="nav-link text-white" href="#">Email</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link text-white" href="#">Notifications</a>
+              <a class="nav-link text-white" [routerLink]="['/notifications']">Notifications</a>
           </li>
       </ul>
   </div>
@@ -32,16 +26,16 @@
       <div class="offcanvas-body">
           <ul class="nav flex-column">
               <li class="nav-item">
-                  <a class="nav-link active" href="#">Dashboard</a>
+                  <a class="nav-link active" [routerLink]="['']" >Dashboard</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Request</a>
+                  <a class="nav-link" [routerLink]="['request']">Request</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">Email</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#">Notifications</a>
+                  <a class="nav-link" [routerLink]="['/notifications']">Notifications</a>
               </li>
           </ul>
       </div>

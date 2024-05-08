@@ -1,1 +1,11 @@
-<p>requestpage works!</p>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2 bg-success">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10 bg-light">
+        <app-navbar></app-navbar>
+        <app-request [n]='15'></app-request>
+      </div>
+    </div>
+  </div>
