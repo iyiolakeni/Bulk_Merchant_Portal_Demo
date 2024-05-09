@@ -11,6 +11,8 @@ export class ModalService {
 
   openModal(data: any) {
     this.dialog.open(ModalComponent, {
+      // width: '800px',
+      // height: '600px',
       data: data
     });
   }

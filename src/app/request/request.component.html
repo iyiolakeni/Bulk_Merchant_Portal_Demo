@@ -1,28 +1,30 @@
 <div class="table-responsive-sm">
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Request Id</th>
-            <th scope="col">Business Name</th>
-            <th scope="col">No of POS</th>
-            <th scope="col">Request Date</th>
-            <th scope="col">Status</th>
-            <th scope="col"> Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of refinedData | slice:(currentPage-1)*n:currentPage*n">
-              <td>{{request.requestId}}</td>
-              <td>{{request.user.fullName}} {{request.user.middleName}}</td>
-              <td>{{request.numberOfPosRequest}}</td>
-              <td>{{convertDate(request.dateOfRequest)}}</td>
-              <td>{{request.requestStatus}}</td>
-              <td>
-                <span type="button" class="bi bi-three-dots" (click)="openModal(request)"></span>
-              </td>
-          </tr>
-      </tbody>
-      </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Request Id</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">No of POS</th>
+        <th scope="col">Request Date</th>
+        <th scope="col">Status</th>
+        <th scope="col"> Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let i of numbers | slice:(currentPage-1)*n:currentPage*n;">
+        <tr *ngFor="let request of data">
+          <td>{{getRequestProperty(request, 'posRequest' + i).requestId}}</td>
+          <td>{{getRequestProperty(request, 'businessDetails' + i).businessName}}</td>
+          <td>{{getRequestProperty(request, 'posRequest' + i).numberOfPosRequest}}</td>
+          <td>{{getRequestProperty(request, 'posRequest' + i).dateOfRequest | date:'short'}}</td>
+          <td>{{getRequestProperty(request, 'notification' + i).status}}</td>
+          <td>
+            <span type="button" class="bi bi-three-dots" (click)="openModal(request)"></span>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
       <div class="btn-center" role="group" *ngIf="!defineHomePage">
         <button type="button" class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
         <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Continue</button>      </div>

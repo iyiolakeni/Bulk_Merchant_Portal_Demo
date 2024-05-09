@@ -1,8 +1,26 @@
-<h1 mat-dialog-title>Popup Dialog</h1>
-<div mat-dialog-content class="p-3">
-    <p class="text-center">{{data.user.fullName}}</p>
-  </div>
-  <div mat-dialog-actions class="justify-content-between">
+<div class="modalContainer">
+  <h1 mat-dialog-title>Popup Dialog</h1>
+  <mat-tab-group class="row">
+    <mat-tab label="Request Details">
+      <mat-dialog-content class="modal-content">
+        <p class="text-center">{{data.requestId}}</p>
+        <p class="text-center">{{data.dateOfRequest}}</p>
+        <p class="text-center">{{data.numberOfPosRequest}}</p>
+        <p class="text-center">{{data.accountOfficer}}</p>
+        <p class="text-center">{{data.requestStatus}}</p>
+      </mat-dialog-content>
+    </mat-tab>
+    <mat-tab label="User Details">
+      <mat-dialog-content class="modal-content">
+        <p class="text-center">{{data.user.fullName}}</p>
+        <p class="text-center">{{data.user.middleName}}</p>
+        <p class="text-center">{{data.user.age}}</p>
+        <img src="{{data.user.images}}" alt="">
+      </mat-dialog-content>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-dialog-actions class="btn-center">
     <button mat-button class="btn btn-primary" (click)="closeModal()">Close</button>
     <button mat-button class="btn btn-primary">Approve</button>
-  </div>
+  </mat-dialog-actions>
+</div>
