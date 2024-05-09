@@ -3,8 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
-import { ModalService } from '../modal/modal.service';
 
+interface PosRequest {
+requestId: string,
+      dateOfRequest: string,
+      numberOfPosRequest: number,
+      accountOfficer: string,
+      requestStatus: string,
+      bankAccount: number,
+      businessDetail: {
+        location: string,
+        businessName: string,
+        type: string,
+          contact: {
+           name: string,
+           number: string,
+            location: string,
+          email: string
+          }
+        },
+       user: {
+          fullname: string,
+          age: number,
+          images: string,
+          userType: string
+        },
+        notification: {
+          message: string
+        }
+}
+
+interface ApiResponse {
+  [key: string]: PosRequest;
+}
 
 @Component({
   selector: 'app-request',
@@ -14,35 +45,30 @@ import { ModalService } from '../modal/modal.service';
 export class RequestComponent implements OnInit {
   @Input() n: number = 10; // The number of Items in a page
   currentPage = 1;
-  data: any = [];
-  numbers = Array.from({length: 30}, (_, i) => i+ 1);
+  posRequests: PosRequest[]=[];
   totalPages: number = 30;
+  selectedRequest: any;
 
   constructor(private http: HttpClient, private router: Router, private datePipe: DatePipe,
-    private modalService: ModalService
-  ) {}
+    ) {}
   
   //Function to determine if the page is on the home Page
   get defineHomePage() : boolean{
     return this.router.url === '/';
   }
 
-  getRequestProperty(request: any, key: string): any {
-    return request[key];
+  selectRequest(posRequest: any): void {
+    this.selectedRequest = posRequest;
   }
+
 
   convertDate(dateString: string): string {
     const date = new Date(dateString);
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
     }
 
-    openModal(request: any){
-      this.modalService.openModal(request);
-    }
-
     ngOnInit() {
-      this.http
-        .get('https://randomapi.com/api/1aguk5gh?key=FL25-19LM-QEN8-QH9T')
+      this.http.get('https://randomapi.com/api/1aguk5gh?key=FL25-19LM-QEN8-QH9T')
         .pipe(
           catchError((error) => {
             console.error('Error fetching data', error);
@@ -50,11 +76,14 @@ export class RequestComponent implements OnInit {
           })
         )
         .subscribe((response: any) => {
-          console.log(response)
-          this.data = response.results;
-         console.log(this.data)
-        })
-      }  
+          // Extracting the array of PosRequest objects from the response
+          this.posRequests =Object.values(response.results[0]);
+          console.log(this.posRequests);
+          // Now you can use posRequests array in your component
+          // console.log(this.posRequests);
+        });
+    }
+ 
 
 
   nextPage(): void {

@@ -17,7 +17,6 @@ import { NotificationPageComponent } from './paths/notification-page/notificatio
 import { HomePageComponent } from './paths/home-page/home-page.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ModalComponent } from './modal/modal.component';
 import { DatePipe } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
@@ -34,7 +33,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     RequestpageComponent,
     NotificationPageComponent,
     HomePageComponent,
-    ModalComponent
   ],
   imports: [
     BrowserModule,
