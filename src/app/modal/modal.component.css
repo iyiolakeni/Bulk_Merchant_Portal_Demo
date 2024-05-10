@@ -1,0 +1,18 @@
+.btn-center{
+    align-items: center;
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+    margin-top: 20px;
+}
+p{
+    font-size: large;
+    font-weight: bold;
+}
+.myImage{
+border-radius: 15px;
+}
+
+.new{
+    overflow: hidden;
+}

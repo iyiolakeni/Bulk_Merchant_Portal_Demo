@@ -19,6 +19,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatDialogModule} from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ModalComponent } from './modal/modal.component';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,13 +36,15 @@ import {MatTabsModule} from '@angular/material/tabs';
     RequestpageComponent,
     NotificationPageComponent,
     HomePageComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
   ],
   providers: [
     DatePipe,

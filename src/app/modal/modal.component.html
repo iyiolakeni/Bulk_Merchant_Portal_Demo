@@ -1,0 +1,158 @@
+<div mat-dialog-content class="bg-white">
+    <h1 mat-dialog-title>Details of {{data.posRequest.requestId}}</h1>
+    <mat-tab-group>
+      <mat-tab label="Request Details">
+        <div class="container mt-3">          
+            <label>Request ID:</label>
+                <p>{{data.posRequest.requestId}}</p>
+        </div>
+        <div class="container">
+            <label>Date Of Request:
+            </label>
+                <p>{{convertDate(data.posRequest.dateOfRequest)}}
+                </p>
+            </div>
+            <div class="container">
+                <label>Account Officer
+                </label>
+                     <p>{{data.posRequest.accountOfficer}}</p>
+            </div>
+            <div class="container">
+                <label>Request Status:
+                </label>
+                    <p>
+                        {{data.posRequest.requestStatus}}
+                    </p>
+            </div>
+            <div class="container">
+                <label>Bank Account:
+                    <p>
+                        {{data.posRequest.bankAccount}}
+                    </p>
+                </label>
+            </div>
+      </mat-tab>
+      <mat-tab label="Business Details">
+        <div class="container mt-3">
+            <label>Business Name</label>
+            <p>
+                {{data.posRequest.businessDetail.businessName}}
+            </p>
+        </div>
+        <div class="container">
+            <label>Business Type</label>
+                <p>
+                    {{data.posRequest.businessDetail.type}}
+                </p>
+        </div>
+        <div class="container">
+            <label for="">Location</label>
+            <p>{{data.posRequest.businessDetail.location}}</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="">Contact Name</label>
+                    <p>{{data.posRequest.businessDetail.contact.name}}</p>
+                </div>
+                <div class="col">
+                    <label for="">Phone Number</label>
+                    <p>{{data.posRequest.businessDetail.contact.number}}</p>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col">
+                    <label for="">Location</label>
+                    <p>{{data.posRequest.businessDetail.contact.location}}</p>
+                </div>
+                <div class="col">
+                    <label for="">Email</label>
+                    <p>{{data.posRequest.businessDetail.contact.email}}</p>
+                </div>
+            </div>
+        </div>
+        </mat-tab>
+      <mat-tab label="Business Owner Details">
+        <div class="row  mt-3">
+            <div class="col new">
+                <img class="myImage" src="{{data.posRequest.user.images}}" alt="">
+            </div>
+            <div class="col new">
+                <div >
+                    <label for=""> Name</label>
+                    <p>{{data.posRequest.user.fullname}}</p>
+                </div>
+                <div>
+                    <label for="">Age</label>
+                    <p>{{data.posRequest.user.age}}</p>
+                </div>
+                <div>
+                    <label for="">Acess Level</label>
+                    <p>{{data.posRequest.user.userType}}</p>
+                </div>
+            </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="btn-center" mat-dialog-actions>
+      <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
+    </div>
+  </div>
+
+  <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{data.posRequest.requestId}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Nav tabs
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Request Details</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Business Details</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="profile" aria-selected="false">User Details</a>
+          </li>
+        </ul>
+
+        Tab panes
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            Request Details tab content here
+            
+            <label>{{data.posRequest?.requestId}}</label>
+            <label>{{convertDate(data.posRequest.dateOfRequest)}}</label>
+            <label>{{data.posRequest.accountOfficer}}</label>
+            <label>{{data.posRequest.requestStatus}}</label>
+            <label>{{data.posRequest.bankAccount}}</label>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            Business tab content here
+            <label>{{data.posRequest.businessDetail.businessName}}</label>
+            <label>{{data.posRequest.businessDetail.businessType}}</label>
+            <label>{{data.posRequest.businessDetail.location}}</label>
+            <label>{{data.posRequest.businessDetail.contact.name}}</label>
+            <label>{{data.posRequest.businessDetail.contact.number}}</label>
+            <label>{{data.posRequest.businessDetail.contact.location}}</label>
+            <label>{{data.posRequest.businessDetail.contact.email}}</label>
+          </div>
+          <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
+            User tab content here
+            <label>{{data.posRequest.user.fullname}}</label>
+            <label>{{data.posRequest.user.age}}</label>
+            <label>{{data.posRequest.user.userType}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div> -->

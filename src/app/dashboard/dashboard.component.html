@@ -1,10 +1,10 @@
 <div class="text-left mx-4">
   <app-navbar></app-navbar>
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-8">
             <div class="row">
               <!-- Pending Status -->
-                <div class="col card">
+                <div class="col card bg-warning">
               <ng-container *ngFor="let dashboard of dashboard">
                       <div *ngIf="dashboard.status === 'Pending'" class="card-body dash-card">
                         <h5 class="card-text">
@@ -13,15 +13,14 @@
                         <h1 class="card-title">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="dash-wrapper">
-                          <span class="{{ dashboard.icon}} dash-icon"></span>
+                        <p class="spinner-border text-secondary float-end">
+                          <span class="visually-hidden"></span>
                         </p>
                     </div>
                   </ng-container>
               </div>
-          
               <!-- Approved Status -->
-                <div class="col card mx-4">
+                <div class="col card mx-4 bg-success">
               <ng-container *ngFor="let dashboard of dashboard">
                       <div *ngIf="dashboard.status === 'Approved'" class="card-body dash-card">
                         <h5 class="card-title">
@@ -30,15 +29,15 @@
                         <h1 class="card-text">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="dash-wrapper">
-                          <span class="{{ dashboard.icon }} dash-icon"></span>
+                        <p class="spinner-border text-light float-end">
+                          <span class="visually-hidden"></span>
                         </p>
                     </div>
                   </ng-container>
               </div>
           
               <!-- Declined Status -->
-                <div class="col card">
+                <div class="col card bg-danger">
               <ng-container *ngFor="let dashboard of dashboard">
                       <div *ngIf="dashboard.status === 'Rejected'" class="card-body dash-card">
                         <h5 class="card-title">
@@ -47,8 +46,8 @@
                         <h1 class="card-text">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="dash-wrapper">
-                          <span class="{{ dashboard.icon }} dash-icon"></span>
+                        <p class="spinner-border text-dark float-end">
+                          <span class="visually-hidden"></span>
                         </p>
                     </div>
                   </ng-container>
@@ -58,7 +57,7 @@
            <br />
            <div class="row">
              <!-- Deployed Status -->
-               <div class="col card">
+               <div class="col card bg-info">
              <ng-container *ngFor="let dashboard of dashboard">
                      <div *ngIf="dashboard.status === 'Deployed'" class="card-body dash-card">
                        <h5 class="card-title">
@@ -67,10 +66,10 @@
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="dash-wrapper">
-                         <span class="{{ dashboard.icon }} dash-icon"></span>
-                       </p>
-                   </div>
+                       <p class="spinner-border text-light float-end">
+                        <span class="visually-hidden"></span>
+                      </p>
+                 </div>
                  </ng-container>
              </div>
          
@@ -84,27 +83,27 @@
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="dash-wrapper">
-                         <span class="{{ dashboard.icon }} dash-icon"></span>
-                       </p>
-                   </div>
+                       <p class="spinner-border text-success float-end">
+                        <span class="visually-hidden"></span>
+                      </p>
+                 </div>
                  </ng-container>
              </div>
          
              <!-- Total Status -->
-               <div class="col card">
-             <ng-container *ngFor="let dashboard of dashboard">
-                     <div *ngIf="dashboard.status === 'Total'" class="card-body dash-card">
+               <div class="col card bg-success-subtle">
+             <ng-container>
+                     <div class="card-body dash-card">
                        <h5 class="card-title">
-                         {{ dashboard.status }}
+                         Total
                        </h5>
                        <h1 class="card-text">
-                         {{ dashboard.count }}
+                         {{ totalRequest }}
                        </h1>
-                       <p class="dash-wrapper">
-                         <span class="{{ dashboard.icon }} dash-icon"></span>
-                       </p>
-                   </div>
+                       <p class="spinner-border text-dark float-end">
+                        <span class="visually-hidden"></span>
+                      </p>
+                 </div>
                  </ng-container>
              </div>
          
