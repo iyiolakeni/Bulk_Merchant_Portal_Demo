@@ -20,7 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModalComponent } from './modal/modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MatDialogModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DatePipe,

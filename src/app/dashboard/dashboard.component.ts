@@ -66,4 +66,8 @@ ngOnInit() {
   });
 }
 
+logout(){
+  this.sharedService.setUser(null);
+}
+
 }

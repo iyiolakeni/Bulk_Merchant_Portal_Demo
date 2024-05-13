@@ -2,3 +2,36 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.login-body{
+    background: url('/assets/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.input1{
+    outline: none;
+    background: none;
+    border: none;
+    border-bottom: 1px white solid;
+    color: white;
+    font: 36px/1.5 "Inter";
+}
+.input1::placeholder{
+    color: white;
+    font: 36px/1.5 "Inter";
+    font-weight: lighter;
+    opacity: 50%;
+}
+.cardBody{
+    display: grid;
+    top: 28%;
+    left: 47%;
+    padding: 20px;
+    background-color: cadetblue;
+}
+.row{
+    margin-bottom: 30px;
+}

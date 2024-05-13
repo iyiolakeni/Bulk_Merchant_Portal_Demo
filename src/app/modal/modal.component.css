@@ -14,5 +14,6 @@ border-radius: 15px;
 }
 
 .new{
-    overflow: hidden;
+    /* overflow: none; */
+    overflow-x: hidden;
 }

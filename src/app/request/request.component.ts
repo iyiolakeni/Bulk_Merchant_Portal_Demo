@@ -59,7 +59,7 @@ export class RequestComponent implements OnInit {
   
   //Function to determine if the page is on the home Page
   get defineHomePage() : boolean{
-    return this.router.url === '/';
+    return this.router.url === '/dashboard';
   }
   
    convertDate(dateString: string): string {

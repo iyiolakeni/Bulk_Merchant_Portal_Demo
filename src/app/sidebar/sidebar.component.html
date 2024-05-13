@@ -15,6 +15,11 @@
               <a class="nav-link text-white" [routerLink]="['/notifications']">Notifications</a>
           </li>
       </ul>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+            <a style="cursor: pointer;" class="nav-link text-white" (click)="logout()">Sign Out</a>
+        </li>
+      </ul>
   </div>
 
   <!-- Offcanvas component for small screens -->

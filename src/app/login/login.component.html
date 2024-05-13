@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="login-body">
+  <div class="card col-5 cardBody">
+    <div class="card-header align-center">
+      <h2 class="text-white display-5 text-center">Login</h2>
+    </div>
+    <div class="card-body">
+    <form [formGroup]="loginForm" (submit)="$event.preventDefault(); onLogin()">
+        <div class="form-group">
+          <div class="row mx-1">
+            <input
+              type="email"
+              class="form-control-lg input1"
+              placeholder="Username" formControlName="username"
+              id="email"
+            />
+          </div>
+          <div class="row mx-1 flex-nowrap">
+            <input [type]="showPassword ? 'text' : 'password'" class="form-control-lg input1 ml-2" placeholder="Password"  formControlName="password" 
+            id="password" />
+            <span style="font-size: 2.5rem; position: relative; right: 50px; top: 20px" class="bi bi-eye-fill"(click)="showPword()">
+            </span>
+          </div>
+          <div class="row mx-1">
+            <button type="submit" class="mt-2 btn btn-secondary btn-lg">
+              Login
+            </button>
+            <a [routerLink]="['/sign_up']" class="text-white float-end"
+            >
+            New User?
+        </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,104 @@
-<p>signup works!</p>
+<div class="login-body">
+  <div class="card col-5 signUpCard">
+    <form [formGroup]="signupForm" (submit)="$event.preventDefault(); onSubmit()">
+      <div class="align-center">
+        <select
+          class="form-select form-select-lg"
+          formControlName="jobPosition"
+        >
+          <option value="">Select User</option>
+          <option value="Account Officer">Account Officer</option>
+          <option value="POS Business Officer">POS Business Officer</option>
+          <option value="Business Developer">Business Developer</option>
+          <option value="Account Developer">Account Developer</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+      <div *ngIf="signupForm.get('jobPosition')?.value">
+        <div class="card-body">
+          <div class="form-group">
+            <div class="input-group mx-1 mb-2">
+              <input
+                style="width: 50%"
+                type="text"
+                class="form-control-lg input1"
+                placeholder="First Name"
+                formControlName="firstname"
+              />
+              <input
+                style="width: 50%"
+                type="text"
+                class="form-control-lg input1"
+                placeholder="Surname"
+                formControlName="surname"
+              />
+            </div>
+            <div class="row mx-1">
+              <input
+                type="text"
+                class="form-control-lg input1"
+                placeholder="Username"
+                formControlName="username"
+              />
+              
+            </div>
+            <div class="row mx-1">
+              <input
+                type="email"
+                class="form-control-lg input1"
+                placeholder="Email"
+                formControlName="email"
+              />
+            </div>
+            <div class="row mx-1 flex-nowrap">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control-lg input1 ml-2"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <span
+                style="
+                  font-size: 2.5rem;
+                  position: relative;
+                  right: 50px;
+                  top: 20px;
+                  cursor: pointer;
+                "
+                class="bi bi-eye-fill"
+                (click)="showPword()"
+              >
+              </span>
+            </div>
+            <div class="row mx-1 flex-nowrap">
+              <input
+                [type]="confirmPwrod ? 'text' : 'password'"
+                class="form-control-lg input1"
+                placeholder="Confirm Password"
+                id="confirm_password"
+                formControlName="confirm_password"
+              />
+              <span
+                style="
+                  font-size: 2.5rem;
+                  position: relative;
+                  right: 50px;
+                  top: 20px;
+                  cursor: pointer;
+                "
+                class="bi bi-eye-fill"
+                (click)="confirmPword()"
+              >
+              </span>
+            </div>
+            <div class="row mx-1">
+              <button type="submit" class="mt-2 btn btn-secondary btn-lg">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div class="table-responsive-sm">
   <!-- Filter Button -->
-  <div class="dropdown float-end">
+  <div class="dropdown float-end" *ngIf="!defineHomePage">
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
       <i class="bi bi-filter me-2"></i>
       {{selectedStatus || 'Filter Request'}}
