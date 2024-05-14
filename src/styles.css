@@ -2,15 +2,6 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.login-body{
-    background: url('/assets/banner.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
 .input1{
     outline: none;
     background: none;

@@ -3,3 +3,13 @@ a{
     left: 86%;
     margin-top: 20px;
 }
+
+.login-body{
+    background: url('/assets/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
