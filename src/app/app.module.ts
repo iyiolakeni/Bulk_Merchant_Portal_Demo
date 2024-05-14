@@ -21,6 +21,7 @@ import { DatePipe } from '@angular/common';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewRequestComponent } from './paths/new-request/new-request.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NotificationPageComponent,
     HomePageComponent,
     ModalComponent,
+    NewRequestComponent,
   ],
   imports: [
     BrowserModule,

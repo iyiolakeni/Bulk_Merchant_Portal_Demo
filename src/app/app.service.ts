@@ -17,10 +17,18 @@ export class AppService {
   // function to retrieve user
   setUser(user: any){
     this.user = user;
+    sessionStorage.setItem('user', JSON.stringify(this.user));
     console.log(this.user);
   }
 
   getUser(){
+    if (!this.user){
+      const storedUser = sessionStorage.getItem('user');
+      if (storedUser){
+        this.user = JSON.parse(storedUser);
+      }
+    }
+    console.log(this.user);
     return this.user;
   }
 

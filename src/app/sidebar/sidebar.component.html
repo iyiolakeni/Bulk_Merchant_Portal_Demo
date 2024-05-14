@@ -5,8 +5,16 @@
           <li class="nav-item">
               <a class="nav-link text-white active" [routerLink]="['']">Dashboard</a>
           </li>
-          <li class="nav-item">
-                <a class="nav-link text-white" [routerLink]="['/request']">Request</a>
+          <li class="nav-item" style="cursor: pointer" (click)="toggle()">
+                <a class="nav-link text-white">Request</a>
+                <ul class="nav flex-column" *ngIf="show">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/request/new_request']">New Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/request']">View Requests</a>
+                    </li>
+                </ul>
           </li>
           <!-- <li class="nav-item">
               <a class="nav-link text-white" href="#">Email</a>

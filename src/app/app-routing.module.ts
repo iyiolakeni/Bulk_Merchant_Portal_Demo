@@ -7,12 +7,22 @@ import { HomePageComponent } from './paths/home-page/home-page.component';
 import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { NewRequestComponent } from './paths/new-request/new-request.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'dashboard', component: HomePageComponent},
   {path: 'sign_up', component: SignupComponent},
-  {path:'request', component: RequestpageComponent},
+  {
+    path:'request', 
+    component: RequestpageComponent,
+    children: [{
+      path: 'new_request',
+      component: NewRequestComponent
+    
+    }]
+
+  },
   {path: 'notifications', component: NotificationPageComponent},
   {path: 'emails', component: EmailComponent}
 ];
