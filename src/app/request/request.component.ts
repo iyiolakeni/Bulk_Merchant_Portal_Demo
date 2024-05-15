@@ -43,7 +43,7 @@ requestId: string,
   styleUrls: ['./request.component.css'],
 })
 export class RequestComponent implements OnInit {
-  @Input() n: number = 10; // The number of Items in a page
+  @Input() n: number = 15; // The number of Items in a page
   currentPage = 1;
   posRequests:any[] = [];
   totalPages: number = 30;

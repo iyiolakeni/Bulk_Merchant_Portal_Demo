@@ -8,7 +8,9 @@ import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NewRequestComponent } from './paths/new-request/new-request.component';
-
+import {RequestComponent} from './request/request.component'
+import { MerchantsComponent } from './merchants/merchants.component';
+import { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'dashboard', component: HomePageComponent},
@@ -16,12 +18,17 @@ const routes: Routes = [
   {
     path:'request', 
     component: RequestpageComponent,
-    children: [{
-      path: 'new_request',
-      component: NewRequestComponent
-    
-    }]
-
+    children: [
+      {path: 'new_request', component: NewRequestComponent},
+      {path: '', component: RequestComponent}
+  ]
+  },
+  {
+    path: 'merchants',
+    component: MerchantsComponent,
+    children: [
+      {path: '', component: AllmerchantsComponent}
+    ]
   },
   {path: 'notifications', component: NotificationPageComponent},
   {path: 'emails', component: EmailComponent}

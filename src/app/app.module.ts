@@ -22,6 +22,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewRequestComponent } from './paths/new-request/new-request.component';
+import { MerchantsComponent } from './merchants/merchants.component';
+import { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';
+import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { NewRequestComponent } from './paths/new-request/new-request.component';
     HomePageComponent,
     ModalComponent,
     NewRequestComponent,
+    MerchantsComponent,
+    AllmerchantsComponent,
+    NewMerchantComponent,
   ],
   imports: [
     BrowserModule,

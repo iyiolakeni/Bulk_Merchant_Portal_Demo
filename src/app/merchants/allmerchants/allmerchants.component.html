@@ -1,0 +1,32 @@
+<div class="table-res">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Merchant Id</th>
+            <th scope="col">Merchant Name</th>
+            <th scope="col">Registration Number</th>
+            <th scope="col">Bussiness Type</th>
+            <th scope="col">Merchant Location</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let merchant of merchants | slice:(currentPage-1)*n:currentPage*n">
+            <td>{{ merchant.MerchantID }}</td>
+            <td>{{ merchant.Merchant_Trade_Name }}</td>
+            <td>{{ merchant.RC_Number }}</td>
+            <td>{{ merchant.Business_type }}</td>
+            <td>{{ merchant.Business_location }}</td>
+            <td>
+            <span type="button" class="bi bi-three-dots">
+        </span>
+        <!-- (click)="openDialog(merchant)" -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="btn-center" role="group">
+        <button type="button" class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Continue</button>
+    </div>
+</div>
