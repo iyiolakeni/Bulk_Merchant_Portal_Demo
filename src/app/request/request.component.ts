@@ -70,7 +70,43 @@ export class RequestComponent implements OnInit {
     openDialog(posRequest: any): void{
       const dialogRef = this.dialog.open(ModalComponent, {
         width: '750px',
-        data: {posRequest: posRequest}
+        data: {
+          title: 'Details of '+ posRequest.requestId,
+          tabs: [
+            {
+              label: 'Request Details',
+              items: [
+                {label: 'Request ID:', value: posRequest.requestId},
+                {label: 'Date of Request:', value: this.convertDate(posRequest.dateOfRequest)},
+                {label: 'Account Officer:', value: posRequest.accountOfficer},
+                {label: 'Request Status:', value: posRequest.requestStatus},
+                {label: 'Bank Account:', value: posRequest.bankAccount},
+              ]
+            },
+            {
+              label: 'Business Details',
+              items: [
+                {label: 'Business Name', value: posRequest.businessDetail.businessName},
+                {label: 'Business Type', value: posRequest.businessDetail.type},
+                {label: 'Business Location', value: posRequest.businessDetail.location},
+                {label: 'Contact Name', value: posRequest.businessDetail.contact.name},
+                {label: 'Phone Number', value: posRequest.businessDetail.contact.number},
+                {label: 'Contact Location', value: posRequest.businessDetail.contact.location},
+                {label: 'Contact Email', value: posRequest.businessDetail.contact.email},
+              ]
+            },
+            {
+              label: 'Business Owner Details',
+              items: [
+                // {value: }
+                {label: 'Name', value: posRequest.user.fullname},
+                {label: 'Age', value: posRequest.user.age},
+                {label: 'Access Level', value: posRequest.user.userType},
+                {label: 'Image', value: posRequest.user.images}
+              ]
+            }
+          ]
+        }
       });
     }
 

@@ -3,7 +3,7 @@
   <div id="sidebar" class="d-none d-md-block">
       <ul class="nav flex-column ">
           <li class="nav-item">
-              <a class="nav-link text-white active" [routerLink]="['']">Dashboard</a>
+              <a class="nav-link text-white active" [routerLink]="['/dashboard']">Dashboard</a>
           </li>
           <li class="nav-item" style="cursor: pointer" (click)="toggle()">
                 <a class="nav-link text-white">Request</a>
@@ -20,7 +20,16 @@
               <a class="nav-link text-white" href="#">Email</a>
           </li> -->
           <li class="nav-item">
-              <a class="nav-link text-white" [routerLink]="['/merchants']">Merchant</a>
+              <a class="nav-link text-white" style="cursor: pointer" (click)="toggle2()">Merchant</a>
+              <ul class="nav flex-column" *ngIf="show2">
+                <li class="nav-item">
+                    <a [routerLink]="['/merchants/new_merchant']" class="nav-link text-white">New Merchant</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/merchants']" class="nav-link text-white">All Merchants</a>
+                </li>
+                <li class="nav-item"></li>
+              </ul>
           </li>
           <li class="nav-item">
               <a class="nav-link text-white" [routerLink]="['/notifications']">Notifications</a>
@@ -42,14 +51,22 @@
       <div class="offcanvas-body">
           <ul class="nav flex-column">
               <li class="nav-item">
-                  <a class="nav-link active" [routerLink]="['']" >Dashboard</a>
+                  <a class="nav-link active" [routerLink]="['/dashboard']" >Dashboard</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['request']">Request</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Email</a>
-              </li>
+              <li class="nav-item" style="cursor: pointer" (click)="toggle()">
+                <a class="nav-link text-white">Request</a>
+                <ul class="nav flex-column" *ngIf="show">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/request/new_request']">New Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" [routerLink]="['/request']">View Requests</a>
+                    </li>
+                </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" [routerLink]="['/merchants']">Merchant</a>
+        </li>
               <li class="nav-item">
                   <a class="nav-link" [routerLink]="['/notifications']">Notifications</a>
               </li>

@@ -1,4 +1,13 @@
 <div class="table-res">
+        <div class="col-6 input-group mb-3 w-50">
+                <input class="form-control" style="width: 20px" type="search" [(ngModel)]="searchName" placeholder="Search for a Merchant" (click)="search()">
+                <select class="form-select" style="width: 5px;" [(ngModel)]="searchField">
+                    <option value="Merchant_Trade_Name">Merchant Name</option>
+                    <option value="RC_Number">Registration Number</option>
+                    <option value="Business_type">Business Type</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="Button" (click)="search()">Search</button>
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,9 +27,10 @@
             <td>{{ merchant.Business_type }}</td>
             <td>{{ merchant.Business_location }}</td>
             <td>
-            <span type="button" class="bi bi-three-dots">
+            <span type="button" class="bi bi-three-dots"
+                        (click)="openDialog(merchant)"
+            >
         </span>
-        <!-- (click)="openDialog(merchant)" -->
             </td>
         </tr>
         </tbody>

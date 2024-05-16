@@ -1,101 +1,28 @@
 <div mat-dialog-content class="bg-white">
-    <h1 mat-dialog-title>Details of {{data.posRequest.requestId}}</h1>
+    <h1 mat-dialog-title>{{data.title}}</h1>
     <mat-tab-group>
-      <mat-tab label="Request Details">
-        <div class="container mt-3">          
-            <label>Request ID:</label>
-                <p>{{data.posRequest.requestId}}</p>
-        </div>
-        <div class="container">
-            <label>Date Of Request:
-            </label>
-                <p>{{convertDate(data.posRequest.dateOfRequest)}}
-                </p>
-            </div>
-            <div class="container">
-                <label>Account Officer
-                </label>
-                     <p>{{data.posRequest.accountOfficer}}</p>
-            </div>
-            <div class="container">
-                <label>Request Status:
-                </label>
-                    <p>
-                        {{data.posRequest.requestStatus}}
-                    </p>
-            </div>
-            <div class="container">
-                <label>Bank Account:
-                    <p>
-                        {{data.posRequest.bankAccount}}
-                    </p>
-                </label>
-            </div>
-      </mat-tab>
-      <mat-tab label="Business Details">
-        <div class="container mt-3">
-            <label>Business Name</label>
-            <p>
-                {{data.posRequest.businessDetail.businessName}}
-            </p>
-        </div>
-        <div class="container">
-            <label>Business Type</label>
-                <p>
-                    {{data.posRequest.businessDetail.type}}
-                </p>
-        </div>
-        <div class="container">
-            <label for="">Location</label>
-            <p>{{data.posRequest.businessDetail.location}}</p>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <label for="">Contact Name</label>
-                    <p>{{data.posRequest.businessDetail.contact.name}}</p>
-                </div>
-                <div class="col">
-                    <label for="">Phone Number</label>
-                    <p>{{data.posRequest.businessDetail.contact.number}}</p>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col">
-                    <label for="">Location</label>
-                    <p>{{data.posRequest.businessDetail.contact.location}}</p>
-                </div>
-                <div class="col">
-                    <label for="">Email</label>
-                    <p>{{data.posRequest.businessDetail.contact.email}}</p>
-                </div>
-            </div>
-        </div>
-        </mat-tab>
-      <mat-tab label="Business Owner Details">
-        <div class="row  mt-3">
-            <div class="col new">
-                <img class="myImage" src="{{data.posRequest.user.images}}" alt="">
-            </div>
-            <div class="col new">
-                <div >
-                    <label for=""> Name</label>
-                    <p>{{data.posRequest.user.fullname}}</p>
-                </div>
-                <div>
-                    <label for="">Age</label>
-                    <p>{{data.posRequest.user.age}}</p>
-                </div>
-                <div>
-                    <label for="">Acess Level</label>
-                    <p>{{data.posRequest.user.userType}}</p>
-                </div>
-            </div>
+      <mat-tab *ngFor="let tab of data.tabs" [label]="tab.label">
+        <div class="container mt-3" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+          <div *ngFor="let item of tab.items">
+            <ng-container *ngIf="item.label !== 'Image'; else imageBlock">
+              <label>{{item.label}}:</label>
+              <p>{{item.value}}</p>
+            </ng-container>
+            <ng-template #imageBlock>
+              <img [src]="item.value" alt="Image" style="width: 50%; height: auto;">
+            </ng-template>
+          </div>
         </div>
       </mat-tab>
     </mat-tab-group>
     <div class="btn-center" mat-dialog-actions>
+      <ng-container *ngIf="data.page !== 'merchants'; else merchantButton ">
       <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
+      </ng-container>
+      <ng-template #merchantButton>
+      <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
+      <button class="btn btn-outline-primary" mat-button (click)="newRequest(data)">New Request</button>
+      </ng-template>
     </div>
   </div>
 

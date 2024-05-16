@@ -1,1 +1,51 @@
-<p>new-merchant works!</p>
+    <h1 class="mx-4">Create New Merchant</h1>
+    <form [formGroup]="newMerchant" class="row g-3 align-items-center mx-3" (submit)="$event.preventDefault(); onSubmit()">
+      <div class="col-md-6">
+        <label for="name">Business Name</label>
+        <input type="text" class="form-control" required formControlName="Merchant_Trade_Name"/>
+        <label for="name">Business Type</label>
+        <input type="text" class="form-control" required formControlName="Business_type" />
+        <label for="name">RC Number</label>
+        <input type="text" class="form-control" required formControlName="RC_Number" />
+        <label for="name">Number of Branches</label>
+        <input type="text" class="form-control" required formControlName="No_of_branches" />
+        <label for="name">Business Location</label>
+        <input type="text" class="form-control" required formControlName="Business_location" />
+        <label for="name">Opening Hours</label>
+        <input type="text" class="form-control" required formControlName="opening_hours" />
+        <label for="name">website</label>
+        <input type="text" class="form-control" required formControlName="website" />
+        <label for="name">Office Address</label>
+      <input type="text" class="form-control" required formControlName="Office_address" />
+      <label for="name">LGA</label>
+      <input type="text" class="form-control" required formControlName="LGA" />
+      <label for="name">State</label>
+      <input type="text" class="form-control" required formControlName="state" />
+    </div>
+    <div class="col-md-6">
+        <label for="name">Name of Primary Contact</label>
+        <input type="text" class="form-control" required formControlName="Name_of_Primary_Contact" />
+        <label for="name">Phone Number</label>
+        <input type="text" class="form-control" required formControlName="office_No" />
+        <label for="name">Mobile Number</label>
+        <input type="text" class="form-control" required formControlName="Mobile_No1" />
+        <label for="name">Email</label>
+        <input type="text" class="form-control" required formControlName="office_email" />
+        <label for="name">Designation</label>
+        <input type="text" class="form-control" required formControlName="Designation" />
+        <label for="name">Name of Secondary Contact</label>
+        <input type="text" class="form-control" required formControlName="Name_of_Secondary_Contact" />
+        <label for="name">Phone Number</label>
+        <input type="text" class="form-control" required formControlName="office_No2" />
+        <label for="name">Mobile Number</label>
+        <input type="text" class="form-control" required formControlName="Mobile_No2" />
+        <label for="name">Email</label>
+        <input type="text" class="form-control" required formControlName="office_email2" />
+        <label for="name">Designation</label>
+        <input type="text" class="form-control" required formControlName="Designation2" />
+      </div>
+      <div class="btn-center" role="group">
+        <button type="button" class="btn btn-secondary">Clear</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>

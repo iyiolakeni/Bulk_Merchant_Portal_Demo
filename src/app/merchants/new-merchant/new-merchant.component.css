@@ -1,0 +1,6 @@
+.btn-center{
+    align-items: center;
+    display: flex;
+    gap: 45px;
+    justify-content: center;
+}

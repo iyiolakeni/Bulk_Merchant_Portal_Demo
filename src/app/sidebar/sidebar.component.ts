@@ -15,9 +15,13 @@ export class SidebarComponent {
   ){}
   
   show = false;
+  show2 = false;
   
   toggle() {
     this.show = !this.show;
+  }
+  toggle2() {
+    this.show2 = !this.show2;
   }
 
   logout(){

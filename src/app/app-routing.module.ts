@@ -11,6 +11,7 @@ import { NewRequestComponent } from './paths/new-request/new-request.component';
 import {RequestComponent} from './request/request.component'
 import { MerchantsComponent } from './merchants/merchants.component';
 import { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';
+import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'dashboard', component: HomePageComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
     path: 'merchants',
     component: MerchantsComponent,
     children: [
-      {path: '', component: AllmerchantsComponent}
+      {path: '', component: AllmerchantsComponent},
+      {path: 'new_merchant', component: NewMerchantComponent}
     ]
   },
   {path: 'notifications', component: NotificationPageComponent},
