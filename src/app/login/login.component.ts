@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
 
   showPassword = false;
+  failedLogin = false;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -41,18 +42,22 @@ ngOnInit(){
         console.log(response);
         console.log('Logged in');
         this.sharedService.setUser(response);
+        switchMap(()=>this.router.navigate(['/dashboard']))
       }),
       catchError(error => {
         console.error('Error', error);
 
+        this.failedLogin = true;
         return of(null);
       }),
-      switchMap(()=>this.router.navigate(['/dashboard']))
     ).subscribe();
   }
   else {
-    console.log(this.loginForm.errors)
+    console.log(this.loginForm.errors);
   }
 }
 
+resetForm(){
+  this.failedLogin = false;
+}
 }

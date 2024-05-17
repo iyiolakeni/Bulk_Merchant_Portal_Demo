@@ -4,7 +4,7 @@
       <h2 class="text-white display-5 text-center">Login</h2>
     </div> 
     <div class="card-body">
-    <form [formGroup]="loginForm" (submit)="$event.preventDefault(); onLogin()">
+    <form [formGroup]="loginForm" (submit)="$event.preventDefault(); onLogin()" (keyup)="resetForm()">
         <div class="form-group">
           <div class="row mx-1">
             <input
@@ -20,6 +20,8 @@
             <span style="font-size: 2.5rem; position: relative; right: 70px;" class="bi bi-eye-fill"(click)="showPword()">
             </span>
           </div>
+          <p *ngIf="failedLogin">
+          Invalid Password or Username, Try again</p>
           <div class="row mx-1">
             <button type="submit" class="mt-2 btn btn-secondary btn-lg">
               Login
