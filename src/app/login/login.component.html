@@ -20,7 +20,7 @@
             <span style="font-size: 2.5rem; position: relative; right: 70px;" class="bi bi-eye-fill"(click)="showPword()">
             </span>
           </div>
-          <p class="alert" *ngIf="failedLogin">
+          <p class="alert alert-warning" role="alert" *ngIf="failedLogin">
           Invalid Password or Username, Try again</p>
           <div class="row mx-1">
             <button type="submit" class="mt-2 btn btn-secondary btn-lg">

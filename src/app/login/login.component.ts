@@ -42,11 +42,11 @@ ngOnInit(){
         console.log(response);
         console.log('Logged in');
         this.sharedService.setUser(response);
-        switchMap(()=>this.router.navigate(['/dashboard']))
+        this.router.navigate(['/dashboard'])
       }),
       catchError(error => {
         console.error('Error', error);
-
+        
         this.failedLogin = true;
         return of(null);
       }),
