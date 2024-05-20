@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { AppService } from '../app.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navbar', 
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

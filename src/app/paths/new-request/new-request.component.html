@@ -1,7 +1,7 @@
 <h1 class="mx-4">Create New Request</h1>
 <form [formGroup]="newRequest" class="row g-3 justify-content-center align-items-center mx-3" (submit)="$event.preventDefault(); onSubmit()">
   <div class="col-md-6">
-      <label for="name">Merchant ID</label>
+      <label for="name">Merchant ID</label> 
       <div class="input-group has-validation">
         <input type="text" class="form-control" [ngClass]="{'is-valid': merchantExist, 'is-invalid': merchantExist === false}" required formControlName="MerchantID" (blur)="searchMerchant()" (keyup)="resetMerchant()"/>
       <!-- <div class="valid-feedback">

@@ -36,8 +36,7 @@ export class NewRequestComponent implements OnInit {
     console.log(this.merchantID);
   }
 
-
-    this.newRequest = this.formBuilder.group({
+  this.newRequest = this.formBuilder.group({
         officer_name: ['', Validators.required],
         MerchantID: [this.merchantID || '', Validators.required],
         No_of_POS_terminal: ['', Validators.required],
@@ -55,20 +54,23 @@ export class NewRequestComponent implements OnInit {
 
   onSubmit(){
     if (this.newRequest.valid){
-      const requestData = this.newRequest.value;
+      const requestData = this.newRequest.value; 
 
       this.http.post('https://bmp-node.onrender.com/forms/new', requestData).pipe(
         tap(response => {
           console.log(response);
           console.log('Request added');
+          this.router.navigate(['/requests'])
         }),
         catchError(error =>{
           console.error(error);
 
           return of(null);
         }),
-        switchMap(() => this.router.navigate(['/requests']))
       ).subscribe();
+    }
+    else{
+      console.log(this.newRequest.errors)
     }
   }
 

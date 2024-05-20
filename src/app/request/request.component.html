@@ -29,14 +29,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let posRequest of posRequests | slice:(currentPage-1)*n:currentPage*n">
-        <ng-container *ngIf="!selectedStatus || posRequest.requestStatus === selectedStatus">
-          <td>{{ posRequest.requestId }}</td>
-          <td>{{ posRequest.businessDetail.businessName }}</td>
-          <td>{{ posRequest.numberOfPosRequest }}</td>
-          <td>{{ convertDate(posRequest.dateOfRequest) }}</td>
-          <td>{{ posRequest.requestStatus }}</td>
+        <ng-container *ngIf="!selectedStatus || posRequest.status === selectedStatus">
+          <td>{{ posRequest.RequestId }}</td>
+          <td>{{ merchant?.Merchant_Trade_Name }}</td>
+          <td>{{ posRequest.No_of_POS_terminal }}</td>
+          <td>{{ convertDate(posRequest.createdAt) }}</td>
+          <td style="text-transform: capitalize;">{{ posRequest.status}}</td>
           <td>
-            <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest)"></span> 
+            <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest, merchant)"></span> 
           </td>
         </ng-container>
       </tr>

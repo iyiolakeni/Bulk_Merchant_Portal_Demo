@@ -3,39 +3,33 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { catchError, forkJoin, throwError } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { AppService } from '../app.service';
+import { MerchantsComponent } from '../merchants/merchants.component';
+import { ApiDetailsService } from '../api-details.service';
 
 interface PosRequest {
-requestId: string,
-      dateOfRequest: string,
-      numberOfPosRequest: number,
-      accountOfficer: string,
-      requestStatus: string,
-      bankAccount: number,
-      businessDetail: {
-        location: string,
-        businessName: string,
-        type: string,
-          contact: {
-           name: string,
-           number: string,
-            location: string,
-          email: string
-          }
-        },
-       user: {
-          fullname: string,
-          age: number,
-          images: string,
-          userType: string
-        },
-        notification: {
-          message: string
-        }
+  [key: string]: any;
+  RequestId: string;
+  officer_name: string;
+  MerchantID: string;
+  No_of_POS_terminal: string;
+  location_of_terminal: string;
+  contact_person: string;
+  contact_mobile_no: string;
+  category_of_merchant_business: string;
+  bank: string;
+  Account_No: number;
+  card_type: string;
+  status: string;
+  Notes: string;
+  suppportingDocuments: string;
+  updatedAt: string;
+  createdAt: string;
+  ApprovedBy: string;
+  AdditionalNotes: string;
 }
-
 
 @Component({
   selector: 'app-request',
@@ -45,89 +39,109 @@ requestId: string,
 export class RequestComponent implements OnInit {
   @Input() n: number = 15; // The number of Items in a page
   currentPage = 1;
-  posRequests:any[] = [];
+  posRequests: PosRequest[] = [];
   totalPages: number = 30;
   selectedRequest: any;
-  selectedStatus: string ='';
+  selectedStatus: string = '';
+  merchant: any;
 
-  constructor(private http: HttpClient, private router: Router, 
+  constructor(
+    private http: HttpClient,
+    private router: Router,
     private datePipe: DatePipe,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
-    private sharedService: AppService
-    ) {}
-  
+    private sharedService: AppService,
+    private apiService: ApiDetailsService
+  ) {}
+
   //Function to determine if the page is on the home Page
-  get defineHomePage() : boolean{
+  get defineHomePage(): boolean {
     return this.router.url === '/dashboard';
   }
-  
-   convertDate(dateString: string): string {
+
+  convertDate(dateString: string): string {
     const date = new Date(dateString);
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
-    }
+  }
 
-    openDialog(posRequest: any): void{
-      const dialogRef = this.dialog.open(ModalComponent, {
-        width: '750px',
-        data: {
-          title: 'Details of '+ posRequest.requestId,
-          tabs: [
-            {
-              label: 'Request Details',
-              items: [
-                {label: 'Request ID:', value: posRequest.requestId},
-                {label: 'Date of Request:', value: this.convertDate(posRequest.dateOfRequest)},
-                {label: 'Account Officer:', value: posRequest.accountOfficer},
-                {label: 'Request Status:', value: posRequest.requestStatus},
-                {label: 'Bank Account:', value: posRequest.bankAccount},
-              ]
-            },
-            {
-              label: 'Business Details',
-              items: [
-                {label: 'Business Name', value: posRequest.businessDetail.businessName},
-                {label: 'Business Type', value: posRequest.businessDetail.type},
-                {label: 'Business Location', value: posRequest.businessDetail.location},
-                {label: 'Contact Name', value: posRequest.businessDetail.contact.name},
-                {label: 'Phone Number', value: posRequest.businessDetail.contact.number},
-                {label: 'Contact Location', value: posRequest.businessDetail.contact.location},
-                {label: 'Contact Email', value: posRequest.businessDetail.contact.email},
-              ]
-            },
-            {
-              label: 'Business Owner Details',
-              items: [
-                // {value: }
-                {label: 'Name', value: posRequest.user.fullname},
-                {label: 'Age', value: posRequest.user.age},
-                {label: 'Access Level', value: posRequest.user.userType},
-                {label: 'Image', value: posRequest.user.images}
-              ]
-            }
-          ]
-        }
-      });
-    }
+  openDialog(posRequest: any, merchant: any): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '750px',
+      data: {
+        title: 'Details of ' + posRequest.RequestId,
+        tabs: [
+          {
+            label: 'Request Details',
+            items: [
+              { label: 'Request ID:', value: posRequest.RequestId },
+              {
+                label: 'Date of Request:',
+                value: this.convertDate(posRequest.createdAt),
+              },
+              { label: 'Bank Account:', value: posRequest.bank },
+              { label: 'Request Status:', value: posRequest.status },
+              { label: 'Notes:', value: posRequest.Notes },
+            ],
+          },
+          {
+            label: 'Business Details',
+            items: [
+              { label: 'Business Name', value: merchant.Merchant_Trade_Name },
+              { label: 'Business Type', value: merchant.Business_type },
+              { label: 'Business Location', value: merchant.Business_location },
+              {
+                label: 'Contact Name',
+                value: merchant.Name_of_Primary_Contact,
+              },
+              { label: 'Phone Number', value: merchant.office_No },
+              { label: 'Contact Location', value: merchant.office_email },
+              { label: 'Contact Email', value: merchant.office_email },
+            ],
+          },
+          {
+            label: 'POS Terminal Contact',
+            items: [
+              {
+                label: 'Location of Terminal',
+                value: posRequest.location_of_terminal,
+              },
+              { label: 'Name', value: posRequest.contact_person },
+              { label: 'Phone Number', value: posRequest.contact_mobile_no },
+              // {label: 'Image', value: posRequest.images}
+            ],
+          },
+        ],
+      },
+    });
+  }
 
-    ngOnInit() {
-      this.http.get('https://randomapi.com/api/zd4nfefq?key=A57Y-OMZL-YRW4-7HW7')
-        .pipe(
-          catchError((error) => {
-            console.error('Error fetching data', error);
-            return throwError('Unable to fetch data');
-          })
-        )
-        .subscribe((response: any) => {
-          // Extracting the array of PosRequest objects from the response
-          this.posRequests =Object.values(response.results[0]);
-          console.log(this.posRequests);
-          this.sharedService.updateData(response);
-          console.log(this.sharedService)
-          this.cdr.detectChanges();
+  ngOnInit() {
+    this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms').subscribe(
+      posRequests => {
+        this.posRequests = posRequests.reverse();
+        console.log(this.posRequests);
+  
+        const merchantRequests = this.posRequests.map(posRequest =>
+          this.apiService.getMerchantById(posRequest.MerchantID)
+        );
+  
+        forkJoin(merchantRequests).subscribe(
+          merchants => {
+            this.merchant = merchants;
+            console.log(this.merchant);
+          },
+          error => {
+            console.error(error);
+          }
+        );
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 
-        });
-    }
 
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
@@ -140,6 +154,4 @@ export class RequestComponent implements OnInit {
       this.currentPage--;
     }
   }
-
-
 }
