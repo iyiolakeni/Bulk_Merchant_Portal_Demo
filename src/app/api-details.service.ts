@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Merchant } from './merchant';
-
+import {PosRequest} from './posrequest'
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,9 @@ export class ApiDetailsService {
 
   getMerchantById(merchantID: string): Observable<Merchant>{
     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)
+  }
+
+  getRequest():Observable<any>{
+    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')
   }
 }

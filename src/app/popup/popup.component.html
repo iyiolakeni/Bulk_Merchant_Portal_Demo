@@ -1,0 +1,41 @@
+<div mat-dialog-content class="bg-light text-white">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+  <mat-dialog-content>
+    <div class="container">
+        <label>Request Id:</label>
+      <div class="row">
+        <div class="col">
+            <input
+              type="radio"
+              class="btn-check"
+              name="options-outlined"
+              id="success-outlined"
+              autocomplete="off"
+              checked
+            />
+            <label class="btn btn-outline-success" for="success-outlined"
+              >Approved</label
+            >
+        </div>
+          <div class="col">
+              <input
+                type="radio"
+                class="btn-check"
+                name="options-outlined"
+                id="danger-outlined"
+                autocomplete="off"
+              />
+              <label class="btn btn-outline-danger" for="danger-outlined"
+                >Declined</label
+              >
+          </div>
+      </div>
+      <div class="row">
+        <div class="input-group">
+            <span class="input-group-text">Additional Notes</span>
+            <textarea class="form-control" aria-label="With textarea"></textarea>
+          </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

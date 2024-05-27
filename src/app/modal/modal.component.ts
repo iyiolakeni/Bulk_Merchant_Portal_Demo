@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, Input } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-modal',
@@ -14,7 +15,8 @@ export class ModalComponent {
     private datePipe: DatePipe,
     private router: Router,
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialog: MatDialog
   ){} 
 
   convertDate(dateString: string): string {
@@ -31,5 +33,14 @@ export class ModalComponent {
       console.log('before navigation', data)
       this.dialogRef.close();
     }
+
+  acceptRequest(data: any){
+    this.dialogRef.close();
+    this.dialogRef.afterClosed().subscribe(result=> {
+      this.dialog.open(PopupComponent, {
+        data: data
+      })
+    })
+  }
 
 }

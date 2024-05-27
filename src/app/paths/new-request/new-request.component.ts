@@ -1,8 +1,9 @@
 import { Component , OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {Router, NavigationStart} from '@angular/router';
-import { tap, catchError, of, switchMap } from 'rxjs';
+import {Router} from '@angular/router';
+import { tap, catchError, of, throwError } from 'rxjs';
+import { AppService } from '../../app.service';
 
 interface Item {
   label: string;
@@ -19,11 +20,14 @@ export class NewRequestComponent implements OnInit {
   newRequest: FormGroup = new FormGroup({});
   merchantID: string | null = null;
   merchantExist: boolean | null = null;
+  user: any;
+  fullname: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
+    private userAccount: AppService
   ) { }
 
   ngOnInit() {
@@ -36,9 +40,12 @@ export class NewRequestComponent implements OnInit {
     console.log(this.merchantID);
   }
 
+  this.user = this.userAccount.getUser();
+  this.fullname = this.user.user.firstname + ' '+ this.user.user.surname
+
   this.newRequest = this.formBuilder.group({
-        officer_name: ['', Validators.required],
-        MerchantID: [this.merchantID || '', Validators.required],
+        officer_name: [this.fullname],
+        MerchantID: [this.merchantID || ''],
         No_of_POS_terminal: ['', Validators.required],
         location_of_terminal: ['', Validators.required],
         contact_person: ['', Validators.required],
@@ -47,30 +54,32 @@ export class NewRequestComponent implements OnInit {
         bank: ['', Validators.required],
         Account_No: ['', Validators.required],
         CardType: ['', Validators.required],
-        FormStatus: ['', Validators.required],
-        Notes: [''],
+        Notes: ['']
     })
   }
 
-  onSubmit(){
-    if (this.newRequest.valid){
+  onSubmit() {
+
+    console.log('Form validity:', this.newRequest.valid);
+    console.log('Form data:', this.newRequest.value)
+    
+    if (this.newRequest.valid) {
       const requestData = this.newRequest.value; 
-
-      this.http.post('https://bmp-node.onrender.com/forms/new', requestData).pipe(
-        tap(response => {
-          console.log(response);
-          console.log('Request added');
-          this.router.navigate(['/requests'])
-        }),
-        catchError(error =>{
+  
+      this.http.post<any>('https://bmp-node.onrender.com/forms/new', requestData).pipe(
+        catchError(error => {
           console.error(error);
-
-          return of(null);
-        }),
-      ).subscribe();
-    }
-    else{
-      console.log(this.newRequest.errors)
+          return throwError(error);
+        })
+      ).subscribe(response => {
+        console.log(response);
+        console.log('Request added');
+        this.router.navigate(['/request']);
+      }, error => {
+        console.log('POST request failed, error:', error);
+      });
+    } else {
+      console.log(this.newRequest.errors);
     }
   }
 

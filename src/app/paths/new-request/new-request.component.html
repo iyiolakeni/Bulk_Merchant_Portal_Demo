@@ -1,9 +1,24 @@
 <h1 class="mx-4">Create New Request</h1>
-<form [formGroup]="newRequest" class="row g-3 justify-content-center align-items-center mx-3" (submit)="$event.preventDefault(); onSubmit()">
+<form
+  [formGroup]="newRequest"
+  class="row g-3 justify-content-center align-items-center mx-3"
+  (submit)="$event.preventDefault(); onSubmit()"
+>
   <div class="col-md-6">
-      <label for="name">Merchant ID</label> 
-      <div class="input-group has-validation">
-        <input type="text" class="form-control" [ngClass]="{'is-valid': merchantExist, 'is-invalid': merchantExist === false}" required formControlName="MerchantID" (blur)="searchMerchant()" (keyup)="resetMerchant()"/>
+    <label for="name">Merchant ID</label>
+    <div class="input-group has-validation">
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-valid': merchantExist,
+          'is-invalid': merchantExist === false
+        }"
+        required
+        formControlName="MerchantID"
+        (blur)="searchMerchant()"
+        (keyup)="resetMerchant()"
+      />
       <!-- <div class="valid-feedback">
         <i class="bi bi-check"></i>
       </div> -->
@@ -11,28 +26,85 @@
         <i class="bi bi-x"></i> Merchant Doesn't Exist
         <a [routerLink]="['/merchants/new_merchant']">New Merchant?</a>
       </div>
-      </div>    
+    </div>
     <label for="name">Number of POS</label>
-    <input type="text" class="form-control" required formControlName="No_of_POS_terminal" />
+    <input
+      type="text"
+      class="form-control"
+      required
+      formControlName="No_of_POS_terminal"
+    />
     <label for="name">Location Of Terminals</label>
-    <input type="text" class="form-control" required formControlName="location_of_terminal" />
+    <input
+      type="text"
+      class="form-control"
+      required
+      formControlName="location_of_terminal"
+    />
     <label for="name">Contact Person</label>
-    <input type="text" class="form-control" required formControlName="contact_person" />
+    <input
+      type="text"
+      class="form-control"
+      required
+      formControlName="contact_person"
+    />
     <label for="name">Mobile Number</label>
-    <input type="text" class="form-control" required formControlName="contact_mobile_no" />
+    <input
+      type="text"
+      class="form-control"
+      required
+      formControlName="contact_mobile_no"
+    />
     <label for="name">Business Category</label>
-    <input type="text" class="form-control" required formControlName="Business_Category" />
+    <select class="form-select" aria-label="Default select example" formControlName="Business_Category">
+      <option selected>Open this select menu</option>
+      <option value="Store/Supermarket">Store/Supermarket</option>
+      <option value="Restaurants">Restaurants</option>
+      <option value="Wholesale/Distributor">Wholesale/Distributor</option>
+      <option value="Telecoms">Telecoms</option>
+      <option value="Fuel Station">Fuel Station</option>
+      <option value="Hotel/ Guest House">Hotels/Guest House</option>
+      <option value="Logistics (Courier)">Logistics</option>
+      <option value="Church/ NGO">Church/NGO</option>
+      <option value="Hospital">Hospital</option>
+      <option value="Airlines">Airlines</option>
+      <option value="Fast Food">Fast Food</option>
+      <option value="Travel Agencies">Travel Agencies</option>
+      <option value="Embassy">Embassy</option>
+      <option value="Education/Schools">Education</option>
+    </select>
     <label for="name">Bank</label>
     <input type="text" class="form-control" required formControlName="bank" />
     <label for="name">Account Number</label>
-  <input type="text" class="form-control" required formControlName="Account_No" />
-  <label for="name">Card Type</label>
-  <input type="text" class="form-control" required formControlName="CardType" />
-  <label for="name">Additional Notes</label>
-  <input type="text" class="form-control" required formControlName="Notes" />
-</div>
+    <input
+      type="text"
+      class="form-control"
+      required
+      formControlName="Account_No"
+    />
+    <label for="name">Card Type</label><br>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="CardType" id="CardType" value="None" formControlName="CardType">
+      <label class="form-check-label" for="inlineRadio1">None</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="CardType" id="CardType" value="International Mastercard" formControlName="CardType">
+      <label class="form-check-label" for="inlineRadio2">International Mastercard</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="CardType" id="CardType" value="International Visa" formControlName="CardType">
+      <label class="form-check-label" for="inlineRadio1">International Visa</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="CardType" id="CardType" value="Local Card" formControlName="CardType">
+      <label class="form-check-label" for="Local Card">Local Card</label>
+    </div><br>
+
+    <label for="name">Additional Notes</label>
+    <input type="text" class="form-control" required formControlName="Notes" />
+  </div>
   <div class="btn-center" role="group">
     <button type="button" class="btn btn-secondary">Clear</button>
     <button type="submit" class="btn btn-primary">Submit</button>
-</div>
+  </div>
 </form>

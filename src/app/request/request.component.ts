@@ -3,33 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { catchError, forkJoin, throwError } from 'rxjs';
+import { catchError, forkJoin, from, of, throwError } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { AppService } from '../app.service';
 import { MerchantsComponent } from '../merchants/merchants.component';
 import { ApiDetailsService } from '../api-details.service';
-
-interface PosRequest {
-  [key: string]: any;
-  RequestId: string;
-  officer_name: string;
-  MerchantID: string;
-  No_of_POS_terminal: string;
-  location_of_terminal: string;
-  contact_person: string;
-  contact_mobile_no: string;
-  category_of_merchant_business: string;
-  bank: string;
-  Account_No: number;
-  card_type: string;
-  status: string;
-  Notes: string;
-  suppportingDocuments: string;
-  updatedAt: string;
-  createdAt: string;
-  ApprovedBy: string;
-  AdditionalNotes: string;
-}
+import { PosRequest } from '../posrequest';
 
 @Component({
   selector: 'app-request',
@@ -44,6 +23,8 @@ export class RequestComponent implements OnInit {
   selectedRequest: any;
   selectedStatus: string = '';
   merchant: any;
+  user: any;
+  mergedData: {request: any, merchant: any}[] = [];
 
   constructor(
     private http: HttpClient,
@@ -69,7 +50,9 @@ export class RequestComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '750px',
       data: {
+        status: posRequest.status,
         title: 'Details of ' + posRequest.RequestId,
+        user: this.user.jobPosition,
         tabs: [
           {
             label: 'Request Details',
@@ -117,19 +100,32 @@ export class RequestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms').subscribe(
+    this.user = this.sharedService.getUser();
+    console.log(this.user);
+    this.apiService.getRequest().subscribe(
       posRequests => {
         this.posRequests = posRequests.reverse();
         console.log(this.posRequests);
   
-        const merchantRequests = this.posRequests.map(posRequest =>
-          this.apiService.getMerchantById(posRequest.MerchantID)
+        const merchantRequests = this.posRequests.map(posRequest =>{
+          const merchantID = posRequest.MerchantID
+          if (typeof merchantID === 'string' && merchantID !== 'string') {
+            return this.apiService.getMerchantById(merchantID);
+          } else {
+            console.error('Invalid merchantID:', merchantID);
+            return of(null); // Return an Observable of null if merchantID is invalid
+          }
+        }
         );
   
         forkJoin(merchantRequests).subscribe(
           merchants => {
-            this.merchant = merchants;
-            console.log(this.merchant);
+            this.mergedData = this.posRequests.map((request, index) => ({
+              request: request,
+              merchant: merchants[index]
+            
+            }));
+            console.log(this.mergedData)
           },
           error => {
             console.error(error);

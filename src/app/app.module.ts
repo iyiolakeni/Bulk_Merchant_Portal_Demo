@@ -25,6 +25,7 @@ import { NewRequestComponent } from './paths/new-request/new-request.component';
 import { MerchantsComponent } from './merchants/merchants.component';
 import { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';
 import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.comp
     MerchantsComponent,
     AllmerchantsComponent,
     NewMerchantComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

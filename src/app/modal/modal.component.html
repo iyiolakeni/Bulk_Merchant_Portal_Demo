@@ -11,13 +11,19 @@
             <ng-template #imageBlock>
               <img [src]="item.value" alt="Image" style="width: 50%; height: auto;">
             </ng-template>
-          </div>
+          </div> 
         </div>
       </mat-tab>
     </mat-tab-group>
     <div class="btn-center" mat-dialog-actions>
       <ng-container *ngIf="data.page !== 'merchants'; else merchantButton ">
-      <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
+        <ng-container *ngIf="data.user === 'Account Officer' || data.status !== 'pending'; else jobPosition ">
+          <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
+        </ng-container>
+        <ng-template #jobPosition>
+          <button class="btn btn-outline-primary" mat-button (click)="acceptRequest(data)" >Process</button>
+          <button class="btn btn-outline-danger" mat-button mat-dialog-close>Close</button>
+          </ng-template>
       </ng-container>
       <ng-template #merchantButton>
       <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>

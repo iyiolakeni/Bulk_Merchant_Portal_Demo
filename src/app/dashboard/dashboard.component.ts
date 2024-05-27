@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
 })
 export class DashboardComponent implements OnInit{
 dashboard: { status: string, count: number }[] = [];
-totalRequest: number = 0;
+totalRequest: number = 0; 
 
 constructor(private sharedService: AppService){}
 

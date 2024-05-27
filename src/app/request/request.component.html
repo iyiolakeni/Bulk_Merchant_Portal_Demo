@@ -18,7 +18,7 @@
 
   <table class="table table-hover" >
     <thead>
-      <tr>
+      <tr> 
         <th scope="col">Request Id</th>
         <th scope="col">Business Name</th>
         <th scope="col">No of POS</th>
@@ -28,15 +28,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let posRequest of posRequests | slice:(currentPage-1)*n:currentPage*n">
-        <ng-container *ngIf="!selectedStatus || posRequest.status === selectedStatus">
-          <td>{{ posRequest.RequestId }}</td>
-          <td>{{ merchant?.Merchant_Trade_Name }}</td>
-          <td>{{ posRequest.No_of_POS_terminal }}</td>
-          <td>{{ convertDate(posRequest.createdAt) }}</td>
-          <td style="text-transform: capitalize;">{{ posRequest.status}}</td>
+      <tr *ngFor="let posRequest of mergedData | slice:(currentPage-1)*n:currentPage*n">
+        <ng-container *ngIf="!selectedStatus || posRequest.request.status === selectedStatus">
+          <td>{{ posRequest.request.RequestId }}</td>
+          <td>{{ posRequest.merchant?.Merchant_Trade_Name }}</td>
+          <td>{{ posRequest.request.No_of_POS_terminal }}</td>
+          <td>{{ convertDate(posRequest.request.createdAt) }}</td>
+          <td style="text-transform: capitalize;">{{ posRequest.request.status}}</td>
           <td>
-            <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest, merchant)"></span> 
+            <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest.request, posRequest.merchant)"></span> 
           </td>
         </ng-container>
       </tr>
