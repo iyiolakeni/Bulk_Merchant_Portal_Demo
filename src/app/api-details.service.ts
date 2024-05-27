@@ -25,4 +25,8 @@ export class ApiDetailsService {
   getRequest():Observable<any>{
     return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')
   }
+
+  approveRequest(requestID: string, formData: any): Observable<any>{
+    return this.http.put(`https://bmp-node.onrender.com/forms/${requestID}`, formData)
+  }
 }
