@@ -32,11 +32,12 @@
           </ng-template>
       </ng-container>
       <ng-template #merchantButton>
-        <ng-container *ngIf="data.user === 'Account Officer'; else otherUsers">
+        <ng-container *ngIf="data.user ==='Account Officer'; else otherUsers">
           <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
           <button class="btn btn-outline-primary" mat-button (click)="newRequest(data)">New Request</button>
         </ng-container>
       </ng-template>
+
       <ng-template #otherUsers>
         <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
       </ng-template>

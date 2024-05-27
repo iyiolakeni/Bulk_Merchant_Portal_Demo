@@ -5,6 +5,8 @@ import { ModalComponent } from '../../modal/modal.component';
 import { Title } from '@angular/platform-browser';
 import { ApiDetailsService } from '../../api-details.service';
 import { Merchant } from '../../merchant';
+import { AppService } from '../../app.service';
+import { share } from 'rxjs';
 
 
 @Component({
@@ -19,12 +21,14 @@ export class AllmerchantsComponent implements OnInit {
   totalPages: number = 30;
   searchName = '';
   searchField = 'Merchant_Trade_Name';
+  user: any;
 
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
     private titleService: Title,
-    private apiService: ApiDetailsService
+    private apiService: ApiDetailsService,
+    private sharedService: AppService
   ) {}
 
   openDialog(merchant: any): void{
@@ -33,6 +37,7 @@ export class AllmerchantsComponent implements OnInit {
       data: {
         title: merchant.Merchant_Trade_Name,
         page: 'merchants',
+        user: this.user.jobPosition,
         tabs: [
           {
           label: 'Merchant details',
@@ -86,6 +91,7 @@ export class AllmerchantsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.user = this.sharedService.getUser();
     this.titleService.setTitle('All Merchants');
     this.apiService.getAllMerchants().subscribe((response: any) => {
       this.merchants = response.reverse() as Merchant[];

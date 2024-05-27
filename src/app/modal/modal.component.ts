@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
@@ -10,6 +10,8 @@ import { PopupComponent } from '../popup/popup.component';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
+  show = true;
+
 
   constructor(
     private datePipe: DatePipe,
