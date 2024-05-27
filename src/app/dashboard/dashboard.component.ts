@@ -29,6 +29,7 @@ ngOnInit() {
     data.forEach(
       (item: any) =>{
         counts.set(item.status, (counts.get(item.status) || 0)+1);
+        console.log(item.status)
       }
     );
 
