@@ -10,7 +10,7 @@ import { ApiDetailsService } from '../api-details.service';
 export class DashboardComponent implements OnInit{
 dashboard: { status: string, count: number }[] = [];
 totalRequest: number = 0; 
-
+isLoading = true;
 
 constructor(private sharedService: AppService,
   private apiService: ApiDetailsService
@@ -49,6 +49,7 @@ ngOnInit() {
     //Total Request count
     this.totalRequest = this.dashboard.reduce((total, item) => total + item.count, 0);
   });
+  this.isLoading = false;
 }
 
 logout(){
