@@ -22,7 +22,7 @@
               <!-- Approved Status -->
                 <div class="col card mx-4 bg-success">
               <ng-container *ngFor="let dashboard of dashboard">
-                      <div *ngIf="dashboard.status === 'Approved'" class="card-body dash-card">
+                      <div *ngIf="dashboard.status === 'approved'" class="card-body dash-card">
                         <h5 class="card-title">
                           {{ dashboard.status }}
                         </h5>
@@ -39,7 +39,7 @@
               <!-- Declined Status -->
                 <div class="col card bg-danger">
               <ng-container *ngFor="let dashboard of dashboard">
-                      <div *ngIf="dashboard.status === 'Rejected'" class="card-body dash-card">
+                      <div *ngIf="dashboard.status === 'denied'" class="card-body dash-card">
                         <h5 class="card-title">
                           {{ dashboard.status }}
                         </h5>
@@ -59,7 +59,7 @@
              <!-- Deployed Status -->
                <div class="col card bg-info">
              <ng-container *ngFor="let dashboard of dashboard">
-                     <div *ngIf="dashboard.status === 'Deployed'" class="card-body dash-card">
+                     <div *ngIf="dashboard.status === 'deployed'" class="card-body dash-card">
                        <h5 class="card-title">
                          {{ dashboard.status }}
                        </h5>
@@ -76,7 +76,7 @@
              <!-- In Process Status -->
                <div class="col card mx-4">
              <ng-container *ngFor="let dashboard of dashboard">
-                     <div *ngIf="dashboard.status === 'Processing'" class="card-body dash-card">
+                     <div *ngIf="dashboard.status === 'in_process'" class="card-body dash-card">
                        <h5 class="card-title">
                          {{ dashboard.status }}
                        </h5>

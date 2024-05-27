@@ -17,16 +17,16 @@ constructor(private sharedService: AppService,
 ){}
 
 ngOnInit() {
-  this.apiService.getRequest().subscribe(response => {
-    console.log("Response is:",response);
-  })
+  // this.apiService.getRequest().subscribe(response => {
+  //   console.log("Response is:",response);
+  // })
 
   this.apiService.getRequest().subscribe(data => { // Subscribe to the data
-    const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { requestStatus: string | number; }) => { // Use reduce to count the statuses
-      if (!counts[item.requestStatus]) {
-        counts[item.requestStatus] = 0;
+    const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { // Use reduce to count the statuses
+      if (!counts[item.status]) {
+        counts[item.status] = 0;
       }
-      counts[item.requestStatus]++;
+      counts[item.status]++;
       return counts;
     }, {});
 
