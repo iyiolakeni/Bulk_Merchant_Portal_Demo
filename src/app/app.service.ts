@@ -32,8 +32,8 @@ export class AppService {
     return this.user;
   }
 
-  // updateData(response: any){
-  //   const posRequests = Object.values(response.results[0]);
-  //   this.dataSource.next(posRequests);
-  // }
+  updateData(response: any){
+    const posRequests = Object.values(response.results[0]);
+    this.dataSource.next(posRequests);
+  }
 }
