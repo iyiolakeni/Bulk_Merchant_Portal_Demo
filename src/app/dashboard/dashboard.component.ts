@@ -23,7 +23,7 @@ ngOnInit() {
 
   this.apiService.getRequest().subscribe(data => { 
     // Retrieve all status from the data set
-    const status = [...new Set(data.map(item => item.status))];
+    const status = [...new Set(data.map((item: { status: string; }) => item.status))];
     console.log("Status is:", status);
     // const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { 
     //   // Use reduce to count the statuses
