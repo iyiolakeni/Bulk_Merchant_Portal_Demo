@@ -27,7 +27,7 @@ ngOnInit() {
 
     // count the status in the data
     data.forEach(
-      item =>{
+      (item: any) =>{
         counts.set(item.status, (counts.get(item.status) || 0)+1);
       }
     );
