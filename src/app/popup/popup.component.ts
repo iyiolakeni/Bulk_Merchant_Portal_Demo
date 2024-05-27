@@ -40,7 +40,7 @@ export class PopupComponent implements OnInit {
       this.apiService.approveRequest(requestID, this.updateForm.value).subscribe(
         data => {
           console.log(data);
-          this.popupRef.close()
+          this.popupRef.close();
         }, error => {
           console.log(error)
         }
