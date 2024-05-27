@@ -22,7 +22,7 @@ ngOnInit() {
   })
 
   this.apiService.getRequest().subscribe(data => { // Subscribe to the data
-    const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | 0; }) => { // Use reduce to count the statuses
+    const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { // Use reduce to count the statuses
       if (!counts[item.status]) {
         counts[item.status] = 0;
       }
