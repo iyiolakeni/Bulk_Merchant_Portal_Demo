@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { ApiDetailsService } from '../api-details.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,13 @@ export class DashboardComponent implements OnInit{
 dashboard: { status: string, count: number }[] = [];
 totalRequest: number = 0; 
 
-constructor(private sharedService: AppService){}
+constructor(private sharedService: AppService,
+  private apiService: ApiDetailsService
+){}
 
 ngOnInit() {
+  this.apiService.getRequest().subscribe()
+
   this.sharedService.data.subscribe(data => { // Subscribe to the data
     const counts: { [status: string]: number } = data.reduce((counts, item) => { // Use reduce to count the statuses
       if (!counts[item.requestStatus]) {
