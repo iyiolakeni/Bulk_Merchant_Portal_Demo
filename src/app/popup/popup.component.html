@@ -37,11 +37,12 @@
       <div class="row mt-4">
         <div class="input-group">
             <span class="input-group-text">Additional Notes</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" formControlName="AdditionalNotes" aria-label="With textarea"></textarea>
           </div>
         </div>
         <button mat-button class="btn btn-primary mt-4 align-center">Submit</button>
       </form>
+      <div class="warning" *ngIf="!formValid">Kindly Add the additional notes</div>
   </mat-dialog-content>
 
 

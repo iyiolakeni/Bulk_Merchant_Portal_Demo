@@ -11,6 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class PopupComponent implements OnInit {
 
   updateForm: FormGroup = new FormGroup({});
+  formValid = false;
 
   constructor(
     private popupRef: MatDialogRef<PopupComponent>,
@@ -23,13 +24,16 @@ export class PopupComponent implements OnInit {
   ngOnInit(): void {
     // console.log(this.data.user)
     this.updateForm = this.formBuilder.group({
-      status: ['', Validators.required]
+      status: ['', Validators.required],
+      AdditionalNotes: ['', Validators.required]
     })
   }
 
   updateProcess(){
     if (this.updateForm.valid){
       console.log(this.updateForm.value)
+    }else{
+      this.formValid = true;
     }
 
   }
