@@ -11,6 +11,8 @@
               name="options-outlined"
               id="success-outlined"
               autocomplete="off"
+              formControlName="status"
+              value="approved"
               checked
             />
             <label class="btn btn-outline-success" for="success-outlined"
@@ -23,6 +25,8 @@
                 class="btn-check"
                 name="options-outlined"
                 id="danger-outlined"
+              formControlName="status"
+              value="denied"
                 autocomplete="off"
               />
               <label class="btn btn-outline-danger" for="danger-outlined"
@@ -36,7 +40,7 @@
             <textarea class="form-control" aria-label="With textarea"></textarea>
           </div>
         </div>
-        <button mat-button class="btn btn-primary mt-4 align-center">Submit</button>
+        <button mat-button class="btn btn-primary mt-4 align-center" (click)="updateProcess()">Submit</button>
     </div>
   </mat-dialog-content>
 

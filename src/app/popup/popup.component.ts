@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from '../app.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-popup',
@@ -9,15 +10,27 @@ import { AppService } from '../app.service';
 })
 export class PopupComponent implements OnInit {
 
+  updateForm: FormGroup = new FormGroup({});
+
   constructor(
     private popupRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private sharedService: AppService
+    private sharedService: AppService,
+    private formBuilder: FormBuilder
   ){}
 // const user: any;
 
   ngOnInit(): void {
-    console.log(this.data.user)
+    // console.log(this.data.user)
+    this.updateForm = this.formBuilder.group({
+      status: ['', Validators.required]
+    })
   }
 
+  updateProcess(){
+    if (this.updateForm.valid){
+      console.log(this.updateForm.value)
+    }
+
+  }
 }
