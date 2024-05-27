@@ -23,7 +23,7 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void {
     
-    // console.log(this.data.user)
+    console.log(this.data.name)
     this.updateForm = this.formBuilder.group({
       status: ['', Validators.required],
       AdditionalNotes: ['', Validators.required]
