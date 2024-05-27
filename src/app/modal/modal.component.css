@@ -8,6 +8,7 @@
 p{
     font-size: large;
     font-weight: bold;
+    text-transform: capitalize;
 }
 .myImage{
 border-radius: 15px;
