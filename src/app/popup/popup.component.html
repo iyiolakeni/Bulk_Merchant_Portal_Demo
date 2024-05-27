@@ -1,7 +1,7 @@
 <div mat-dialog-content class="bg-light text-white">
   <h1 mat-dialog-title>{{ data.title }}</h1>
   <mat-dialog-content>
-    <div class="container">
+    <form [formGroup]="updateForm" (submit)="$event.preventDefault(); updateProcess()" class="container">
         <label>Request Id:</label>
       <div class="row align-center">
         <div class="col">
@@ -40,8 +40,8 @@
             <textarea class="form-control" aria-label="With textarea"></textarea>
           </div>
         </div>
-        <button mat-button class="btn btn-primary mt-4 align-center" (click)="updateProcess()">Submit</button>
-    </div>
+        <button mat-button class="btn btn-primary mt-4 align-center">Submit</button>
+      </form>
   </mat-dialog-content>
 
 
