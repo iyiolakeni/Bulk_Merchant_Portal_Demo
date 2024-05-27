@@ -53,7 +53,7 @@ export class RequestComponent implements OnInit {
         status: posRequest.status,
         title: 'Details of ' + posRequest.RequestId,
         user: this.user.jobPosition,
-        name: this.user.firstname + ' ' + this.user.surname,
+        name: this.user.user.firstname + ' ' + this.user.user.surname,
         tabs: [
           {
             label: 'Request Details',
