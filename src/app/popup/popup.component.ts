@@ -22,6 +22,7 @@ export class PopupComponent implements OnInit {
 // const user: any;
 
   ngOnInit(): void {
+    
     // console.log(this.data.user)
     this.updateForm = this.formBuilder.group({
       status: ['', Validators.required],
