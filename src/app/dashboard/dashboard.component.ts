@@ -21,14 +21,18 @@ ngOnInit() {
     console.log("Response is:",response);
   })
 
-  this.apiService.getRequest().subscribe(data => { // Subscribe to the data
-    const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { // Use reduce to count the statuses
-      if (!counts[item.status]) {
-        counts[item.status] = 0;
-      }
-      counts[item.status]++;
-      return counts;
-    }, {});
+  this.apiService.getRequest().subscribe(data => { 
+    // Retrieve all status from the data set
+    const status = [...new Set(data.map(item => item.status))];
+    console.log("Status is:", status);
+    // const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { 
+    //   // Use reduce to count the statuses
+    //   if (!counts[item.status]) {
+    //     counts[item.status] = 0;
+    //   }
+    //   counts[item.status]++;
+    //   return counts;
+    // }, {});
 
     this.dashboard = Object.entries(counts).map(([status, count]) => ({ status, count: Number(count) })).sort((a, b) => b.count - a.count);
 
