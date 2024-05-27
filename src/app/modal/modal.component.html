@@ -20,9 +20,15 @@
         <ng-container *ngIf="data.user === 'Account Officer' || data.status !== 'pending'; else jobPosition ">
           <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
         </ng-container>
+          <ng-container *ngIf="data.user === 'Business Developer'; else posOfficer">
+            <button class="btn btn-outline-primary" mat-button (click)="acceptRequest(data)" >Process</button>
+            <button class="btn btn-outline-danger" mat-button mat-dialog-close>Close</button>
+        </ng-container>
+        <ng-template #posOfficer>
+          <button class="btn btn-outline-primary" mat-button>Generate S/N</button>
+          <button class="btn btn-outline-danger" mat-button>Close</button>
+        </ng-template>
         <ng-template #jobPosition>
-          <button class="btn btn-outline-primary" mat-button (click)="acceptRequest(data)" >Process</button>
-          <button class="btn btn-outline-danger" mat-button mat-dialog-close>Close</button>
           </ng-template>
       </ng-container>
       <ng-template #merchantButton>
