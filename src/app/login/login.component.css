@@ -5,7 +5,7 @@ a{
 }
 
 .login-body{
-    background: url('/assets/banner.jpg');
+    background: url('https://elogin.polarisbanklimited.com/images/index/icons/banner.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
