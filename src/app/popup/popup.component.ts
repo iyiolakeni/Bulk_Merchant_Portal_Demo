@@ -13,6 +13,7 @@ export class PopupComponent implements OnInit {
 
   updateForm: FormGroup = new FormGroup({});
   formValid = false;
+  generateRequest: FormGroup = new FormGroup({})
 
   constructor(
     private popupRef: MatDialogRef<PopupComponent>,
@@ -51,4 +52,13 @@ export class PopupComponent implements OnInit {
     }
 
   }
+
+  generateSN(){
+    if (this.generateRequest.valid)
+    {
+      console.log(this.generateRequest.value)
+      
+    }
+  }
+
 }

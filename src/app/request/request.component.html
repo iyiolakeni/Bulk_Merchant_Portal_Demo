@@ -27,9 +27,9 @@
         <th scope="col"> Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody> 
       <tr *ngFor="let posRequest of mergedData | slice:(currentPage-1)*n:currentPage*n">
-        <ng-container *ngIf="!selectedStatus || posRequest.request.status === selectedStatus">
+        <ng-container *ngIf="!selectedStatus || posRequest.request.status === selectedStatus && posRequest.request.officer_name === officerName">
           <td>{{ posRequest.request.RequestId }}</td>
           <td>{{ posRequest.merchant?.Merchant_Trade_Name }}</td>
           <td>{{ posRequest.request.No_of_POS_terminal }}</td>

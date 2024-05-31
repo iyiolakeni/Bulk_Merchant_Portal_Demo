@@ -17,18 +17,20 @@
     </mat-tab-group>
     <div class="btn-center" mat-dialog-actions>
       <ng-container *ngIf="data.page !== 'merchants'; else merchantButton ">
-        <ng-container *ngIf="data.user === 'Account Officer' || data.status !== 'pending'; else jobPosition ">
+        <ng-container *ngIf="data.user === 'Account Officer' && data.officer === data.name; else jobPosition ">
           <button class="btn btn-outline-secondary" mat-button mat-dialog-close>Close</button>
         </ng-container>
         <ng-template #jobPosition>
-          <ng-container *ngIf="data.user === 'Business Developer'; else posOfficer">
+          <ng-container *ngIf="data.user === 'Business Developer' && data.status ==='pending'; else posOfficer">
             <button class="btn btn-outline-primary" mat-button (click)="acceptRequest(data)" >Process</button>
             <button class="btn btn-outline-danger" mat-button mat-dialog-close>Close</button>
         </ng-container>
         </ng-template>
         <ng-template #posOfficer>
-          <button class="btn btn-outline-primary" mat-button>Generate S/N</button>
-          <button class="btn btn-outline-danger" mat-button>Close</button>
+          <ng-container *ngIf="data.user === 'POS Business Officer' && data.status === 'approved'; else otherUsers">
+            <button class="btn btn-outline-primary" mat-button (click)="posRequest(data)">Generate S/N</button>
+            <button class="btn btn-outline-danger" mat-dialog-close mat-button>Close</button>
+          </ng-container>
           </ng-template>
       </ng-container>
       <ng-template #merchantButton>

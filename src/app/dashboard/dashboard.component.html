@@ -2,10 +2,7 @@
   <app-navbar></app-navbar>
 
     <div class="row mb-5">
-      <div *ngIf="isLoading" class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-        <div class="col-8" *ngIf="!isLoading">
+         <div class="col-8">
             <div class="row">
               <!-- Pending Status -->
                 <div class="col card bg-warning">
@@ -17,7 +14,7 @@
                         <h1 class="card-title">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="spinner-border text-secondary float-end">
+                        <p class="spinner-border text-secondary float-end" *ngIf="isLoading">
                           <span class="visually-hidden"></span>
                         </p>
                     </div>
@@ -33,7 +30,7 @@
                         <h1 class="card-text">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="spinner-border text-light float-end">
+                        <p class="spinner-border text-light float-end"  *ngIf="isLoading">
                           <span class="visually-hidden"></span>
                         </p>
                     </div>
@@ -50,7 +47,10 @@
                         <h1 class="card-text">
                           {{ dashboard.count }}
                         </h1>
-                        <p class="spinner-border text-dark float-end">
+                        <p class="spinner-border text-dark float-end"  *ngIf="isLoading">
+                          <span class="visually-hidden"></span>
+                        </p>
+                        <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
                           <span class="visually-hidden"></span>
                         </p>
                     </div>
@@ -70,7 +70,10 @@
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="spinner-border text-light float-end">
+                       <p class="spinner-border text-light float-end" *ngIf="isLoading">
+                        <span class="visually-hidden"></span>
+                      </p>
+                      <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
                         <span class="visually-hidden"></span>
                       </p>
                  </div>
@@ -87,7 +90,10 @@
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="spinner-border text-success float-end">
+                       <p class="spinner-border text-success float-end" *ngIf="isLoading">
+                        <span class="visually-hidden"></span>
+                      </p>
+                      <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
                         <span class="visually-hidden"></span>
                       </p>
                  </div>
@@ -104,9 +110,12 @@
                        <h1 class="card-text">
                          {{ totalRequest }}
                        </h1>
-                       <p class="spinner-border text-dark float-end">
-                        <span class="visually-hidden"></span>
-                      </p>
+                         <p class="spinner-border text-dark float-end" *ngIf="isLoading">
+                          <span class="visually-hidden"></span>
+                        </p>
+                          <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                            <span class="visually-hidden"></span>
+                          </p>
                  </div>
                  </ng-container>
              </div>

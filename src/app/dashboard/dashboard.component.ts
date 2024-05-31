@@ -11,26 +11,22 @@ export class DashboardComponent implements OnInit{
 dashboard: { status: string, count: number }[] = [];
 totalRequest: number = 0; 
 isLoading = true;
+user: any;
 
 constructor(private sharedService: AppService,
   private apiService: ApiDetailsService
 ){}
 
 ngOnInit() {
+  this.user = this.sharedService.getUser();
   this.apiService.getRequest().subscribe(response => {
     console.log("Response is:",response);
   })
 
-  this.apiService.getRequest().subscribe(data => { 
-    // Retrieve all status from the data set
-    // const counts: { [status: string]: number } = data.reduce((counts: { [x: string]: number; }, item: { status: string | number; }) => { 
-    //   // Use reduce to count the statuses
-    //   if (!counts[item.status]) {
-    //     counts[item.status] = 0;
-    //   }
-    //   counts[item.status]++;
-    //   return counts;
-    // }, {});
+  this.apiService.getRequest().subscribe(data => {
+    if (this.user.jobPosition === 'Account Officer'){
+      data = data.filter((item: any) => item.officer_name === this.user.user.firstname + ' ' + this.user.user.surname);
+    }
 
     const statuses = ['approved','pending', 'in_process', 'denied','deployed']
     const counts: {[status: string]: number} = statuses.reduce((obj, status) =>({

@@ -1,49 +1,97 @@
 <div mat-dialog-content class="bg-light text-white">
   <h1 mat-dialog-title>{{ data.title }}</h1>
-  <mat-dialog-content>
-    <form [formGroup]="updateForm" (submit)="$event.preventDefault(); updateProcess()" class="container">
-        <label>Request Id:</label>
-      <div class="row align-center">
-        <div class="col">
-            <input
-              type="radio"
-              class="btn-check"
-              name="status"
-              id="success-outlined"
-              autocomplete="off"
-              formControlName="status"
-              value="approved"
-              checked
-            />
-            <label class="btn btn-outline-success" for="success-outlined"
-              >Approved</label
-            >
-        </div>
+  <ng-container *ngIf="data.status === 'pending'; else approvedRequest">
+    <mat-dialog-content>
+      <form [formGroup]="updateForm" (submit)="$event.preventDefault(); updateProcess()" class="container">
+          <label>Request Id:</label>
+        <div class="row align-center">
           <div class="col">
               <input
                 type="radio"
                 class="btn-check"
                 name="status"
-                id="danger-outlined"
-              formControlName="status"
-              value="denied"
+                id="success-outlined"
                 autocomplete="off"
+                formControlName="status"
+                value="approved"
+                checked
               />
-              <label class="btn btn-outline-danger" for="danger-outlined"
-                >Declined</label
+              <label class="btn btn-outline-success" for="success-outlined"
+                >Approved</label
               >
           </div>
-      </div>
-      <div class="row mt-4">
-        <div class="input-group">
-            <span class="input-group-text">Additional Notes</span>
-            <textarea class="form-control" formControlName="AdditionalNotes" aria-label="With textarea"></textarea>
-          </div>
+            <div class="col">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="status"
+                  id="danger-outlined"
+                formControlName="status"
+                value="denied"
+                  autocomplete="off"
+                />
+                <label class="btn btn-outline-danger" for="danger-outlined"
+                  >Declined</label
+                >
+            </div>
         </div>
-        <button mat-button class="btn btn-primary mt-4 align-center">Submit</button>
+        <div class="row mt-4">
+          <div class="input-group">
+              <span class="input-group-text">Additional Notes</span>
+              <textarea class="form-control" formControlName="AdditionalNotes" aria-label="With textarea"></textarea>
+            </div>
+          </div>
+          <button mat-button class="btn btn-primary mt-4 align-center">Submit</button>
+        </form>
+        <div class="warning" *ngIf="formValid">Kindly Add the additional notes</div>
+    </mat-dialog-content>
+  </ng-container>
+  <ng-template #approvedRequest>
+    <mat-dialog-content>
+      <form [formGroup]="generateRequest" (submit)="$event.preventDefault(); generateSN()">
+        <div class="row align-center">
+          <div class="col">
+              <input type="radio" class="btn-check" name="Pos_Accounts" id="success-outlined" autocomplete="off" formControlName="Pos_Accounts" value="Polaris Corporate" checked/>
+              <label class="btn btn-outline-success" for="success-outlined">Polaris Corporate</label>
+          </div>
+          <div class="col">
+            <input type="radio" class="btn-check" name="Pos_Accounts" id="success-outlined" autocomplete="off" formControlName="Pos_Accounts" value="Polaris Corporate" checked/>
+            <label class="btn btn-outline-success" for="success-outlined">Polaris Wise Account</label>
+        </div>
+        </div>
+        <select class="form-select form-select-lg mb-3 mt-3" aria-label="Large select example">
+          <option selected>Select Model Type</option>
+          <option value="Verifone VX 520">Verifone VX 520</option>
+          <option value="Ingenico ICT250">Ingenico ICT250</option>
+          <option value="Castles Technology VEGA3000">Castles Technology VEGA3000</option>
+          <option value="First Data FD130">First Data FD130</option>
+          <option value="Spectra T1000">Spectra T1000</option>
+          <option value="Hypercom T4220">Hypercom T4220</option>
+          <option value="Spire SPg7">Spire SPg7</option>
+          <option value="Sunmi V2">Sunmi V2</option>
+          <option value="Safaricom Lipa Na M-Pesa (LNM)">Safaricom Lipa Na M-Pesa (LNM)</option>
+          <option value="Etranzact POS">Etranzact POS</option>
+          <option value="Paga Agent POS">Paga Agent POS</option>
+          <option value="Flutterwave POS">Flutterwave POS</option>
+          <option value="OPay POS">OPay POS</option>
+        </select>
+        <select name="" id="" class="form-select form-select-lg mb-3">
+          <option value="">Processor Type</option>
+          <option value="Central Processing Unit (CPU)">Central Processing Unit (CPU)</option>
+          <option value="Integrated Processor">Integrated Processor</option>
+          <option value="Mobile Processor">Mobile Processor</option>
+          <option value="Cloud-Based Processor">Cloud-Based Processor</option>
+          <option value="Payment Processor">Payment Processor</option>
+          <option value="Embedded Processor">Embedded Processor</option>
+          <option value="Network Processor">Network Processor</option>
+        </select>
+        <select name="" id="" class="form-select form-select-lg mb-3">
+          <option value="">Select PTSP Type</option>
+          <option value="Acquiring Banks">Acquiring Banks</option>
+          <option value="Payment Gateway Providers">Payment Gateway Providers</option>
+          <option value="Fintechs">Fintechs</option>
+        </select>
       </form>
-      <div class="warning" *ngIf="formValid">Kindly Add the additional notes</div>
-  </mat-dialog-content>
-
-
+    </mat-dialog-content>
+  </ng-template>
 </div>

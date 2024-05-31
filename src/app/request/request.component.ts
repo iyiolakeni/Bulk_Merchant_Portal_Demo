@@ -24,6 +24,8 @@ export class RequestComponent implements OnInit {
   selectedStatus: string = '';
   merchant: any;
   user: any;
+  officerName: string ='';
+
   mergedData: {request: any, merchant: any}[] = [];
 
   constructor(
@@ -53,6 +55,7 @@ export class RequestComponent implements OnInit {
         status: posRequest.status,
         title: 'Details of ' + posRequest.RequestId,
         user: this.user.jobPosition,
+        officer: posRequest.officer_name,
         name: this.user.user.firstname + ' ' + this.user.user.surname,
         tabs: [
           {
@@ -66,6 +69,7 @@ export class RequestComponent implements OnInit {
               { label: 'Bank Account:', value: posRequest.bank },
               { label: 'Request Status:', value: posRequest.status },
               { label: 'Notes:', value: posRequest.Notes },
+              {label: 'Officer In Charge', value: posRequest.officer_name}
             ],
           },
           {
@@ -102,9 +106,14 @@ export class RequestComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.sharedService.getUser();
-    console.log(this.user);
+    console.log(this.user.user.jobPosition);
+    this.officerName = this.user.user.firstname + ' ' +this.user.user.surname;
+    console.log(this.officerName);
     this.apiService.getRequest().subscribe(
       posRequests => {
+        if (this.user.jobPosition === 'Account Officer') {
+          posRequests = posRequests.filter((request: any) => request.officer_name === this.officerName);
+        }
         this.posRequests = posRequests.reverse();
         console.log(this.posRequests);
   
