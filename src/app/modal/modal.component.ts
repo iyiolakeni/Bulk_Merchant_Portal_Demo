@@ -55,4 +55,13 @@ export class ModalComponent {
     })
   }
 
+  deployRequest(data: any){
+    this.dialogRef.close();
+    this.dialogRef.afterClosed().subscribe(result=>{
+      this.dialog.open(PopupComponent, {
+        data: this.data
+      })
+    })
+  }
+
 }

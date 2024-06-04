@@ -15,6 +15,45 @@ export class SignupComponent implements OnInit {
   confirmPwrod = false;
   signupForm: FormGroup = new FormGroup({});
   submitHandler$ : Observable<any> = new Observable<any>(); 
+  locations: string[] = [
+    "Abia",
+    "Adamawa",
+    "Akwa Ibom",
+    "Anambra",
+    "Bauchi",
+    "Bayelsa",
+    "Benue",
+    "Borno",
+    "Cross River",
+    "Delta",
+    "Ebonyi",
+    "Edo",
+    "Ekiti",
+    "Enugu",
+    "Gombe",
+    "Imo",
+    "Jigawa",
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Kebbi",
+    "Kogi",
+    "Kwara",
+    "Lagos",
+    "Nasarawa",
+    "Niger",
+    "Ogun",
+    "Ondo",
+    "Osun",
+    "Oyo",
+    "Plateau",
+    "Rivers",
+    "Sokoto",
+    "Taraba",
+    "Yobe",
+    "Zamfara",
+    "FCT"
+];
 
   constructor (
     private router: Router,
@@ -32,6 +71,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]], 
       jobPosition: [''], 
+      Location: [''],
       firstname: ['', [Validators.required]], 
       surname: ['', [Validators.required]], 
       email: ['', [Validators.required, Validators.email]], 

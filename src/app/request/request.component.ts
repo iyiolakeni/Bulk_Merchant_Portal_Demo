@@ -99,7 +99,7 @@ export class RequestComponent implements OnInit {
               // {label: 'Image', value: posRequest.images}
             ],
           },
-        ],
+        ], 
       },
     });
   }
@@ -109,7 +109,7 @@ export class RequestComponent implements OnInit {
     console.log(this.user.user.jobPosition);
     this.officerName = this.user.user.firstname + ' ' +this.user.user.surname;
     console.log(this.officerName);
-    this.apiService.getRequest().subscribe(
+    this.apiService.requests$.subscribe(
       posRequests => {
         if (this.user.jobPosition === 'Account Officer') {
           posRequests = posRequests.filter((request: any) => request.officer_name === this.officerName);

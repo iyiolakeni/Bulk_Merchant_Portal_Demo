@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { tap, catchError, of, throwError } from 'rxjs';
 import { AppService } from '../../app.service';
+import { ApiDetailsService } from '../../api-details.service';
 
 interface Item {
   label: string;
@@ -27,7 +28,8 @@ export class NewRequestComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private userAccount: AppService
+    private userAccount: AppService,
+    private apiService: ApiDetailsService
   ) { }
 
   ngOnInit() {
@@ -66,12 +68,7 @@ export class NewRequestComponent implements OnInit {
     if (this.newRequest.valid) {
       const requestData = this.newRequest.value; 
   
-      this.http.post<any>('https://bmp-node.onrender.com/forms/new', requestData).pipe(
-        catchError(error => {
-          console.error(error);
-          return throwError(error);
-        })
-      ).subscribe(response => {
+      this.apiService.newRequest(requestData).subscribe(response => {
         console.log(response);
         console.log('Request added');
         this.router.navigate(['/request']);

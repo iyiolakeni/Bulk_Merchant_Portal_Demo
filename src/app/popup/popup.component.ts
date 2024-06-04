@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from '../app.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiDetailsService } from '../api-details.service';
+import { Users } from '../users';
 
 @Component({
   selector: 'app-popup',
@@ -13,17 +14,23 @@ export class PopupComponent implements OnInit {
 
   updateForm: FormGroup = new FormGroup({});
   formValid = false;
-  generateRequest: FormGroup = new FormGroup({})
+  generateRequest: FormGroup = new FormGroup({});
+  updateRequest: FormGroup = new FormGroup({});
+  requestID = this.data.tabs[0].items[0].value;
+  user: any;
+  userDetails: Users[] = [];
 
   constructor(
     private popupRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private apiService: ApiDetailsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sharedService: AppService
   ){}
-// const user: any;
 
   ngOnInit(): void {
+    this.user = this.sharedService.getUser();
+    console.log(this.user);
     
     console.log(this.data.name)
     this.updateForm = this.formBuilder.group({
@@ -31,14 +38,36 @@ export class PopupComponent implements OnInit {
       AdditionalNotes: ['', Validators.required],
       ApprovedBy: [this.data.name]
     })
+
+    this.generateRequest = this.formBuilder.group({
+      Pos_RequestId: [this.requestID],
+      Pos_Accounts: ['', Validators.required],
+      PTSP: ['', Validators.required],
+      Pos_Model: ['', Validators.required],
+      Pos_Processor: ['', Validators.required],
+      status: ['Approved']
+    })
+    
+    this.updateRequest = this.formBuilder.group({
+      status: ['in_process'],
+      ApprovedBy: [this.data.name],
+    ApprovedBy2: [this.user.user.firstname +' ' + this.user.user.surname]
+    })
+
+    this.apiService.getAllUsers().subscribe( data => {
+      this.userDetails = data.filter((user: any) => user.jobPosition === 'POS Officer').map((user: any) => ({
+        location: user.Location,
+        name: user.firstname + ' ' + user.surname
+      }));
+      console.log(this.userDetails)
+    })
   }
 
   updateProcess(){
     if (this.updateForm.valid){
       console.log(this.updateForm.value)
-      const requestID = this.data.tabs[0].items[0].value;
 
-      this.apiService.approveRequest(requestID, this.updateForm.value).subscribe(
+      this.apiService.updateRequest(this.requestID, this.updateForm.value).subscribe(
         data => {
           console.log(data);
           this.popupRef.close();
@@ -54,10 +83,28 @@ export class PopupComponent implements OnInit {
   }
 
   generateSN(){
+    console.log(this.requestID)
     if (this.generateRequest.valid)
     {
       console.log(this.generateRequest.value)
-      
+      this.apiService.generateSN(this.generateRequest.value).subscribe(
+        data => {
+          console.log(data);
+          this.popupRef.close();
+        }, error => {
+          console.log(error)
+        }
+      )
+      this.apiService.updateRequest(this.requestID, this.updateRequest.value).subscribe(
+        result => {
+          console.log(result);
+        }, error => {
+          console.log(error)
+        }
+      );
+    }
+    else{
+      console.log(this.generateRequest.errors)
     }
   }
 

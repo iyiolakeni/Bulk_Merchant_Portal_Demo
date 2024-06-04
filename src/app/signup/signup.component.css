@@ -1,6 +1,6 @@
 .signUpCard{
     display: grid;
-    top: 18%;
+    top: 13%;
     left: 47%;
     padding: 20px;
     background-color: cadetblue;
@@ -20,11 +20,11 @@
     border: none;
     border-bottom: 1px white solid;
     color: white;
-    font: 36px/1.5 "Inter";
+    font: 30px/1.5 "Inter";
 }
 .input1::placeholder{
     color: white;
-    font: 36px/1.5 "Inter";
+    font: 30px/1.5 "Inter";
     font-weight: lighter;
     opacity: 50%;
 }

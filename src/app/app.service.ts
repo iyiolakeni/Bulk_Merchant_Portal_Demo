@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ApiDetailsService } from './api-details.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class AppService {
 
 
 
-  constructor() { }
+  constructor(
+    private apiDetails: ApiDetailsService
+  ) { }
 
   // function to retrieve user
   setUser(user: any){
