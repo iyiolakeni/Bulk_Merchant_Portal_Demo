@@ -16,17 +16,18 @@ import { PosRequest } from '../posrequest';
   styleUrls: ['./request.component.css'],
 })
 export class RequestComponent implements OnInit {
-  @Input() n: number = 15; // The number of Items in a page
+  @Input() n: number = 14; // The number of Items in a page
   currentPage = 1;
   posRequests: PosRequest[] = [];
-  totalPages: number = 30;
   selectedRequest: any;
   selectedStatus: string = '';
   merchant: any;
   user: any;
-  officerName: string ='';
+  officerName: string = '';
+  viewRequest = false;
 
-  mergedData: {request: any, merchant: any}[] = [];
+  mergedData: { request: any; merchant: any }[] = [];
+  filteredData: { request: any; merchant: any }[] = [];
 
   constructor(
     private http: HttpClient,
@@ -37,6 +38,21 @@ export class RequestComponent implements OnInit {
     private sharedService: AppService,
     private apiService: ApiDetailsService
   ) {}
+
+  // filterRequests(status: string) {
+  //   if (status = ''){
+  //     this.filteredData = this.mergedData;
+  //     this.selectedStatus = 'All'
+  //     console.log("No Filter" + this.filteredData)
+  //   }
+  //   else{
+  //     this.filteredData = this.mergedData.filter(
+  //       data => data.request.status === status
+  //     )
+  //     this.selectedStatus = status;
+  //     console.log(status+": " + this.filteredData)
+  //   }
+  // }
 
   //Function to determine if the page is on the home Page
   get defineHomePage(): boolean {
@@ -69,7 +85,7 @@ export class RequestComponent implements OnInit {
               { label: 'Bank Account:', value: posRequest.bank },
               { label: 'Request Status:', value: posRequest.status },
               { label: 'Notes:', value: posRequest.Notes },
-              {label: 'Officer In Charge', value: posRequest.officer_name}
+              { label: 'Officer In Charge', value: posRequest.officer_name },
             ],
           },
           {
@@ -99,65 +115,76 @@ export class RequestComponent implements OnInit {
               // {label: 'Image', value: posRequest.images}
             ],
           },
-        ], 
+        ],
       },
     });
   }
 
   ngOnInit() {
     this.user = this.sharedService.getUser();
-    console.log(this.user.user.jobPosition);
-    this.officerName = this.user.user.firstname + ' ' +this.user.user.surname;
-    console.log(this.officerName);
-    this.apiService.requests$.subscribe(
-      posRequests => {
-        if (this.user.jobPosition === 'Account Officer') {
-          posRequests = posRequests.filter((request: any) => request.officer_name === this.officerName);
-        }
-        this.posRequests = posRequests.reverse();
-        console.log(this.posRequests);
-  
-        const merchantRequests = this.posRequests.map(posRequest =>{
-          const merchantID = posRequest.MerchantID
-          if (typeof merchantID === 'string' && merchantID !== 'string') {
-            return this.apiService.getMerchantById(merchantID);
-          } else {
-            console.error('Invalid merchantID:', merchantID);
-            return of(null); // Return an Observable of null if merchantID is invalid
-          }
-        }
-        );
-  
-        forkJoin(merchantRequests).subscribe(
-          merchants => {
-            this.mergedData = this.posRequests.map((request, index) => ({
-              request: request,
-              merchant: merchants[index]
-            
-            }));
-            console.log(this.mergedData)
-          },
-          error => {
-            console.error(error);
-          }
-        );
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    this.officerName = this.user.user.firstname + ' ' + this.user.user.surname;
+    this.requestPage();
   }
 
-
   nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++; //Increase current page by 1 if total page still has more elements asides the current page
-    }
+      this.currentPage++;
   }
 
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
+  }
+
+  setStatus(status: string){
+    this.selectedStatus = status;
+    console.log(this.selectedStatus)
+    this.requestPage();
+  }
+
+  requestPage(){
+    this.apiService.getRealTimeUpdates().subscribe(
+      (posRequests) => {
+        if (this.selectedStatus){
+          posRequests = posRequests.filter(
+            (status:any) => status.status === this.selectedStatus
+          );
+        }
+
+        if (this.user.jobPosition === 'Account Officer') {
+          posRequests = posRequests.filter(
+            (request: any) => request.officer_name === this.officerName
+          );
+        }
+        
+        this.posRequests = posRequests.reverse();
+        console.log(this.posRequests);
+
+        const merchantRequests = this.posRequests.map((posRequest) => {
+          const merchantID = posRequest.MerchantID;
+          if (typeof merchantID === 'string' && merchantID !== 'string') {
+            return this.apiService.getMerchantById(merchantID);
+          } else {
+            console.error('Invalid merchantID:', merchantID);
+            return of(null); // Return an Observable of null if merchantID is invalid
+          }
+        });
+
+        forkJoin(merchantRequests).subscribe(
+          (merchants) => {
+            this.mergedData = this.posRequests.map((request, index) => ({
+              request: request,
+              merchant: merchants[index],
+            }));
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

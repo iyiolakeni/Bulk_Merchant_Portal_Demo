@@ -23,7 +23,7 @@ ngOnInit() {
     console.log("Response is:",response);
   })
 
-  this.apiService.requests$.subscribe(data => {
+  this.apiService.getRequest().subscribe(data => {
     if (this.user.jobPosition === 'Account Officer'){
       data = data.filter((item: any) => item.officer_name === this.user.user.firstname + ' ' + this.user.user.surname);
     }

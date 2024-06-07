@@ -1,16 +1,17 @@
 <div class="table-responsive-sm">
   <!-- Filter Button -->
-  <div class="dropdown float-end" *ngIf="!defineHomePage">
-    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+  <div class="dropdown float-end" *ngIf="!defineHomePage" bsDropdown>
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="statusDropdown" bsDropdownToggle style="text-transform: capitalize;">
       <i class="bi bi-filter me-2"></i>
       {{selectedStatus || 'Filter Request'}}
     </button>
-    <ul class="dropdown-menu" aria-labelledby="statusDropdown">
-      <li><a class="dropdown-item" href="#" (click)="selectedStatus = ''; $event.preventDefault()">All</a></li>
-      <li><a class="dropdown-item" href="#" (click)="selectedStatus = 'Approved'; $event.preventDefault()">Approved</a></li>
-      <li><a class="dropdown-item" href="#" (click)="selectedStatus = 'Pending'; $event.preventDefault()">Pending</a></li>
-      <li><a class="dropdown-item" href="#" (click)="selectedStatus = 'Deployed'; $event.preventDefault()">Deployed</a></li>
-      <li><a class="dropdown-item" href="#" (click)="selectedStatus = 'Rejected'; $event.preventDefault()">Rejected</a></li>
+    <ul style="cursor: pointer;" class="dropdown-menu" *bsDropdownMenu aria-labelledby="statusDropdown">
+      <li><a class="dropdown-item" (click)="setStatus('')">All</a></li>
+      <li><a class="dropdown-item" (click)="setStatus('approved')" >Approved</a></li>
+      <li><a class="dropdown-item" (click)="setStatus('pending')">Pending</a></li>
+      <li><a class="dropdown-item" (click)="setStatus('in_process')">Processing</a></li>
+      <li><a class="dropdown-item" (click)="setStatus('deployed')">Deployed</a></li>
+      <li><a class="dropdown-item" (click)="setStatus('denied')">Denied</a></li>
       <!-- Add more options as needed -->
     </ul>
   </div>
@@ -34,7 +35,7 @@
           <td>{{ posRequest.merchant?.Merchant_Trade_Name }}</td>
           <td>{{ posRequest.request.No_of_POS_terminal }}</td>
           <td>{{ convertDate(posRequest.request.createdAt) }}</td>
-          <td style="text-transform: capitalize;">{{ posRequest.request.status}}</td>
+          <td style="text-transform: capitalize;">{{ posRequest.request.status === 'in_process' ? 'Processing': posRequest.request.status}}</td>
           <td>
             <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest.request, posRequest.merchant)"></span> 
           </td>
@@ -44,5 +45,6 @@
   </table>
       <div class="btn-center" role="group" *ngIf="!defineHomePage">
         <button type="button" class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-        <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Continue</button>      </div>
+        <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage*n >= mergedData.length" >Continue</button>      
+      </div>
 </div>

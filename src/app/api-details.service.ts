@@ -10,9 +10,6 @@ import { Users } from './users';
 })
 export class ApiDetailsService {
 
-  private requests = new BehaviorSubject<PosRequest[]>([]);
-  public requests$ = this.requests.asObservable();
-  
 
   constructor(
     private http: HttpClient
@@ -31,25 +28,18 @@ export class ApiDetailsService {
   }
 
   getRequest(): Observable<PosRequest[]> {
-    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms').pipe(
-      distinctUntilChanged(), // Only emit when the current value is different than the last.
-      tap(requests => this.requests.next(requests))
-    );
+    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')
   }
 
-  getCurrentRequests(): PosRequest[] {
-    return this.requests.getValue();
-  }
-  
-  updateRequests(newRequests: PosRequest[]): void {
-    this.requests.next(newRequests);
+  //Function to get the Real Time update every 5 secs an update happens
+  getRealTimeUpdates(): Observable<any[]>{
+    return timer(0, 1000).pipe(
+      switchMap(()=> this.getRequest())
+    )
   }
 
   newRequest(requestData: any): Observable<any>{
-    return this.http.post<any>('https://bmp-node.onrender.com/forms/new', requestData).pipe(
-      switchMap(() => timer(5000)), // Wait for 5 seconds
-      switchMap(() => this.getRequest()) // Then fetch the requests
-    );
+    return this.http.post<any>('https://bmp-node.onrender.com/forms/new', requestData)
   }
 
   updateRequest(requestID: string, formData: any): Observable<any>{
