@@ -9,6 +9,7 @@ import { AppService } from '../app.service';
 import { MerchantsComponent } from '../merchants/merchants.component';
 import { ApiDetailsService } from '../api-details.service';
 import { PosRequest } from '../posrequest';
+import { SerialRequest } from '../serial-number';
 
 @Component({
   selector: 'app-request',
@@ -19,6 +20,7 @@ export class RequestComponent implements OnInit {
   @Input() n: number = 14; // The number of Items in a page
   currentPage = 1;
   posRequests: PosRequest[] = [];
+  serialRequest: SerialRequest [] = [];
   selectedRequest: any;
   selectedStatus: string = '';
   merchant: any;
@@ -62,6 +64,31 @@ export class RequestComponent implements OnInit {
   convertDate(dateString: string): string {
     const date = new Date(dateString);
     return this.datePipe.transform(date, 'yyyy-MM-dd') || '';
+  }
+
+  serialDialog(posRequest: any): void {
+    let serialNumbers = posRequest.Pos_SerialNumber.join('\n');
+    this.dialog.open(ModalComponent, {
+      width: '750px',
+      data: {
+        status: posRequest.status,
+        title: 'Serial Number Details',
+        tabs: [
+          {
+            items: [
+              { label: 'Request ID', value: posRequest.Pos_RequestId},
+              { label: 'Requested Pos', value: posRequest.NumberOfPos},
+              { label: 'Serial Numbers', value: serialNumbers},
+              { label: 'Account Type', value: posRequest.Pos_Accounts},
+              { label: 'PTSP', value: posRequest.PTSP},
+              { label: 'POS Model Type', value: posRequest.Pos_Model},
+              { label: 'POS Processor Type', value: posRequest.Pos_Processor},
+              { label: 'Status', value: posRequest.status}
+            ]
+          }
+        ]
+    }
+  })
   }
 
   openDialog(posRequest: any, merchant: any): void {
@@ -124,6 +151,10 @@ export class RequestComponent implements OnInit {
     this.user = this.sharedService.getUser();
     this.officerName = this.user.user.firstname + ' ' + this.user.user.surname;
     this.requestPage();
+
+    this.apiService.refresh$.subscribe(() => {
+      this.requestPage();
+    })
   }
 
   nextPage(): void {
@@ -143,48 +174,61 @@ export class RequestComponent implements OnInit {
   }
 
   requestPage(){
-    this.apiService.getRealTimeUpdates().subscribe(
-      (posRequests) => {
-        if (this.selectedStatus){
-          posRequests = posRequests.filter(
-            (status:any) => status.status === this.selectedStatus
-          );
+    // console.log(this.user.jobPosition)
+    if (this.user.jobPosition === 'POS Business Officer'){
+      this.apiService.getAllPosBusinessRequest().subscribe(
+        posNewRequest => {
+          console.log(posNewRequest)
+          this.serialRequest = posNewRequest;
         }
-
-        if (this.user.jobPosition === 'Account Officer') {
-          posRequests = posRequests.filter(
-            (request: any) => request.officer_name === this.officerName
+      )
+    }
+    else {
+      this.apiService.getRequest().subscribe(
+        (posRequests) => {
+          if (this.selectedStatus){
+            posRequests = posRequests.filter(
+              (status:any) => status.status === this.selectedStatus
+            );
+          }
+  
+          if (this.user.jobPosition === 'Account Officer') {
+            posRequests = posRequests.filter(
+              (request: any) => request.officer_name === this.officerName
+            );
+          }
+          
+          posRequests = posRequests.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+  
+          this.posRequests = posRequests;
+          console.log(this.posRequests);
+  
+          const merchantRequests = this.posRequests.map((posRequest) => {
+            const merchantID = posRequest.MerchantID;
+            if (typeof merchantID === 'string' && merchantID !== 'string') {
+              return this.apiService.getMerchantById(merchantID);
+            } else {
+              console.error('Invalid merchantID:', merchantID);
+              return of(null); // Return an Observable of null if merchantID is invalid
+            }
+          });
+  
+          forkJoin(merchantRequests).subscribe(
+            (merchants) => {
+              this.mergedData = this.posRequests.map((request, index) => ({
+                request: request,
+                merchant: merchants[index],
+              }));
+            },
+            (error) => {
+              console.error(error);
+            }
           );
+        },
+        (error) => {
+          console.error(error);
         }
-        
-        this.posRequests = posRequests.reverse();
-        console.log(this.posRequests);
-
-        const merchantRequests = this.posRequests.map((posRequest) => {
-          const merchantID = posRequest.MerchantID;
-          if (typeof merchantID === 'string' && merchantID !== 'string') {
-            return this.apiService.getMerchantById(merchantID);
-          } else {
-            console.error('Invalid merchantID:', merchantID);
-            return of(null); // Return an Observable of null if merchantID is invalid
-          }
-        });
-
-        forkJoin(merchantRequests).subscribe(
-          (merchants) => {
-            this.mergedData = this.posRequests.map((request, index) => ({
-              request: request,
-              merchant: merchants[index],
-            }));
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+      );
+    }
   }
 }

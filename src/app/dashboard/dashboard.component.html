@@ -2,126 +2,250 @@
   <app-navbar></app-navbar>
 
     <div class="row mb-4">
-         <div class="col-8">
-            <div class="row">
-              <!-- Pending Status -->
-                <div class="col card bg-warning">
-              <ng-container *ngFor="let dashboard of dashboard">
-                      <div *ngIf="dashboard.status === 'pending'" class="card-body dash-card">
-                        <h5 class="card-text">
-                          {{ dashboard.status }}
-                        </h5>
-                        <h1 class="card-title">
-                          {{ dashboard.count }}
-                        </h1>
-                        <p class="spinner-border text-secondary float-end" *ngIf="isLoading">
-                          <span class="visually-hidden"></span>
-                        </p>
-                    </div>
-                  </ng-container>
-              </div>
-              <!-- Approved Status -->
-                <div class="col card mx-4 bg-success">
-              <ng-container *ngFor="let dashboard of dashboard">
-                      <div *ngIf="dashboard.status === 'approved'" class="card-body dash-card">
-                        <h5 class="card-title">
-                          {{ dashboard.status }}
-                        </h5>
-                        <h1 class="card-text">
-                          {{ dashboard.count }}
-                        </h1>
-                        <p class="spinner-border text-light float-end"  *ngIf="isLoading">
-                          <span class="visually-hidden"></span>
-                        </p>
-                    </div>
-                  </ng-container>
-              </div>
-          
-              <!-- Declined Status -->
-                <div class="col card bg-danger">
-              <ng-container *ngFor="let dashboard of dashboard">
-                      <div *ngIf="dashboard.status === 'denied'" class="card-body dash-card">
-                        <h5 class="card-title">
-                          {{ dashboard.status }}
-                        </h5>
-                        <h1 class="card-text">
-                          {{ dashboard.count }}
-                        </h1>
-                        <p class="spinner-border text-dark float-end"  *ngIf="isLoading">
-                          <span class="visually-hidden"></span>
-                        </p>
-                        <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
-                          <span class="visually-hidden"></span>
-                        </p>
-                    </div>
-                  </ng-container>
-              </div>
-          
-            </div>
-           <br />
+      <ng-container *ngIf="user.jobPosition !== 'POS Business Officer'; else posbusiness">
+        <div class="col-8">
            <div class="row">
-             <!-- Deployed Status -->
-               <div class="col card bg-info">
+             <!-- Pending Status -->
+               <div class="col card bg-warning">
              <ng-container *ngFor="let dashboard of dashboard">
-                     <div *ngIf="dashboard.status === 'deployed'" class="card-body dash-card">
+                     <div *ngIf="dashboard.status === 'pending'" class="card-body dash-card">
+                       <h5 class="card-text">
+                         {{ dashboard.status }}
+                       </h5>
+                       <h1 class="card-title">
+                         {{ dashboard.count }}
+                       </h1>
+                       <p class="spinner-border text-secondary float-end" *ngIf="isLoading">
+                         <span class="visually-hidden"></span>
+                       </p>
+                   </div>
+                 </ng-container>
+             </div>
+             <!-- Approved Status -->
+               <div class="col card mx-4 bg-success">
+             <ng-container *ngFor="let dashboard of dashboard">
+                     <div *ngIf="dashboard.status === 'approved'" class="card-body dash-card">
                        <h5 class="card-title">
                          {{ dashboard.status }}
                        </h5>
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="spinner-border text-light float-end" *ngIf="isLoading">
-                        <span class="visually-hidden"></span>
-                      </p>
-                      <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
-                        <span class="visually-hidden"></span>
-                      </p>
-                 </div>
+                       <p class="spinner-border text-light float-end"  *ngIf="isLoading">
+                         <span class="visually-hidden"></span>
+                       </p>
+                   </div>
                  </ng-container>
              </div>
          
-             <!-- In Process Status -->
-               <div class="col card mx-4">
+             <!-- Declined Status -->
+               <div class="col card bg-danger">
              <ng-container *ngFor="let dashboard of dashboard">
-                     <div *ngIf="dashboard.status === 'in_process'" class="card-body dash-card">
+                     <div *ngIf="dashboard.status === 'denied'" class="card-body dash-card">
                        <h5 class="card-title">
-                         Processing
+                         {{ dashboard.status }}
                        </h5>
                        <h1 class="card-text">
                          {{ dashboard.count }}
                        </h1>
-                       <p class="spinner-border text-success float-end" *ngIf="isLoading">
+                       <p class="spinner-border text-dark float-end"  *ngIf="isLoading">
+                         <span class="visually-hidden"></span>
+                       </p>
+                       <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                         <span class="visually-hidden"></span>
+                       </p>
+                   </div>
+                 </ng-container>
+             </div>
+         
+           </div>
+          <br />
+          <div class="row">
+            <!-- Deployed Status -->
+              <div class="col card bg-info">
+            <ng-container *ngFor="let dashboard of dashboard">
+                    <div *ngIf="dashboard.status === 'deployed'" class="card-body dash-card">
+                      <h5 class="card-title">
+                        {{ dashboard.status }}
+                      </h5>
+                      <h1 class="card-text">
+                        {{ dashboard.count }}
+                      </h1>
+                      <p class="spinner-border text-light float-end" *ngIf="isLoading">
+                       <span class="visually-hidden"></span>
+                     </p>
+                     <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                       <span class="visually-hidden"></span>
+                     </p>
+                </div>
+                </ng-container>
+            </div>
+        
+            <!-- In Process Status -->
+              <div class="col card mx-4">
+            <ng-container *ngFor="let dashboard of dashboard">
+                    <div *ngIf="dashboard.status === 'in_process'" class="card-body dash-card">
+                      <h5 class="card-title">
+                        Processing
+                      </h5>
+                      <h1 class="card-text">
+                        {{ dashboard.count }}
+                      </h1>
+                      <p class="spinner-border text-success float-end" *ngIf="isLoading">
+                       <span class="visually-hidden"></span>
+                     </p>
+                     <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                       <span class="visually-hidden"></span>
+                     </p>
+                </div>
+                </ng-container>
+            </div>
+        
+            <!-- Total Status -->
+              <div class="col card bg-success-subtle">
+            <ng-container>
+                    <div class="card-body dash-card">
+                      <h5 class="card-title">
+                        Total
+                      </h5>
+                      <h1 class="card-text">
+                        {{ totalRequest }}
+                      </h1>
+                        <p class="spinner-border text-dark float-end" *ngIf="isLoading">
+                         <span class="visually-hidden"></span>
+                       </p>
+                         <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                           <span class="visually-hidden"></span>
+                         </p>
+                </div>
+                </ng-container>
+            </div>
+        
+          </div>
+       </div>
+      </ng-container>
+      <ng-template #posbusiness>
+        <div class="col-8">
+          <div class="row">
+            <!-- Pending Status -->
+              <div class="col card bg-warning">
+            <ng-container *ngFor="let dashboard of posdashboard">
+                    <div *ngIf="dashboard.status === 'Pending'" class="card-body dash-card">
+                      <h5 class="card-text">
+                        {{ dashboard.status }}
+                      </h5>
+                      <h1 class="card-title">
+                        {{ dashboard.count }}
+                      </h1>
+                      <p class="spinner-border text-secondary float-end" *ngIf="isLoading">
+                        <span class="visually-hidden"></span>
+                      </p>
+                  </div>
+                </ng-container>
+            </div>
+            <!-- Approved Status -->
+              <div class="col card mx-4 bg-success">
+            <ng-container *ngFor="let dashboard of posdashboard">
+                    <div *ngIf="dashboard.status === 'Approved'" class="card-body dash-card">
+                      <h5 class="card-title">
+                        {{ dashboard.status }}
+                      </h5>
+                      <h1 class="card-text">
+                        {{ dashboard.count }}
+                      </h1>
+                      <p class="spinner-border text-light float-end"  *ngIf="isLoading">
+                        <span class="visually-hidden"></span>
+                      </p>
+                  </div>
+                </ng-container>
+            </div>
+        
+            <!-- Declined Status -->
+              <div class="col card bg-danger">
+            <ng-container *ngFor="let dashboard of posdashboard">
+                    <div *ngIf="dashboard.status === 'Rejected'" class="card-body dash-card">
+                      <h5 class="card-title">
+                        {{ dashboard.status }}
+                      </h5>
+                      <h1 class="card-text">
+                        {{ dashboard.count }}
+                      </h1>
+                      <p class="spinner-border text-dark float-end"  *ngIf="isLoading">
                         <span class="visually-hidden"></span>
                       </p>
                       <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
                         <span class="visually-hidden"></span>
                       </p>
-                 </div>
-                 </ng-container>
-             </div>
-         
-             <!-- Total Status -->
-               <div class="col card bg-success-subtle">
-             <ng-container>
-                     <div class="card-body dash-card">
-                       <h5 class="card-title">
-                         Total
-                       </h5>
-                       <h1 class="card-text">
-                         {{ totalRequest }}
-                       </h1>
-                         <p class="spinner-border text-dark float-end" *ngIf="isLoading">
+                  </div>
+                </ng-container>
+            </div>
+        
+          </div>
+         <br />
+         <div class="row">
+           <!-- Deployed Status -->
+             <div class="col card bg-info">
+           <ng-container *ngFor="let dashboard of posdashboard">
+                   <div *ngIf="dashboard.status === 'Deployed'" class="card-body dash-card">
+                     <h5 class="card-title">
+                       {{ dashboard.status }}
+                     </h5>
+                     <h1 class="card-text">
+                       {{ dashboard.count }}
+                     </h1>
+                     <p class="spinner-border text-light float-end" *ngIf="isLoading">
+                      <span class="visually-hidden"></span>
+                    </p>
+                    <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                      <span class="visually-hidden"></span>
+                    </p>
+               </div>
+               </ng-container>
+           </div>
+       
+           <!-- In Process Status -->
+             <div class="col card mx-4">
+           <ng-container *ngFor="let dashboard of posdashboard">
+                   <div *ngIf="dashboard.status === 'Delivered'" class="card-body dash-card">
+                     <h5 class="card-title">
+                       Delivered
+                     </h5>
+                     <h1 class="card-text">
+                       {{ dashboard.count }}
+                     </h1>
+                     <p class="spinner-border text-success float-end" *ngIf="isLoading">
+                      <span class="visually-hidden"></span>
+                    </p>
+                    <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
+                      <span class="visually-hidden"></span>
+                    </p>
+               </div>
+               </ng-container>
+           </div>
+       
+           <!-- Total Status -->
+             <div class="col card bg-success-subtle">
+           <ng-container>
+                   <div class="card-body dash-card">
+                     <h5 class="card-title">
+                       Total
+                     </h5>
+                     <h1 class="card-text">
+                       {{ postotalRequest }}
+                     </h1>
+                       <p class="spinner-border text-dark float-end" *ngIf="isLoading">
+                        <span class="visually-hidden"></span>
+                      </p>
+                        <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
                           <span class="visually-hidden"></span>
                         </p>
-                          <p *ngIf="!isLoading" style="opacity: 0;" class="spinner-border text-dark float-end">
-                            <span class="visually-hidden"></span>
-                          </p>
-                 </div>
-                 </ng-container>
-             </div>
-         
+               </div>
+               </ng-container>
            </div>
-        </div>
+       
+         </div>
+      </div>
+      </ng-template>
         <div class="col-4 d-none d-sm-block">
             <app-notification [n]='4'></app-notification>
         </div>

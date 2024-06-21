@@ -73,7 +73,7 @@
         </ng-container>
       </ng-template>
       <ng-template #deployed>
-        <ng-container *ngIf="data.user ==='POS Business Officer' && data.status === 'deployed'; else otherUsers">
+        <ng-container *ngIf="data.user ==='POS Business Officer' && data.status === 'in_process'; else otherUsers">
           <mat-dialog-content>
               <div class="btn-center">
                 <button mat-button class="btn btn-primary" (click)="deployRequest(data)">Deploy</button>
@@ -106,60 +106,3 @@
   </div>
 </div>
 
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{data.posRequest.requestId}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Nav tabs
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Request Details</a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Business Details</a>
-          </li>
-          <li class="nav-item" role="presentation">
-            <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="profile" aria-selected="false">User Details</a>
-          </li>
-        </ul>
-
-        Tab panes
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            Request Details tab content here
-            
-            <label>{{data.posRequest?.requestId}}</label>
-            <label>{{convertDate(data.posRequest.dateOfRequest)}}</label>
-            <label>{{data.posRequest.accountOfficer}}</label>
-            <label>{{data.posRequest.requestStatus}}</label>
-            <label>{{data.posRequest.bankAccount}}</label>
-          </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            Business tab content here
-            <label>{{data.posRequest.businessDetail.businessName}}</label>
-            <label>{{data.posRequest.businessDetail.businessType}}</label>
-            <label>{{data.posRequest.businessDetail.location}}</label>
-            <label>{{data.posRequest.businessDetail.contact.name}}</label>
-            <label>{{data.posRequest.businessDetail.contact.number}}</label>
-            <label>{{data.posRequest.businessDetail.contact.location}}</label>
-            <label>{{data.posRequest.businessDetail.contact.email}}</label>
-          </div>
-          <div class="tab-pane fade" id="user" role="tabpanel" aria-labelledby="user-tab">
-            User tab content here
-            <label>{{data.posRequest.user.fullname}}</label>
-            <label>{{data.posRequest.user.age}}</label>
-            <label>{{data.posRequest.user.userType}}</label>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div> -->

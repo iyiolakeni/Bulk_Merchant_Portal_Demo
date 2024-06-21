@@ -148,15 +148,16 @@
     </ng-container>
     <ng-template #deployed>
       <mat-dialog-content>
-        <form>
-          <div class="container">
-            <form action="">
-              <select name="" id="">
-                <option value="">POS Officer in Charge</option>
+        <form [formGroup]="deployRequest" (change)="selectedOfficer()">
+          <div class="container mb-3">
+              <select class="form-select" aria-label="Default select example" formControlName = 'name'>
+                <option *ngFor="let posOfficer of userDetails" [value]="posOfficer['name']">
+                  {{posOfficer['name']}}
+                </option>
               </select>
-            </form>
+            <p class="badge text-bg-primary text-wrap mt-3" >Location: {{selectedOfficerLocation}}</p>
+              </div>
             <button class="bg-primary-subtle">Deploy</button>
-          </div>
         </form>
       </mat-dialog-content>
     </ng-template>

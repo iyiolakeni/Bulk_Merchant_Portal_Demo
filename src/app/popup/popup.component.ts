@@ -19,6 +19,9 @@ export class PopupComponent implements OnInit {
   requestID = this.data.tabs[0].items[0].value;
   user: any;
   userDetails: Users[] = [];
+  selectedOfficerLocation: string = '';
+  deployRequest: FormGroup = new FormGroup({});
+  
 
   constructor(
     private popupRef: MatDialogRef<PopupComponent>,
@@ -54,6 +57,11 @@ export class PopupComponent implements OnInit {
     ApprovedBy2: [this.user.user.firstname +' ' + this.user.user.surname]
     })
 
+    this.deployRequest = this.formBuilder.group({
+      name: ['', Validators.required],
+      location: ['']
+    })
+
     this.apiService.getAllUsers().subscribe( data => {
       this.userDetails = data.filter((user: any) => user.jobPosition === 'POS Officer').map((user: any) => ({
         location: user.Location,
@@ -87,7 +95,7 @@ export class PopupComponent implements OnInit {
     if (this.generateRequest.valid)
     {
       console.log(this.generateRequest.value)
-      this.apiService.generateSN(this.generateRequest.value).subscribe(
+      this.apiService.generateSN(this.requestID, this.generateRequest.value).subscribe(
         data => {
           console.log(data);
           this.popupRef.close();
@@ -105,6 +113,22 @@ export class PopupComponent implements OnInit {
     }
     else{
       console.log(this.generateRequest.errors)
+    }
+  }
+
+  
+  selectedOfficer(){
+    const officer = this.userDetails.find(
+      user => user['name'] === this.deployRequest.get('name')?.value
+    )
+    if(officer ){
+      console.log('Officer Name: '+this.deployRequest.get('name')?.value)
+      this.selectedOfficerLocation = officer['location'];
+      if(this.selectedOfficerLocation === null)
+        {
+          this.selectedOfficerLocation = 'No Location'
+        }
+      console.log('Location: ' + this.selectedOfficerLocation)
     }
   }
 

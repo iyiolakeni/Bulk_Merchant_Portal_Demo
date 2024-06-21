@@ -15,34 +15,63 @@
       <!-- Add more options as needed -->
     </ul>
   </div>
- 
 
-  <table class="table table-hover" >
-    <thead>
-      <tr> 
-        <th scope="col">Request Id</th>
-        <th scope="col">Business Name</th>
-        <th scope="col">No of POS</th>
-        <th scope="col">Request Date</th>
-        <th scope="col">Status</th>
-        <th scope="col"> Action</th>
-      </tr>
-    </thead>
-    <tbody> 
-      <tr *ngFor="let posRequest of mergedData | slice:(currentPage-1)*n:currentPage*n">
-        <ng-container *ngIf="!selectedStatus || posRequest.request.status === selectedStatus && posRequest.request.officer_name === officerName">
-          <td>{{ posRequest.request.RequestId }}</td>
-          <td>{{ posRequest.merchant?.Merchant_Trade_Name }}</td>
-          <td>{{ posRequest.request.No_of_POS_terminal }}</td>
-          <td>{{ convertDate(posRequest.request.createdAt) }}</td>
-          <td style="text-transform: capitalize;">{{ posRequest.request.status === 'in_process' ? 'Processing': posRequest.request.status}}</td>
-          <td>
-            <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest.request, posRequest.merchant)"></span> 
-          </td>
-        </ng-container>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="user.jobPosition !== 'POS Business Officer'; else posBusiness">
+    <table class="table table-hover" >
+      <thead>
+        <tr> 
+          <th scope="col">Request Id</th>
+          <th scope="col">Business Name</th>
+          <th scope="col">No of POS</th>
+          <th scope="col">Request Date</th>
+          <th scope="col">Status</th>
+          <th scope="col"> Action</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let posRequest of mergedData | slice:(currentPage-1)*n:currentPage*n">
+          <ng-container *ngIf="!selectedStatus || posRequest.request.status === selectedStatus && posRequest.request.officer_name === officerName">
+            <td>{{ posRequest.request.RequestId }}</td>
+            <td>{{ posRequest.merchant?.Merchant_Trade_Name }}</td>
+            <td>{{ posRequest.request.No_of_POS_terminal }}</td>
+            <td>{{ convertDate(posRequest.request.createdAt) }}</td>
+            <td style="text-transform: capitalize;">{{ posRequest.request.status === 'in_process' ? 'Processing': posRequest.request.status}}</td>
+            <td>
+              <span type="button" class="bi bi-three-dots" (click)="openDialog(posRequest.request, posRequest.merchant)"></span> 
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #posBusiness>
+    <table class="table table-hover" >
+      <thead>
+        <tr> 
+          <th scope="col">Request Id</th>
+          <th scope="col">No of Pos</th>
+          <th scope="col">PTSP</th>
+          <th scope="col">Account Type</th>
+          <th scope="col">Status</th>
+          <th scope="col"> Action</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let posRequest of serialRequest | slice:(currentPage-1)*n:currentPage*n">
+          <ng-container *ngIf="!selectedStatus || posRequest.status === selectedStatus">
+            <td>{{ posRequest.Pos_RequestId }}</td>
+            <td>{{ posRequest.NumberOfPos }}</td>
+            <td>{{ posRequest.PTSP }}</td>
+            <td>{{ posRequest.Pos_Accounts }}</td>
+            <td style="text-transform: capitalize;">{{ posRequest.status === 'in_process' ? 'Processing': posRequest.status}}</td>
+            <td>
+              <span type="button" class="bi bi-three-dots"  (click)="serialDialog(posRequest)"></span> 
+            </td>
+          </ng-container>
+        </tr>
+        </tbody>
+        </table>
+  </ng-template>
       <div class="btn-center" role="group" *ngIf="!defineHomePage">
         <button type="button" class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
         <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage*n >= mergedData.length" >Continue</button>      
