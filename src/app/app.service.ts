@@ -14,7 +14,7 @@ export class AppService {
 
 
   constructor(
-    private apiDetails: ApiDetailsService
+    // private apiDetails: ApiDetailsService
   ) { }
 
   // function to retrieve user
@@ -22,6 +22,10 @@ export class AppService {
     this.user = user;
     sessionStorage.setItem('user', JSON.stringify(this.user));
     console.log(this.user);
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.user;
   }
 
   getUser(){

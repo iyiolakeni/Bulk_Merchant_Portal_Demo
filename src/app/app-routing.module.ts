@@ -12,13 +12,17 @@ import {RequestComponent} from './request/request.component'
 import { MerchantsComponent } from './merchants/merchants.component';
 import { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';
 import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';
+import { authGuard } from './auth.guard';
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'dashboard', component: HomePageComponent},
+  {path: 'dashboard', component: HomePageComponent,
+    canActivate: [authGuard]
+  },
   {path: 'sign_up', component: SignupComponent},
   {
     path:'request', 
     component: RequestpageComponent,
+    canActivate: [authGuard],
     children: [
       {path: 'new_request', component: NewRequestComponent},
       {path: '', component: RequestComponent}
@@ -27,13 +31,18 @@ const routes: Routes = [
   {
     path: 'merchants',
     component: MerchantsComponent,
+    canActivate: [authGuard],
     children: [
       {path: '', component: AllmerchantsComponent},
       {path: 'new_merchant', component: NewMerchantComponent}
     ]
   },
-  {path: 'notifications', component: NotificationPageComponent},
-  {path: 'emails', component: EmailComponent}
+  {path: 'notifications', component: NotificationPageComponent,
+    canActivate: [authGuard]
+  },
+  {path: 'emails', component: EmailComponent,
+    canActivate: [authGuard]
+  }
 ];
 
 @NgModule({
