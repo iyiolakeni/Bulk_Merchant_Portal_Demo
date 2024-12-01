@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/app/app-routing.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1733007874840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733047902259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       {path: 'new_merchant', component: NewMerchantComponent}\r\n     ]\r\n   },\r\n   {path: 'notifications', component: NotificationPageComponent,\r\n-    canActivate: [authGuard]\r\n+    // canActivate: [authGuard]\r\n   },\r\n   {path: 'emails', component: EmailComponent,\r\n     canActivate: [authGuard]\r\n   }\r\n"
+                },
+                {
+                    "date": 1733047913537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n import { authGuard } from './auth.guard';\r\n const routes: Routes = [\r\n   {path: '', component: LoginComponent},\r\n   {path: 'dashboard', component: HomePageComponent,\r\n-    canActivate: [authGuard]\r\n+    // canActivate: [authGuard]\r\n   },\r\n   {path: 'sign_up', component: SignupComponent},\r\n   {\r\n     path:'request', \r\n@@ -40,9 +40,9 @@\n   {path: 'notifications', component: NotificationPageComponent,\r\n     // canActivate: [authGuard]\r\n   },\r\n   {path: 'emails', component: EmailComponent,\r\n-    canActivate: [authGuard]\r\n+    // canActivate: [authGuard]\r\n   }\r\n ];\r\n \r\n @NgModule({\r\n"
+                }
+            ],
+            "date": 1733007874840,
+            "name": "Commit-0",
+            "content": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\n// import { AppComponent } from './app.component';\r\nimport { RequestpageComponent } from './paths/requestpage/requestpage.component';\r\nimport { NotificationPageComponent } from './paths/notification-page/notification-page.component';\r\nimport { HomePageComponent } from './paths/home-page/home-page.component';\r\nimport { EmailComponent } from './email/email.component';\r\nimport { LoginComponent } from './login/login.component';\r\nimport { SignupComponent } from './signup/signup.component';\r\nimport { NewRequestComponent } from './paths/new-request/new-request.component';\r\nimport {RequestComponent} from './request/request.component'\r\nimport { MerchantsComponent } from './merchants/merchants.component';\r\nimport { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';\r\nimport { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';\r\nimport { authGuard } from './auth.guard';\r\nconst routes: Routes = [\r\n  {path: '', component: LoginComponent},\r\n  {path: 'dashboard', component: HomePageComponent,\r\n    canActivate: [authGuard]\r\n  },\r\n  {path: 'sign_up', component: SignupComponent},\r\n  {\r\n    path:'request', \r\n    component: RequestpageComponent,\r\n    // canActivate: [authGuard],\r\n    children: [\r\n      {path: 'new_request', component: NewRequestComponent},\r\n      {path: '', component: RequestComponent}\r\n  ]\r\n  },\r\n  {\r\n    path: 'merchants',\r\n    component: MerchantsComponent,\r\n    // canActivate: [authGuard],\r\n    children: [\r\n      {path: '', component: AllmerchantsComponent},\r\n      {path: 'new_merchant', component: NewMerchantComponent}\r\n    ]\r\n  },\r\n  {path: 'notifications', component: NotificationPageComponent,\r\n    canActivate: [authGuard]\r\n  },\r\n  {path: 'emails', component: EmailComponent,\r\n    canActivate: [authGuard]\r\n  }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n"
+        }
+    ]
+}

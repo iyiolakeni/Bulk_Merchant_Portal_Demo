@@ -56,27 +56,26 @@
       <ng-template #posOfficer>
         <ng-container
           *ngIf="
-            data.user === 'POS Business Officer' && data.status === 'approved';
+            data.user === 'POS Business Officer' && data.status === 'Pending';
             else deployed
           "
         >
           <button
             class="btn btn-outline-primary"
-            mat-button
             (click)="posRequest(data)"
           >
             Generate S/N
           </button>
-          <button class="btn btn-outline-danger" mat-dialog-close mat-button>
+          <button class="btn btn-outline-danger" mat-dialog-close>
             Close
           </button>
         </ng-container>
       </ng-template>
       <ng-template #deployed>
-        <ng-container *ngIf="data.user ==='POS Business Officer' && data.status === 'in_process'; else otherUsers">
+        <ng-container *ngIf="data.user ==='POS Business Officer' && data.status === 'Approved'; else otherUsers">
           <mat-dialog-content>
               <div class="btn-center">
-                <button mat-button class="btn btn-primary" (click)="deployRequest(data)">Deploy</button>
+                <button class="btn btn-primary" (click)="deployRequest(data)">Deploy</button>
                 <button class="btn btn-outline-secondary" mat-dailog-close mat-button>Close</button>
               </div>
           </mat-dialog-content>
@@ -99,7 +98,7 @@
     </ng-template>
 
     <ng-template #otherUsers>
-      <button class="btn btn-outline-secondary" mat-button mat-dialog-close>
+      <button class="btn btn-outline-secondary" mat-dialog-close>
         Close
       </button>
     </ng-template>

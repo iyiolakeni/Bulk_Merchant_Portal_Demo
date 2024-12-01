@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/app/login/login.component.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1732999411466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732999417115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   showPword(){\r\n     this.showPassword = !this.showPassword;\r\n   }\r\n   onLogin(){\r\n-    \r\n+    console.log('L')\r\n     if (this.loginForm.valid){\r\n     const loginData = this.loginForm.value;\r\n \r\n     this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(\r\n"
+                },
+                {
+                    "date": 1732999422822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,10 +33,10 @@\n   showPword(){\r\n     this.showPassword = !this.showPassword;\r\n   }\r\n   onLogin(){\r\n-    console.log('L')\r\n     if (this.loginForm.valid){\r\n+      console.log('Login')\r\n     const loginData = this.loginForm.value;\r\n \r\n     this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(\r\n       tap(response => {\r\n"
+                },
+                {
+                    "date": 1732999456433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,8 @@\n     this.showPassword = !this.showPassword;\r\n   }\r\n   onLogin(){\r\n     if (this.loginForm.valid){\r\n-      console.log('Login')\r\n     const loginData = this.loginForm.value;\r\n \r\n     this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(\r\n       tap(response => {\r\n"
+                },
+                {
+                    "date": 1733000488439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   onLogin(){\r\n     if (this.loginForm.valid){\r\n     const loginData = this.loginForm.value;\r\n \r\n-    this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(\r\n+    this.http.post('/login', loginData).pipe(\r\n       tap(response => {\r\n         console.log(response);\r\n         console.log('Logged in');\r\n         this.sharedService.setUser(response);\r\n"
+                },
+                {
+                    "date": 1733000496546,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   onLogin(){\r\n     if (this.loginForm.valid){\r\n     const loginData = this.loginForm.value;\r\n \r\n-    this.http.post('/login', loginData).pipe(\r\n+    this.http.post(`$/login`, loginData).pipe(\r\n       tap(response => {\r\n         console.log(response);\r\n         console.log('Logged in');\r\n         this.sharedService.setUser(response);\r\n"
+                },
+                {
+                    "date": 1733000502809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n   onLogin(){\r\n     if (this.loginForm.valid){\r\n     const loginData = this.loginForm.value;\r\n \r\n-    this.http.post(`${U}/login`, loginData).pipe(\r\n+    this.http.post(`${US}/login`, loginData).pipe(\r\n       tap(response => {\r\n         console.log(response);\r\n         console.log('Logged in');\r\n         this.sharedService.setUser(response);\r\n"
+                }
+            ],
+            "date": 1732999411466,
+            "name": "Commit-0",
+            "content": "import { HttpClient } from '@angular/common/http';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { catchError, of, switchMap, tap } from 'rxjs';\r\nimport { AppService } from '../app.service';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrl: './login.component.css'\r\n})\r\nexport class LoginComponent implements OnInit {\r\n\r\n  loginForm: FormGroup = new FormGroup({});\r\n\r\n  showPassword = false;\r\n  failedLogin = false;\r\n  constructor(\r\n    private router: Router,\r\n    private http: HttpClient,\r\n    private formBuilder: FormBuilder,\r\n    private sharedService: AppService\r\n  ){}\r\n\r\nngOnInit(){\r\n  this.loginForm = this.formBuilder.group({\r\n    username: ['', Validators.required],\r\n    password: ['', Validators.required]\r\n  })\r\n  \r\n}\r\n  showPword(){\r\n    this.showPassword = !this.showPassword;\r\n  }\r\n  onLogin(){\r\n    \r\n    if (this.loginForm.valid){\r\n    const loginData = this.loginForm.value;\r\n\r\n    this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(\r\n      tap(response => {\r\n        console.log(response);\r\n        console.log('Logged in');\r\n        this.sharedService.setUser(response);\r\n        this.router.navigate(['/dashboard'])\r\n      }),\r\n      catchError(error => {\r\n        console.error('Error', error);\r\n        \r\n        this.failedLogin = true;\r\n        return of(null);\r\n      }),\r\n    ).subscribe();\r\n  }\r\n  else {\r\n    console.log(this.loginForm.errors);\r\n  }\r\n}\r\n\r\nresetForm(){\r\n  this.failedLogin = false;\r\n}\r\n}\r\n"
+        }
+    ]
+}

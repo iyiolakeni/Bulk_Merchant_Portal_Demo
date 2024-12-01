@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/app/merchants/new-merchant/new-merchant.component.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1733004432094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733004437313,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n     onSubmit(){\r\n       if (this.newMerchant.valid){\r\n         const merchantData = this.newMerchant.value;\r\n \r\n-        this.http.post(`'https://bmp-node.onrender.com/merchant`/newMerchant', merchantData).pipe(\r\n+        this.http.post(`${/newMerchant', merchantData).pipe(\r\n           tap(response => {\r\n             console.log(response);\r\n             console.log('Merchant added');\r\n           }),\r\n"
+                },
+                {
+                    "date": 1733004443233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n     onSubmit(){\r\n       if (this.newMerchant.valid){\r\n         const merchantData = this.newMerchant.value;\r\n \r\n-        this.http.post(`${/newMerchant', merchantData).pipe(\r\n+        this.http.post(`${}/newMerchant`, merchantData).pipe(\r\n           tap(response => {\r\n             console.log(response);\r\n             console.log('Merchant added');\r\n           }),\r\n"
+                },
+                {
+                    "date": 1733004932339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { Component, OnInit } from '@angular/core';\r\n import { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n import { Router } from '@angular/router';\r\n import { catchError, of, switchMap, tap } from 'rxjs';\r\n+import { MERCHANT } from '../../constants/url.constant';\r\n \r\n @Component({\r\n   selector: 'app-new-merchant',\r\n   templateUrl: './new-merchant.component.html',\r\n@@ -47,12 +48,12 @@\n     onSubmit(){\r\n       if (this.newMerchant.valid){\r\n         const merchantData = this.newMerchant.value;\r\n \r\n-        this.http.post(`${}/newMerchant`, merchantData).pipe(\r\n+        this.http.post(`${MERCHANT}/newMerchant`, merchantData).pipe(\r\n           tap(response => {\r\n             console.log(response);\r\n-            console.log('Merchant added');\r\n+            // console.log('Merchant added');\r\n           }),\r\n           catchError(error =>{\r\n             console.error(error);\r\n \r\n"
+                },
+                {
+                    "date": 1733004938199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,10 @@\n         const merchantData = this.newMerchant.value;\r\n \r\n         this.http.post(`${MERCHANT}/newMerchant`, merchantData).pipe(\r\n           tap(response => {\r\n-            console.log(response);\r\n+            // console.log(response);\r\n+            if \r\n             // console.log('Merchant added');\r\n           }),\r\n           catchError(error =>{\r\n             console.error(error);\r\n"
+                },
+                {
+                    "date": 1733004944155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \r\n         this.http.post(`${MERCHANT}/newMerchant`, merchantData).pipe(\r\n           tap(response => {\r\n             // console.log(response);\r\n-            if \r\n+            if (response.s)\r\n             // console.log('Merchant added');\r\n           }),\r\n           catchError(error =>{\r\n             console.error(error);\r\n"
+                },
+                {
+                    "date": 1733004949595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n \r\n         this.http.post(`${MERCHANT}/newMerchant`, merchantData).pipe(\r\n           tap(response => {\r\n             // console.log(response);\r\n-            if (response.status ==)\r\n+            if (response.status ===)\r\n             // console.log('Merchant added');\r\n           }),\r\n           catchError(error =>{\r\n             console.error(error);\r\n"
+                },
+                {
+                    "date": 1733004967417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n })\r\n export class NewMerchantComponent implements OnInit {\r\n \r\n   newMerchant: FormGroup = new FormGroup({});\r\n-  err\r\n+  erro\r\n \r\n   constructor(\r\n     private formBuilder: FormBuilder, \r\n     private http: HttpClient,\r\n"
+                }
+            ],
+            "date": 1733004432094,
+            "name": "Commit-0",
+            "content": "import { HttpClient } from '@angular/common/http';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { catchError, of, switchMap, tap } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-new-merchant',\r\n  templateUrl: './new-merchant.component.html',\r\n  styleUrl: './new-merchant.component.css'\r\n})\r\nexport class NewMerchantComponent implements OnInit {\r\n\r\n  newMerchant: FormGroup = new FormGroup({});\r\n\r\n  constructor(\r\n    private formBuilder: FormBuilder, \r\n    private http: HttpClient,\r\n    private router: Router\r\n  ){}\r\n\r\n  ngOnInit(){\r\n    this.newMerchant = this.formBuilder.group({\r\n      Merchant_Trade_Name: ['', Validators.required],\r\n      Business_type: ['', Validators.required],\r\n      RC_Number: ['', Validators.required],\r\n      No_of_branches: ['', Validators.required],\r\n      Business_location: ['', Validators.required],\r\n      opening_hours: ['', Validators.required],\r\n      website: ['', Validators.required],\r\n      Office_address: ['', Validators.required],\r\n      LGA: ['', Validators.required],\r\n      state: ['', Validators.required],\r\n      Name_of_Primary_Contact: ['', Validators.required],\r\n      office_No: ['', Validators.required],\r\n      Mobile_No1: ['', Validators.required],\r\n      office_email: ['', Validators.required],\r\n      Designation: ['', Validators.required],\r\n      Name_of_Secondary_Contact: ['', Validators.required],\r\n      Designation2: ['', Validators.required],\r\n      office_No2: ['', Validators.required],\r\n      Mobile_No2: ['', Validators.required],\r\n      office_email2: ['', Validators.required]\r\n    })\r\n    }\r\n\r\n    onSubmit(){\r\n      if (this.newMerchant.valid){\r\n        const merchantData = this.newMerchant.value;\r\n\r\n        this.http.post(`'https://bmp-node.onrender.com/merchant`/newMerchant', merchantData).pipe(\r\n          tap(response => {\r\n            console.log(response);\r\n            console.log('Merchant added');\r\n          }),\r\n          catchError(error =>{\r\n            console.error(error);\r\n\r\n            return of(null);\r\n          }),\r\n          switchMap(()=>this.router.navigate(['/merchants']))\r\n        ).subscribe()\r\n      }\r\n      else{\r\n        console.log(this.newMerchant.errors);\r\n      }\r\n    }\r\n}\r\n"
+        }
+    ]
+}

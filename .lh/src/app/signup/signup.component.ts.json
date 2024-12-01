@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/app/signup/signup.component.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1733001158168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733001163380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n   onSubmit(){\r\n     if (this.signupForm.valid){\r\n     const formData = this.signupForm.value;\r\n     \r\n-    this.http.post('U/signup', formData).pipe(\r\n+    this.http.post(`$/signup', formData).pipe(\r\n       tap(response =>{\r\n       console.log(response);\r\n       console.log('Form submitted');\r\n     }),\r\n"
+                },
+                {
+                    "date": 1733001172395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { Component, OnInit } from '@angular/core';\r\n import { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\n import { Router } from '@angular/router';\r\n import { Observable, catchError, of, switchMap, tap } from 'rxjs';\r\n+import { USERS } from '../constants/url.constant';\r\n \r\n @Component({\r\n   selector: 'app-signup',\r\n   templateUrl: './signup.component.html',\r\n@@ -91,9 +92,9 @@\n   onSubmit(){\r\n     if (this.signupForm.valid){\r\n     const formData = this.signupForm.value;\r\n     \r\n-    this.http.post(`$/signup', formData).pipe(\r\n+    this.http.post(`${USERS}/signup, formData).pipe(\r\n       tap(response =>{\r\n       console.log(response);\r\n       console.log('Form submitted');\r\n     }),\r\n"
+                }
+            ],
+            "date": 1733001158168,
+            "name": "Commit-0",
+            "content": "import { HttpClient } from '@angular/common/http';\r\nimport { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { Observable, catchError, of, switchMap, tap } from 'rxjs';\r\n\r\n@Component({\r\n  selector: 'app-signup',\r\n  templateUrl: './signup.component.html',\r\n  styleUrl: './signup.component.css'\r\n})\r\nexport class SignupComponent implements OnInit {\r\n  jobPosition = '';\r\n  showPassword = false;\r\n  confirmPwrod = false;\r\n  signupForm: FormGroup = new FormGroup({});\r\n  submitHandler$ : Observable<any> = new Observable<any>(); \r\n  locations: string[] = [\r\n    \"Abia\",\r\n    \"Adamawa\",\r\n    \"Akwa Ibom\",\r\n    \"Anambra\",\r\n    \"Bauchi\",\r\n    \"Bayelsa\",\r\n    \"Benue\",\r\n    \"Borno\",\r\n    \"Cross River\",\r\n    \"Delta\",\r\n    \"Ebonyi\",\r\n    \"Edo\",\r\n    \"Ekiti\",\r\n    \"Enugu\",\r\n    \"Gombe\",\r\n    \"Imo\",\r\n    \"Jigawa\",\r\n    \"Kaduna\",\r\n    \"Kano\",\r\n    \"Katsina\",\r\n    \"Kebbi\",\r\n    \"Kogi\",\r\n    \"Kwara\",\r\n    \"Lagos\",\r\n    \"Nasarawa\",\r\n    \"Niger\",\r\n    \"Ogun\",\r\n    \"Ondo\",\r\n    \"Osun\",\r\n    \"Oyo\",\r\n    \"Plateau\",\r\n    \"Rivers\",\r\n    \"Sokoto\",\r\n    \"Taraba\",\r\n    \"Yobe\",\r\n    \"Zamfara\",\r\n    \"FCT\"\r\n];\r\n\r\n  constructor (\r\n    private router: Router,\r\n    private formBuilder: FormBuilder,\r\n    private http: HttpClient\r\n  ){}\r\n  showPword(){\r\n    this.showPassword = !this.showPassword;\r\n  }\r\n  confirmPword(){\r\n    this.confirmPwrod = !this.confirmPwrod;\r\n  }\r\n\r\n  ngOnInit(){\r\n    this.signupForm = this.formBuilder.group({\r\n      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]], \r\n      jobPosition: [''], \r\n      Location: [''],\r\n      firstname: ['', [Validators.required]], \r\n      surname: ['', [Validators.required]], \r\n      email: ['', [Validators.required, Validators.email]], \r\n      password: ['', [Validators.required]],\r\n      confirm_password: ['', [Validators.required]]\r\n}, { validator: this.checkPasswords } \r\n)\r\n  }\r\n\r\n  checkPasswords(group: FormGroup){\r\n    const password = group.get('password')?.value;\r\n    const confirmPassword = group.get('confirm_password')?.value;\r\n\r\n    return password === confirmPassword ? null : { notSame: true };\r\n  }\r\n\r\n  onSubmit(){\r\n    if (this.signupForm.valid){\r\n    const formData = this.signupForm.value;\r\n    \r\n    this.http.post('U/signup', formData).pipe(\r\n      tap(response =>{\r\n      console.log(response);\r\n      console.log('Form submitted');\r\n    }),\r\n    catchError(error =>{\r\n      console.error('Error', error);\r\n\r\n      return of(null);\r\n    }),\r\n switchMap(()=> this.router.navigate(['']))\r\n  ).subscribe();\r\n}\r\nelse {\r\n  console.error('Invalid Form'),\r\n  console.log(this.signupForm.errors)\r\n}\r\n  }\r\n}\r\n"
+        }
+    ]
+}

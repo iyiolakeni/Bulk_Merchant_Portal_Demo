@@ -59,7 +59,7 @@
     </mat-dialog-content>
   </ng-container>
   <ng-template #approvedRequest>
-    <ng-container *ngIf="data.status === 'approved'; else deployed">
+    <ng-container *ngIf="data.status === 'Pending'; else deployed">
       <mat-dialog-content>
         <form
           [formGroup]="generateRequest"
@@ -148,7 +148,7 @@
     </ng-container>
     <ng-template #deployed>
       <mat-dialog-content>
-        <form [formGroup]="deployRequest" (change)="selectedOfficer()">
+        <form [formGroup]="deployRequest" (change)="selectedOfficer()" (submit)="deploy()">
           <div class="container mb-3">
               <select class="form-select" aria-label="Default select example" formControlName = 'name'>
                 <option *ngFor="let posOfficer of userDetails" [value]="posOfficer['name']">
@@ -157,7 +157,7 @@
               </select>
             <p class="badge text-bg-primary text-wrap mt-3" >Location: {{selectedOfficerLocation}}</p>
               </div>
-            <button class="bg-primary-subtle">Deploy</button>
+            <button class="btn btn-primary">Deploy</button>
         </form>
       </mat-dialog-content>
     </ng-template>

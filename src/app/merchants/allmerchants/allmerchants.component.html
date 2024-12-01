@@ -8,7 +8,10 @@
                 </select>
                 <button class="btn btn-outline-secondary" type="Button" (click)="search()">Search</button>
     </div>
-    <table class="table table-hover">
+    <div class="absolute" *ngIf="loading">
+        <span class="loader"></span>
+    </div>
+    <table class="table table-hover" *ngIf="!loading">
         <thead>
         <tr>
             <th scope="col">Merchant Id</th>
@@ -37,6 +40,7 @@
     </table>
     <div class="btn-center" role="group">
         <button type="button" class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-        <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Continue</button>
+        <span>{{currentPage}}</span>
+        <button type="button" class="btn btn-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages/n || merchants.length !== n">Next</button>
     </div>
 </div>

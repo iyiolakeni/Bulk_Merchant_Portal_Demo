@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of, switchMap, tap } from 'rxjs';
 import { AppService } from '../app.service';
+import { USERS } from '../constants/url.constant';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ ngOnInit(){
     if (this.loginForm.valid){
     const loginData = this.loginForm.value;
 
-    this.http.post('https://bmp-node.onrender.com/users/login', loginData).pipe(
+    this.http.post(`${USERS}/login`, loginData).pipe(
       tap(response => {
         console.log(response);
         console.log('Logged in');

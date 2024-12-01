@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/app/modal/modal.component.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1733046269882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733046276569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n     })\r\n   }\r\n \r\n   deployRequest(data: any){\r\n-    console.log(data.)\r\n+    console.log(data)\r\n     this.dialogRef.close();\r\n     this.dialogRef.afterClosed().subscribe(result=>{\r\n       this.dialog.open(PopupComponent, {\r\n         data: this.data\r\n"
+                },
+                {
+                    "date": 1733046284790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n   }\r\n \r\n   deployRequest(data: any){\r\n     console.log(data)\r\n-    apiSe\r\n+    apiS\r\n     this.dialogRef.close();\r\n     this.dialogRef.afterClosed().subscribe(result=>{\r\n       this.dialog.open(PopupComponent, {\r\n         data: this.data\r\n"
+                }
+            ],
+            "date": 1733046269882,
+            "name": "Commit-0",
+            "content": "import { DatePipe } from '@angular/common';\r\nimport { Component, Inject, Input, OnInit } from '@angular/core';\r\nimport { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';\r\nimport { Router } from '@angular/router';\r\nimport { PopupComponent } from '../popup/popup.component';\r\n\r\n@Component({\r\n  selector: 'app-modal',\r\n  templateUrl: './modal.component.html',\r\n  styleUrl: './modal.component.css'\r\n})\r\nexport class ModalComponent {\r\n  show = true;\r\n  constructor(\r\n    private datePipe: DatePipe,\r\n    private router: Router,\r\n    public dialogRef: MatDialogRef<ModalComponent>,\r\n    @Inject(MAT_DIALOG_DATA) public data: any,\r\n    public dialog: MatDialog\r\n  ){} \r\n\r\n  convertDate(dateString: string): string {\r\n    const date = new Date(dateString);\r\n    return this.datePipe.transform(date, 'yyyy-MM-dd') || '';\r\n    }\r\n\r\n  async newRequest(data: any){\r\n      this.router.navigate(['/request/new_request'],\r\n        {\r\n          state: {newdata: data}\r\n        }\r\n      )\r\n      console.log('before navigation', data)\r\n      this.dialogRef.close();\r\n    }\r\n\r\n  acceptRequest(data: any){\r\n    this.dialogRef.close();\r\n    this.dialogRef.afterClosed().subscribe(result=> {\r\n      this.dialog.open(PopupComponent, {\r\n        data: data\r\n      })\r\n      console.log(data.status)\r\n    })\r\n  }\r\n  \r\n  posRequest(data:any){\r\n    console.log(data.status)\r\n    this.dialogRef.close();\r\n    this.dialogRef.afterClosed().subscribe(result=>{\r\n      this.dialog.open(PopupComponent, {\r\n        width: '500px',\r\n        data:data\r\n      })\r\n    })\r\n  }\r\n\r\n  deployRequest(data: any){\r\n    \r\n    this.dialogRef.close();\r\n    this.dialogRef.afterClosed().subscribe(result=>{\r\n      this.dialog.open(PopupComponent, {\r\n        data: this.data\r\n      })\r\n    })\r\n  }\r\n\r\n}\r\n"
+        }
+    ]
+}

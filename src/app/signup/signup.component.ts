@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, catchError, of, switchMap, tap } from 'rxjs';
+import { USERS } from '../constants/url.constant';
 
 @Component({
   selector: 'app-signup',
@@ -92,7 +93,7 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.valid){
     const formData = this.signupForm.value;
     
-    this.http.post('https://bmp-node.onrender.com/users/signup', formData).pipe(
+    this.http.post(`${USERS}/signup`, formData).pipe(
       tap(response =>{
       console.log(response);
       console.log('Form submitted');

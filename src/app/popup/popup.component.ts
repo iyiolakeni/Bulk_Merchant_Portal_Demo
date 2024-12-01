@@ -38,7 +38,7 @@ export class PopupComponent implements OnInit {
     console.log(this.data.name)
     this.updateForm = this.formBuilder.group({
       status: ['', Validators.required],
-      AdditionalNotes: ['', Validators.required],
+      AdditionalNotes: [''],
       ApprovedBy: [this.data.name]
     })
 
@@ -72,13 +72,25 @@ export class PopupComponent implements OnInit {
   }
 
   updateProcess(){
+    let request;
     if (this.updateForm.valid){
       console.log(this.updateForm.value)
 
       this.apiService.updateRequest(this.requestID, this.updateForm.value).subscribe(
         data => {
           console.log(data);
+          request = {
+              Pos_RequestId: data.RequestId,
+  status: data.status
+          }
           this.popupRef.close();
+        }, error => {
+          console.log(error)
+        }
+      )
+      this.apiService.createPosRequest(request).subscribe(
+        result => {
+          console.log(result);
         }, error => {
           console.log(error)
         }
@@ -124,6 +136,9 @@ export class PopupComponent implements OnInit {
     if(officer ){
       console.log('Officer Name: '+this.deployRequest.get('name')?.value)
       this.selectedOfficerLocation = officer['location'];
+      this.deployRequest.patchValue({
+        location: this.selectedOfficerLocation
+      })
       if(this.selectedOfficerLocation === null)
         {
           this.selectedOfficerLocation = 'No Location'
@@ -131,5 +146,26 @@ export class PopupComponent implements OnInit {
       console.log('Location: ' + this.selectedOfficerLocation)
     }
   }
+
+  deploy(){
+    console.log(this.requestID)
+    console.log(this.deployRequest.value)
+    const form = {
+      status: 'Deployed',
+      DeliveredBy: this.deployRequest.value.name,
+      DeliveryDate: new Date()
+    }
+    console.log('Form: ', form)
+    if (this.deployRequest.valid){
+      this.apiService.updateDeliveryStatus(this.requestID, form).subscribe(
+        data => {
+          console.log(data);
+          this.popupRef.close();
+        }, error => {
+          console.log(error)
+        }
+      )
+  }
+}
 
 }

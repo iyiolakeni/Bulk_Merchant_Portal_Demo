@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/app/app.module.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1733047604374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733047610523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n     AppRoutingModule,\r\n     HttpClientModule,\r\n     MatDialogModule,\r\n     MatTabsModule,\r\n-    \r\n+    MatIconM\r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047627159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n     AppRoutingModule,\r\n     HttpClientModule,\r\n     MatDialogModule,\r\n     MatTabsModule,\r\n-    MatIconM\r\n+    Ma\r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047642903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n import { PopupComponent } from './popup/popup.component';\r\n import {BsDropdownModule} from 'ngx-bootstrap/dropdown';\r\n import {MatPaginatorModule} from '@angular/material/paginator'\r\n \r\n+\r\n @NgModule({\r\n   declarations: [\r\n     AppComponent,\r\n     LoginComponent,\r\n@@ -55,9 +56,9 @@\n     AppRoutingModule,\r\n     HttpClientModule,\r\n     MatDialogModule,\r\n     MatTabsModule,\r\n-    Ma\r\n+    MatMenuModule,\r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047653214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,12 @@\n import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';\r\n import { PopupComponent } from './popup/popup.component';\r\n import {BsDropdownModule} from 'ngx-bootstrap/dropdown';\r\n import {MatPaginatorModule} from '@angular/material/paginator'\r\n+import { MatIconModule } from '@angular/material/icon';\r\n+import { MatButtonModule } from '@angular/material/button';\r\n+import { MatMenuModule } from '@angular/material/menu';\r\n \r\n-\r\n @NgModule({\r\n   declarations: [\r\n     AppComponent,\r\n     LoginComponent,\r\n@@ -57,8 +59,9 @@\n     HttpClientModule,\r\n     MatDialogModule,\r\n     MatTabsModule,\r\n     MatMenuModule,\r\n+    \r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047659070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,10 @@\n     HttpClientModule,\r\n     MatDialogModule,\r\n     MatTabsModule,\r\n     MatMenuModule,\r\n-    \r\n+    MatIconModule,\r\n+    MatButtonModule\r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047665748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,8 @@\n     MatDialogModule,\r\n     MatTabsModule,\r\n     MatMenuModule,\r\n     MatIconModule,\r\n-    MatButtonModule\r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                },
+                {
+                    "date": 1733047688395,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,8 +60,9 @@\n     MatDialogModule,\r\n     MatTabsModule,\r\n     MatMenuModule,\r\n     MatIconModule,\r\n+    \r\n     FormsModule,\r\n     ReactiveFormsModule,\r\n     BsDropdownModule.forRoot(),\r\n     MatPaginatorModule\r\n"
+                }
+            ],
+            "date": 1733047604374,
+            "name": "Commit-0",
+            "content": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { LoginComponent } from './login/login.component';\r\nimport { SignupComponent } from './signup/signup.component';\r\nimport { DashboardComponent } from './dashboard/dashboard.component';\r\nimport { SidebarComponent } from './sidebar/sidebar.component';\r\nimport { EmailComponent } from './email/email.component';\r\nimport { NotificationComponent } from './notification/notification.component';\r\nimport { NavbarComponent } from './navbar/navbar.component';\r\nimport { RequestComponent } from './request/request.component';\r\nimport { HttpClientModule } from '@angular/common/http';\r\nimport { RequestpageComponent } from './paths/requestpage/requestpage.component';\r\nimport { NotificationPageComponent } from './paths/notification-page/notification-page.component';\r\nimport { HomePageComponent } from './paths/home-page/home-page.component';\r\nimport { provideAnimationsAsync } from '@angular/platform-browser/animations/async';\r\nimport {MatDialogModule} from '@angular/material/dialog';\r\nimport { DatePipe } from '@angular/common';\r\nimport {MatTabsModule} from '@angular/material/tabs';\r\nimport { ModalComponent } from './modal/modal.component';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { NewRequestComponent } from './paths/new-request/new-request.component';\r\nimport { MerchantsComponent } from './merchants/merchants.component';\r\nimport { AllmerchantsComponent } from './merchants/allmerchants/allmerchants.component';\r\nimport { NewMerchantComponent } from './merchants/new-merchant/new-merchant.component';\r\nimport { PopupComponent } from './popup/popup.component';\r\nimport {BsDropdownModule} from 'ngx-bootstrap/dropdown';\r\nimport {MatPaginatorModule} from '@angular/material/paginator'\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    LoginComponent,\r\n    SignupComponent,\r\n    DashboardComponent,\r\n    SidebarComponent,\r\n    EmailComponent,\r\n    NotificationComponent,\r\n    NavbarComponent,\r\n    RequestComponent,\r\n    RequestpageComponent,\r\n    NotificationPageComponent,\r\n    HomePageComponent,\r\n    ModalComponent,\r\n    NewRequestComponent,\r\n    MerchantsComponent,\r\n    AllmerchantsComponent,\r\n    NewMerchantComponent,\r\n    PopupComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    HttpClientModule,\r\n    MatDialogModule,\r\n    MatTabsModule,\r\n    \r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    BsDropdownModule.forRoot(),\r\n    MatPaginatorModule\r\n  ],\r\n  providers: [\r\n    DatePipe,\r\n    provideAnimationsAsync()\r\n  ],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { \r\n  \r\n}\r\n"
+        }
+    ]
+}

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import { tap, catchError, of, throwError } from 'rxjs';
 import { AppService } from '../../app.service';
 import { ApiDetailsService } from '../../api-details.service';
+import { MERCHANT } from '../../constants/url.constant';
 
 interface Item {
   label: string;
@@ -83,7 +84,7 @@ export class NewRequestComponent implements OnInit {
   searchMerchant(){
     const merchant = this.newRequest.get('MerchantID')?.value;
 
-    this.http.get(`https://bmp-node.onrender.com/merchant/${merchant}`).subscribe(
+    this.http.get(`${MERCHANT}/${merchant}`).subscribe(
       response => {
         console.log(response);
         this.merchantExist = true;

@@ -44,8 +44,10 @@
         <label for="name">Designation</label>
         <input type="text" class="form-control" required formControlName="Designation2" />
       </div>
+      <div class="text-danger">{{errorMessage}}</div>
       <div class="btn-center" role="group">
         <button type="button" class="btn btn-secondary">Clear</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" *ngIf="!loading">Submit</button>
+        <button type="submit" class="btn btn-primary" disabled *ngIf="loading"><span class="loader"></span></button>
     </div>
     </form>

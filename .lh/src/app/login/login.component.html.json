@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/app/login/login.component.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1732999096540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1732999101801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" >\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"fpr\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999108844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"fpr\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999131548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value !=\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999239847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value !=\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value == ''\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999248600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm.value == ''\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" \">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999369446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" \">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999377110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999461390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled]=\"loginForm\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled=\"loginForm.valid\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                },
+                {
+                    "date": 1732999783211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n           </div>\r\n           <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n           Invalid Password or Username, Try again</p>\r\n           <div class=\"row mx-1\">\r\n-            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" [disabled=\"loginForm.valid\">\r\n+            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" {disabled}=\"loginForm.valid\">\r\n               Login\r\n             </button>\r\n             <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n             >\r\n"
+                }
+            ],
+            "date": 1732999096540,
+            "name": "Commit-0",
+            "content": "<div class=\"login-body\">\r\n  <div class=\"card col-5 cardBody\">\r\n    <div class=\"card-header align-center\">\r\n      <h2 class=\"text-white display-5 text-center\">Login</h2>\r\n    </div> \r\n    <div class=\"card-body\">\r\n    <form [formGroup]=\"loginForm\" (submit)=\"$event.preventDefault(); onLogin()\" (keyup)=\"resetForm()\">\r\n        <div class=\"form-group\">\r\n          <div class=\"row mx-1\">\r\n            <input\r\n              type=\"email\"\r\n              class=\"form-control-lg input1\"\r\n              placeholder=\"Username\" formControlName=\"username\"\r\n              id=\"email\"\r\n            />\r\n          </div>\r\n          <div class=\"row mx-1 flex-nowrap\">\r\n            <input [type]=\"showPassword ? 'text' : 'password'\" class=\"form-control-lg input1 ml-2\" placeholder=\"Password\"  formControlName=\"password\" \r\n            id=\"password\" />\r\n            <span style=\"font-size: 2.5rem; position: relative; right: 70px;\" class=\"bi bi-eye-fill\"(click)=\"showPword()\">\r\n            </span>\r\n          </div>\r\n          <p class=\"alert alert-warning\" role=\"alert\" *ngIf=\"failedLogin\">\r\n          Invalid Password or Username, Try again</p>\r\n          <div class=\"row mx-1\">\r\n            <button type=\"submit\" class=\"mt-2 btn btn-secondary btn-lg\" >\r\n              Login\r\n            </button>\r\n            <a [routerLink]=\"['/sign_up']\" class=\"text-white float-end\"\r\n            >\r\n            New User?\r\n        </a>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        }
+    ]
+}

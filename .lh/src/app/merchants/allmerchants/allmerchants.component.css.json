@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/app/merchants/allmerchants/allmerchants.component.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1733007827149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733007995197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,35 @@\n     gap: 45px;\r\n     justify-content: center;\r\n }\r\n \r\n+.loader {\r\n+    width: 4px;\r\n+    height: 48px;\r\n+    border-radius: 50%;\r\n+    display: inline-block;\r\n+    border-top: 4px solid #FFF;\r\n+    border-right: 4px solid transparent;\r\n+    box-sizing: border-box;\r\n+    animation: rotation 1s linear infinite;\r\n+  }\r\n+  .loader::after {\r\n+    content: '';  \r\n+    box-sizing: border-box;\r\n+    position: absolute;\r\n+    left: 0;\r\n+    top: 0;\r\n+    width: 48px;\r\n+    height: 48px;\r\n+    border-radius: 50%;\r\n+    border-left: 4px solid #FF3D00;\r\n+    border-bottom: 4px solid transparent;\r\n+    animation: rotation 0.5s linear infinite reverse;\r\n+  }\r\n+  @keyframes rotation {\r\n+    0% {\r\n+      transform: rotate(0deg);\r\n+    }\r\n+    100% {\r\n+      transform: rotate(360deg);\r\n+    }\r\n+  } \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733008000964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n     justify-content: center;\r\n }\r\n \r\n .loader {\r\n-    width: 4px;\r\n-    height: 48px;\r\n+    width: 100px;\r\n+    height: 100px;\r\n     border-radius: 50%;\r\n     display: inline-block;\r\n     border-top: 4px solid #FFF;\r\n     border-right: 4px solid transparent;\r\n"
+                },
+                {
+                    "date": 1733008020375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     box-sizing: border-box;\r\n     position: absolute;\r\n     left: 0;\r\n     top: 0;\r\n-    width: 48px;\r\n+    width: 4px;\r\n     height: 48px;\r\n     border-radius: 50%;\r\n     border-left: 4px solid #FF3D00;\r\n     border-bottom: 4px solid transparent;\r\n"
+                },
+                {
+                    "date": 1733008042275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     box-sizing: border-box;\r\n     position: absolute;\r\n     left: 0;\r\n     top: 0;\r\n-    width: 4px;\r\n+    width: px;\r\n     height: 48px;\r\n     border-radius: 50%;\r\n     border-left: 4px solid #FF3D00;\r\n     border-bottom: 4px solid transparent;\r\n"
+                },
+                {
+                    "date": 1733008047457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n     justify-content: center;\r\n }\r\n \r\n .loader {\r\n-    width: 100px;\r\n-    height: 100px;\r\n+    width: 4px;\r\n+    height: 48px;\r\n     border-radius: 50%;\r\n     display: inline-block;\r\n     border-top: 4px solid #FFF;\r\n     border-right: 4px solid transparent;\r\n@@ -20,9 +20,9 @@\n     box-sizing: border-box;\r\n     position: absolute;\r\n     left: 0;\r\n     top: 0;\r\n-    width: px;\r\n+    width: 48px;\r\n     height: 48px;\r\n     border-radius: 50%;\r\n     border-left: 4px solid #FF3D00;\r\n     border-bottom: 4px solid transparent;\r\n"
+                },
+                {
+                    "date": 1733008130684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n     justify-content: center;\r\n }\r\n \r\n \r\n+\r\n .loader {\r\n     width: 48px;\r\n     height: 48px;\r\n     border-radius: 50%;\r\n"
+                },
+                {
+                    "date": 1733008174133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     justify-content: center;\r\n }\r\n \r\n .absolute{\r\n-    d\r\n+    \r\n }\r\n \r\n .loader {\r\n     width: 48px;\r\n"
+                }
+            ],
+            "date": 1733007827149,
+            "name": "Commit-0",
+            "content": ".btn-center{\r\n    align-items: center;\r\n    display: flex;\r\n    gap: 45px;\r\n    justify-content: center;\r\n}\r\n\r\n"
+        }
+    ]
+}

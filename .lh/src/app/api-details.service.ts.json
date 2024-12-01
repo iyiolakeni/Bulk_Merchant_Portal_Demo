@@ -1,0 +1,78 @@
+{
+    "sourceFile": "src/app/api-details.service.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 15,
+            "patches": [
+                {
+                    "date": 1733001601535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733001608127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n   refresh$ = this.refreshSource.asObservable();\r\n   \r\n   getAllUsers(): Observable<any>{\r\n-    return this.http.get<Users>(');\r\n+    return this.http.get<Users>(`{USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n     return this.http.get<Merchant[]>('https://bmp-node.onrender.com/merchant/allMerchants');\r\n"
+                },
+                {
+                    "date": 1733001617474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n   refresh$ = this.refreshSource.asObservable();\r\n   \r\n   getAllUsers(): Observable<any>{\r\n-    return this.http.get<Users>(`{USERS}`);\r\n+    return this.http.get<Users>(`{USER}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n     return this.http.get<Merchant[]>('https://bmp-node.onrender.com/merchant/allMerchants');\r\n"
+                },
+                {
+                    "date": 1733001622597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n   refresh$ = this.refreshSource.asObservable();\r\n   \r\n   getAllUsers(): Observable<any>{\r\n-    return this.http.get<Users>(`{USER}`);\r\n+    return this.http.get<Users>(`$`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n     return this.http.get<Merchant[]>('https://bmp-node.onrender.com/merchant/allMerchants');\r\n"
+                },
+                {
+                    "date": 1733001661736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { BehaviorSubject, Observable, Subject, distinctUntilChanged, finalize, switchMap, tap, timer } from 'rxjs';\r\n import { Merchant } from './merchant';\r\n import {PosRequest} from './posrequest'\r\n import { Users } from './users';\r\n+import { USERS } from './constants/url.constant';\r\n \r\n @Injectable({\r\n   providedIn: 'root'\r\n })\r\n@@ -19,13 +20,13 @@\n \r\n   refresh$ = this.refreshSource.asObservable();\r\n   \r\n   getAllUsers(): Observable<any>{\r\n-    return this.http.get<Users>(`$`);\r\n+    return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>('https://bmp-node.onrender.com/merchant/allMerchants');\r\n+    return this.http.get<Merchant[]>(https://bmp-node.onrender.com/merchant/allMerchants');\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001667396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(https://bmp-node.onrender.com/merchant/allMerchants');\r\n+    return this.http.get<Merchant[]>(`$`);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001675131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(`$`);\r\n+    return this.http.get<Merchant[]>(https://bmp-node.onrender.com/merchant/allMerchants);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001681149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(https://bmp-node.onrender.com/merchant/allMerchants);\r\n+    return this.http.get<Merchant[]>(`https://bmp-node.onrender.com/merchant`/allMerchants);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001688461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(`https://bmp-node.onrender.com/merchant`/allMerchants);\r\n+    return this.http.get<Merchant[]>(`${}`/allMerchants);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001699687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { BehaviorSubject, Observable, Subject, distinctUntilChanged, finalize, switchMap, tap, timer } from 'rxjs';\r\n import { Merchant } from './merchant';\r\n import {PosRequest} from './posrequest'\r\n import { Users } from './users';\r\n-import { USERS } from './constants/url.constant';\r\n+import { MERCHANT, USERS } from './constants/url.constant';\r\n \r\n @Injectable({\r\n   providedIn: 'root'\r\n })\r\n@@ -24,9 +24,9 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(`${}`/allMerchants);\r\n+    return this.http.get<Merchant[]>(`${MERCHANT}/allMerchants);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n     return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n"
+                },
+                {
+                    "date": 1733001751278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,13 @@\n     return this.http.get<Users>(`${USERS}`);\r\n   }\r\n \r\n   getAllMerchants(): Observable<any>{\r\n-    return this.http.get<Merchant[]>(`${MERCHANT}/allMerchants);\r\n+    return this.http.get<Merchant[]>(`${MERCHANT}/allMerchants`);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n-    return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n+    return this.http.get<Merchant>(`$/${merchantID}`)\r\n   }\r\n \r\n   getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n     const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n"
+                },
+                {
+                    "date": 1733001756786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     return this.http.get<Merchant[]>(`${MERCHANT}/allMerchants`);\r\n   }\r\n \r\n   getMerchantById(merchantID: string): Observable<Merchant>{\r\n-    return this.http.get<Merchant>(`$/${merchantID}`)\r\n+    return this.http.get<Merchant>(`${MERCHANT}/${merchantID}`)\r\n   }\r\n \r\n   getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n     const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n"
+                },
+                {
+                    "date": 1733001869850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \r\n   getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n     const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n \r\n-    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms', {params})\r\n+    return this.http.get<PosRequest[]>(https://bmp-node.onrender.com/forms', {params})\r\n   }\r\n \r\n   getRequest(): Observable<PosRequest[]>{\r\n     return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')\r\n"
+                },
+                {
+                    "date": 1733001875628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \r\n   getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n     const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n \r\n-    return this.http.get<PosRequest[]>(https://bmp-node.onrender.com/forms', {params})\r\n+    return this.http.get<PosRequest[]>($, {params})\r\n   }\r\n \r\n   getRequest(): Observable<PosRequest[]>{\r\n     return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')\r\n"
+                },
+                {
+                    "date": 1733001881870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n \r\n   getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n     const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n \r\n-    return this.http.get<PosRequest[]>(`${FOR}`, {params})\r\n+    return this.http.get<PosRequest[]>(`${FORM}`, {params})\r\n   }\r\n \r\n   getRequest(): Observable<PosRequest[]>{\r\n     return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')\r\n"
+                },
+                {
+                    "date": 1733001960522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n     return this.http.get<PosRequest[]>(`${FORMS}`, {params})\r\n   }\r\n \r\n   getRequest(): Observable<PosRequest[]>{\r\n-    return this.http.get<PosRequest[]>(`${P}`)\r\n+    return this.http.get<PosRequest[]>(`${PO}`)\r\n   }\r\n   //Function to get the Real Time update every 5 secs an update happens\r\n   getRealTimeUpdates(): Observable<any[]>{\r\n     return timer(0, 1000).pipe(\r\n"
+                }
+            ],
+            "date": 1733001601535,
+            "name": "Commit-0",
+            "content": "import { HttpClient, HttpParams } from '@angular/common/http';\r\nimport { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable, Subject, distinctUntilChanged, finalize, switchMap, tap, timer } from 'rxjs';\r\nimport { Merchant } from './merchant';\r\nimport {PosRequest} from './posrequest'\r\nimport { Users } from './users';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class ApiDetailsService {\r\n\r\n\r\n  constructor(\r\n    private http: HttpClient\r\n  ) { } \r\n\r\n  private refreshSource = new Subject<void>();\r\n\r\n  refresh$ = this.refreshSource.asObservable();\r\n  \r\n  getAllUsers(): Observable<any>{\r\n    return this.http.get<Users>(');\r\n  }\r\n\r\n  getAllMerchants(): Observable<any>{\r\n    return this.http.get<Merchant[]>('https://bmp-node.onrender.com/merchant/allMerchants');\r\n  }\r\n\r\n  getMerchantById(merchantID: string): Observable<Merchant>{\r\n    return this.http.get<Merchant>(`https://bmp-node.onrender.com/merchant/${merchantID}`)\r\n  }\r\n\r\n  getPaginatedRequest(limit: number, offset: number): Observable<PosRequest[]> {\r\n    const params = new HttpParams().set('limit', limit.toString()).set('offset', offset.toString());\r\n\r\n    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms', {params})\r\n  }\r\n\r\n  getRequest(): Observable<PosRequest[]>{\r\n    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/forms')\r\n  }\r\n  //Function to get the Real Time update every 5 secs an update happens\r\n  getRealTimeUpdates(): Observable<any[]>{\r\n    return timer(0, 1000).pipe(\r\n      switchMap(()=> this.getRequest())\r\n    )\r\n  }\r\n\r\n  newRequest(requestData: any): Observable<any>{\r\n    return this.http.post<any>('https://bmp-node.onrender.com/forms/new', requestData)\r\n  }\r\n\r\n  updateRequest(requestID: string, formData: any): Observable<any>{\r\n    return this.http.put(`https://bmp-node.onrender.com/forms/${requestID}`, formData).pipe(\r\n      finalize(()=> this.refreshSource.next())\r\n    )\r\n  }\r\n\r\n  //POS Request\r\n  generateSN(requestID: string, posSN: any): Observable<any>{\r\n    return this.http.post(`https://bmp-node.onrender.com/POS/updateRequest/${requestID}`, posSN).pipe(\r\n      finalize(()=> this.refreshSource.next)\r\n    )\r\n  }\r\n\r\n  createPosRequest(): Observable<any>{\r\n    return this.http.post('https://bmp-node.onrender.com/POS/newposrequest', {})\r\n  \r\n  }\r\n\r\n  getAllPosBusinessRequest():Observable<any>{\r\n    return this.http.get<PosRequest[]>('https://bmp-node.onrender.com/POS/allrequest');\r\n  }\r\n\r\n  updatePosStatus(requestId:string, status: string): Observable<any>{\r\n    return this.http.put(`https://bmp-node.onrender.com/POS/updateStatus/${requestId}`, {status}).pipe(\r\n      finalize(()=> this.refreshSource.next())\r\n    )\r\n  }\r\n\r\n}\r\n"
+        }
+    ]
+}

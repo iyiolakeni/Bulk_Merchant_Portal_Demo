@@ -3,6 +3,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
+import { ApiDetailsService } from '../api-details.service';
 
 @Component({
   selector: 'app-modal',
@@ -16,7 +17,8 @@ export class ModalComponent {
     private router: Router,
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialog: MatDialog
+    private apiService: ApiDetailsService,
+    public dialog: MatDialog,
   ){} 
 
   convertDate(dateString: string): string {
@@ -45,7 +47,7 @@ export class ModalComponent {
   }
   
   posRequest(data:any){
-    console.log(data.status)
+    console.log(data)
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(result=>{
       this.dialog.open(PopupComponent, {
@@ -59,7 +61,8 @@ export class ModalComponent {
     this.dialogRef.close();
     this.dialogRef.afterClosed().subscribe(result=>{
       this.dialog.open(PopupComponent, {
-        data: this.data
+        width: '500px',
+        data: data
       })
     })
   }

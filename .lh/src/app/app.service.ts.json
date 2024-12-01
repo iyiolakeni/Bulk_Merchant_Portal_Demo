@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/app/app.service.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1733001385518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1733001385518,
+            "name": "Commit-0",
+            "content": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { ApiDetailsService } from './api-details.service';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AppService {\r\n  user: any; //Retrieve user login details\r\n\r\n  private dataSource = new BehaviorSubject<any[]>([]);\r\n  data = this.dataSource.asObservable();\r\n\r\n\r\n\r\n  constructor(\r\n    // private apiDetails: ApiDetailsService\r\n  ) { }\r\n\r\n  // function to retrieve user\r\n  setUser(user: any){\r\n    this.user = user;\r\n    sessionStorage.setItem('user', JSON.stringify(this.user));\r\n    // console.log(this.user);\r\n  }\r\n\r\n  isLoggedIn(): boolean {\r\n    return !!this.user;\r\n  }\r\n\r\n  getUser(){\r\n    if (!this.user){\r\n      const storedUser = sessionStorage.getItem('user');\r\n      if (storedUser){\r\n        this.user = JSON.parse(storedUser);\r\n      }\r\n    }\r\n    console.log(this.user);\r\n    return this.user;\r\n  }\r\n\r\n  updateData(response: any){\r\n    const posRequests = Object.values(response.results[0]);\r\n    this.dataSource.next(posRequests);\r\n  }\r\n}\r\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/app/environments/environment.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1733000181836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733000191309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n export const environment = {\r\n     production: false,\r\n-    apiUrl: 'c:\\Users\\user\\Desktop\\Projects\\Polaris_EA_360\\Latest360\\EA360Portal\\src\\environments',\r\n+    apiUrl: 'https://bmp-node.onrender.com',\r\n     onPrem: false,\r\n     test: true\r\n };\r\n"
+                },
+                {
+                    "date": 1733000223836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n export const environment = {\r\n     production: false,\r\n-    apiUrl: 'https://bmp-node.onrender.com',\r\n+    apiUrl: 'http://localhost:5000/',\r\n     onPrem: false,\r\n     test: true\r\n };\r\n"
+                }
+            ],
+            "date": 1733000181836,
+            "name": "Commit-0",
+            "content": "export const environment = {\r\n    production: false,\r\n    apiUrl: 'c:\\Users\\user\\Desktop\\Projects\\Polaris_EA_360\\Latest360\\EA360Portal\\src\\environments',\r\n    onPrem: false,\r\n    test: true\r\n};\r\n"
+        }
+    ]
+}

@@ -23,7 +23,7 @@
           <p class="alert alert-warning" role="alert" *ngIf="failedLogin">
           Invalid Password or Username, Try again</p>
           <div class="row mx-1">
-            <button type="submit" class="mt-2 btn btn-secondary btn-lg">
+            <button type="submit" class="mt-2 btn btn-secondary btn-lg" [disabled]="!loginForm.valid">
               Login
             </button>
             <a [routerLink]="['/sign_up']" class="text-white float-end"

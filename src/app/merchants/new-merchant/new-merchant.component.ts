@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of, switchMap, tap } from 'rxjs';
+import { MERCHANT } from '../../constants/url.constant';
+import { ApiResponse } from '../../response';
 
 @Component({
   selector: 'app-new-merchant',
@@ -12,6 +14,8 @@ import { catchError, of, switchMap, tap } from 'rxjs';
 export class NewMerchantComponent implements OnInit {
 
   newMerchant: FormGroup = new FormGroup({});
+  errorMessage: string = ''
+  loading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder, 
@@ -46,23 +50,29 @@ export class NewMerchantComponent implements OnInit {
 
     onSubmit(){
       if (this.newMerchant.valid){
+        this.loading = true;
         const merchantData = this.newMerchant.value;
 
-        this.http.post('https://bmp-node.onrender.com/merchant/newMerchant', merchantData).pipe(
+        this.http.post(`${MERCHANT}/newMerchant`, merchantData).pipe(
           tap(response => {
             console.log(response);
-            console.log('Merchant added');
+            const {success, message} = response as ApiResponse
+            if (success !== true){
+              this.errorMessage = message
+            }else{
+              this.router.navigate(['/merchants'])
+            }
           }),
           catchError(error =>{
-            console.error(error);
-
+            this.loading = false;
             return of(null);
           }),
-          switchMap(()=>this.router.navigate(['/merchants']))
         ).subscribe()
       }
       else{
-        console.log(this.newMerchant.errors);
+            this.loading = false;
+        this.errorMessage = 'Invalid Fields'
+        return;
       }
     }
 }

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/app/response.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1733005314582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733005339011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-interface ApiResponse {\r\n+einterface ApiResponse {\r\n     success: boolean;\r\n     message: string;\r\n     responseCode: number;\r\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1733005314582,
+            "name": "Commit-0",
+            "content": "interface ApiResponse {\r\n    success: boolean;\r\n    message: string;\r\n    responseCode: number;\r\n}"
+        }
+    ]
+}

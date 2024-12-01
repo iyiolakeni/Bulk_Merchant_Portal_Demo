@@ -21,7 +21,7 @@ export class AppService {
   setUser(user: any){
     this.user = user;
     sessionStorage.setItem('user', JSON.stringify(this.user));
-    console.log(this.user);
+    // console.log(this.user);
   }
 
   isLoggedIn(): boolean {

@@ -67,18 +67,24 @@ export class RequestComponent implements OnInit {
   }
 
   serialDialog(posRequest: any): void {
-    let serialNumbers = posRequest.Pos_SerialNumber.join('\n');
+    console.log('Serial Request:', posRequest);
     this.dialog.open(ModalComponent, {
       width: '750px',
+      height: '500px',
       data: {
+      Pos_Accounts: posRequest.Pos_Accounts,
+      PTSP: posRequest.PTSP,
+      Pos_Model: posRequest.Pos_Model,
+      Pos_Processor: posRequest.Pos_Processor,
         status: posRequest.status,
-        title: 'Serial Number Details',
+        user: this.user.jobPosition,
+        title: 'Details of ' + posRequest.Pos_RequestId,
         tabs: [
           {
+            label: 'Request Details',
             items: [
               { label: 'Request ID', value: posRequest.Pos_RequestId},
               { label: 'Requested Pos', value: posRequest.NumberOfPos},
-              { label: 'Serial Numbers', value: serialNumbers},
               { label: 'Account Type', value: posRequest.Pos_Accounts},
               { label: 'PTSP', value: posRequest.PTSP},
               { label: 'POS Model Type', value: posRequest.Pos_Model},
@@ -178,8 +184,8 @@ export class RequestComponent implements OnInit {
     if (this.user.jobPosition === 'POS Business Officer'){
       this.apiService.getAllPosBusinessRequest().subscribe(
         posNewRequest => {
-          console.log(posNewRequest)
           this.serialRequest = posNewRequest;
+          console.log('Serial Request:', this.serialRequest);
         }
       )
     }

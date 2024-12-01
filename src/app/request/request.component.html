@@ -64,8 +64,23 @@
             <td>{{ posRequest.PTSP }}</td>
             <td>{{ posRequest.Pos_Accounts }}</td>
             <td style="text-transform: capitalize;">{{ posRequest.status === 'in_process' ? 'Processing': posRequest.status}}</td>
+            <!-- <td>
+              <span type="button" class="bi bi-three-dots"></span> 
+            </td> -->
             <td>
-              <span type="button" class="bi bi-three-dots"  (click)="serialDialog(posRequest)"></span> 
+              <span mat-icon-button [matMenuTriggerFor]="menu" style="cursor: pointer">
+                <mat-icon>more_vert</mat-icon>
+              </span>
+
+              <!-- Dropdown menu -->
+              <mat-menu #menu="matMenu" >
+                <button
+                  mat-menu-item (click)="serialDialog(posRequest)"
+                >
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Approve</span>
+                </button>
+                </mat-menu>
             </td>
           </ng-container>
         </tr>

@@ -28,6 +28,9 @@ import { NewMerchantComponent } from './merchants/new-merchant/new-merchant.comp
 import { PopupComponent } from './popup/popup.component';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {MatPaginatorModule} from '@angular/material/paginator'
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,9 @@ import {MatPaginatorModule} from '@angular/material/paginator'
     HttpClientModule,
     MatDialogModule,
     MatTabsModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),

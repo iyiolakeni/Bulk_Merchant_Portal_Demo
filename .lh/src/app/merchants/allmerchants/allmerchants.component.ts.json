@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/app/merchants/allmerchants/allmerchants.component.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1733007743614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733007748832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   totalPages: number = 30;\r\n   searchName = '';\r\n   searchField = 'Merchant_Trade_Name';\r\n   user: any;\r\n-  \r\n+  loading\r\n \r\n   constructor(\r\n     private http: HttpClient,\r\n     public dialog: MatDialog,\r\n"
+                },
+                {
+                    "date": 1733007758032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   totalPages: number = 30;\r\n   searchName = '';\r\n   searchField = 'Merchant_Trade_Name';\r\n   user: any;\r\n-  loading\r\n+  loading: boolean = false;\r\n \r\n   constructor(\r\n     private http: HttpClient,\r\n     public dialog: MatDialog,\r\n@@ -91,8 +91,9 @@\n   }\r\n \r\n \r\n   ngOnInit() {\r\n+    \r\n     this.user = this.sharedService.getUser();\r\n     this.titleService.setTitle('All Merchants');\r\n     this.apiService.getAllMerchants().subscribe((response: any) => {\r\n       this.merchants = response.reverse() as Merchant[];\r\n"
+                },
+                {
+                    "date": 1733007763775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,9 +91,9 @@\n   }\r\n \r\n \r\n   ngOnInit() {\r\n-    \r\n+    this.loading = t\r\n     this.user = this.sharedService.getUser();\r\n     this.titleService.setTitle('All Merchants');\r\n     this.apiService.getAllMerchants().subscribe((response: any) => {\r\n       this.merchants = response.reverse() as Merchant[];\r\n"
+                },
+                {
+                    "date": 1733007769794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -91,14 +91,13 @@\n   }\r\n \r\n \r\n   ngOnInit() {\r\n-    this.loading = t\r\n+    this.loading = true\r\n     this.user = this.sharedService.getUser();\r\n     this.titleService.setTitle('All Merchants');\r\n     this.apiService.getAllMerchants().subscribe((response: any) => {\r\n       this.merchants = response.reverse() as Merchant[];\r\n-      console.log(this.merchants)\r\n     },\r\n     error => {\r\n       console.error(error)\r\n     })\r\n"
+                },
+                {
+                    "date": 1733007775623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,9 +96,9 @@\n     this.user = this.sharedService.getUser();\r\n     this.titleService.setTitle('All Merchants');\r\n     this.apiService.getAllMerchants().subscribe((response: any) => {\r\n       this.merchants = response.reverse() as Merchant[];\r\n-      loadi\r\n+      loadin\r\n     },\r\n     error => {\r\n       console.error(error)\r\n     })\r\n"
+                },
+                {
+                    "date": 1733008405332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -95,9 +95,9 @@\n     this.loading = true\r\n     this.user = this.sharedService.getUser();\r\n     this.titleService.setTitle('All Merchants');\r\n     this.apiService.getAllMerchants().pipe(\r\n-      ne((response: any) => {\r\n+      nex((response: any) => {\r\n       this.merchants = response.reverse() as Merchant[];\r\n       this.loading = false;\r\n     },\r\n     error => {\r\n"
+                }
+            ],
+            "date": 1733007743614,
+            "name": "Commit-0",
+            "content": "import { HttpClient } from '@angular/common/http';\r\nimport { Component, Input, OnInit } from '@angular/core';\r\nimport { MatDialog } from '@angular/material/dialog';\r\nimport { ModalComponent } from '../../modal/modal.component';\r\nimport { Title } from '@angular/platform-browser';\r\nimport { ApiDetailsService } from '../../api-details.service';\r\nimport { Merchant } from '../../merchant';\r\nimport { AppService } from '../../app.service';\r\nimport { share } from 'rxjs';\r\n\r\n\r\n@Component({\r\n  selector: 'app-allmerchants',\r\n  templateUrl: './allmerchants.component.html',\r\n  styleUrl: './allmerchants.component.css'\r\n})\r\nexport class AllmerchantsComponent implements OnInit {\r\n  @Input() n: number = 15;\r\n  currentPage = 1;\r\n  merchants: Merchant[] = [];\r\n  totalPages: number = 30;\r\n  searchName = '';\r\n  searchField = 'Merchant_Trade_Name';\r\n  user: any;\r\n  \r\n\r\n  constructor(\r\n    private http: HttpClient,\r\n    public dialog: MatDialog,\r\n    private titleService: Title,\r\n    private apiService: ApiDetailsService,\r\n    private sharedService: AppService\r\n  ) {}\r\n\r\n  openDialog(merchant: any): void{\r\n    const dialogRef = this.dialog.open(ModalComponent, {\r\n      width: '750px',\r\n      data: {\r\n        title: merchant.Merchant_Trade_Name,\r\n        page: 'merchants',\r\n        user: this.user.jobPosition,\r\n        tabs: [\r\n          {\r\n          label: 'Merchant details',\r\n          items: [\r\n          {label: 'Merchant ID', value: merchant.MerchantID},\r\n          {label: 'RC Number', value: merchant.RC_Number},\r\n          {label: 'Business Name', value: merchant.Merchant_Trade_Name},\r\n          {label: 'Business Type', value: merchant.Business_type},\r\n          {label: 'Number of Branches', value: merchant.No_of_branches},\r\n          {label: 'Website', value: merchant.website},\r\n          ]\r\n          },\r\n          {\r\n          label: 'Location and Opening Details',\r\n          items: [\r\n          {label: 'Business Location', value: merchant.Business_location},\r\n          {label: 'Opening Hours', value: merchant.opening_hours},\r\n          {label: 'Business Name', value: merchant.Merchant_Trade_Name},\r\n          {label: 'Office Address', value: merchant.Office_address},\r\n          {label: 'State', value: merchant.state},\r\n          {label: 'LGA', value: merchant.LGA},\r\n          ]\r\n          },\r\n          {\r\n          label: 'Contact Details',\r\n          items: [\r\n          {label: 'Primary Contact', value: merchant.Name_of_Primary_Contact},\r\n          {label: 'Secondary Contact', value: merchant.Name_of_Secondary_Contact},\r\n          {label: 'Designation', value: merchant.Designation},\r\n          {label: 'Designation', value: merchant.Designation2},\r\n          {label: 'Phone Number', value: merchant.office_No},\r\n          {label: 'Phone Number', value: merchant.office_No2},\r\n          {label: 'Email', value: merchant.office_email},\r\n          {label: 'Email', value: merchant.office_email2},\r\n          ]\r\n          },\r\n        ]\r\n      }\r\n    })\r\n  }\r\n\r\n  search(){\r\n    if(this.searchName){\r\n    this.merchants = this.merchants.filter(merchant => \r\n      merchant[this.searchField].toLowerCase().includes(this.searchName.toLowerCase())\r\n    )\r\n  } else{\r\n    this.ngOnInit();\r\n  }\r\n  }\r\n\r\n\r\n  ngOnInit() {\r\n    this.user = this.sharedService.getUser();\r\n    this.titleService.setTitle('All Merchants');\r\n    this.apiService.getAllMerchants().subscribe((response: any) => {\r\n      this.merchants = response.reverse() as Merchant[];\r\n      console.log(this.merchants)\r\n    },\r\n    error => {\r\n      console.error(error)\r\n    })\r\n  }\r\n\r\nnextPage() {\r\n  if (this.currentPage < this.totalPages){\r\n    this.currentPage++;\r\n  }\r\n}\r\n\r\npreviousPage() {\r\n  if (this.currentPage > 1){\r\n    this.currentPage--;\r\n  }\r\n}\r\n\r\n}\r\n"
+        }
+    ]
+}

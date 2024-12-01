@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/app/merchants/allmerchants/allmerchants.component.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1733002341398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1733002348514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,7 +36,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages\">Ne</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages\">Net</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733002692629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,7 +36,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages\">Net</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733002700597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,7 +36,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/\">Next</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733007681289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n                     <option value=\"Business_type\">Business Type</option>\r\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n+    \r\n     <table class=\"table table-hover\">\r\n         <thead>\r\n         <tr>\r\n             <th scope=\"col\">Merchant Id</th>\r\n"
+                },
+                {
+                    "date": 1733008057423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n     \r\n+    <span class=\"loader\"></span>\r\n     <table class=\"table table-hover\">\r\n         <thead>\r\n         <tr>\r\n             <th scope=\"col\">Merchant Id</th>\r\n"
+                },
+                {
+                    "date": 1733008062671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n                     <option value=\"Business_type\">Business Type</option>\r\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n-    \r\n+    .absol\r\n     <span class=\"loader\"></span>\r\n     <table class=\"table table-hover\">\r\n         <thead>\r\n         <tr>\r\n"
+                },
+                {
+                    "date": 1733008070348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,12 @@\n                     <option value=\"Business_type\">Business Type</option>\r\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n-    .absol\r\n-    <span class=\"loader\"></span>\r\n+    <div class=\"absolute\">\r\n+\r\n+        <span class=\"loader\"></span>\r\n+    </div>\r\n     <table class=\"table table-hover\">\r\n         <thead>\r\n         <tr>\r\n             <th scope=\"col\">Merchant Id</th>\r\n"
+                },
+                {
+                    "date": 1733008075562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,9 @@\n                     <option value=\"Business_type\">Business Type</option>\r\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n-    <div class=\"absolute\">\r\n-\r\n+    <div class=\"absolute\" *ngIf=\"load\">\r\n         <span class=\"loader\"></span>\r\n     </div>\r\n     <table class=\"table table-hover\">\r\n         <thead>\r\n"
+                },
+                {
+                    "date": 1733008080798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n                     <option value=\"Business_type\">Business Type</option>\r\n                 </select>\r\n                 <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n     </div>\r\n-    <div class=\"absolute\" *ngIf=\"load\">\r\n+    <div class=\"absolute\" *ngIf=\"loading\">\r\n         <span class=\"loader\"></span>\r\n     </div>\r\n-    <table class=\"table table-hover\">\r\n+    <table class=\"table table-hover\" >\r\n         <thead>\r\n         <tr>\r\n             <th scope=\"col\">Merchant Id</th>\r\n             <th scope=\"col\">Merchant Name</th>\r\n"
+                },
+                {
+                    "date": 1733008086532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     </div>\r\n     <div class=\"absolute\" *ngIf=\"loading\">\r\n         <span class=\"loader\"></span>\r\n     </div>\r\n-    <table class=\"table table-hover\" >\r\n+    <table class=\"table table-hover\" *ngIf=\"!loading\">\r\n         <thead>\r\n         <tr>\r\n             <th scope=\"col\">Merchant Id</th>\r\n             <th scope=\"col\">Merchant Name</th>\r\n"
+                },
+                {
+                    "date": 1733009370611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,7 +39,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n\">Next</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n \">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009410666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,7 +39,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n \">Next</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || mer\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009419241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,7 +39,7 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || mer\">Next</button>\r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length \">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009439326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,7 +39,8 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length \">Next</button>\r\n+        \r\n+        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length !== n\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009445127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,8 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        \r\n+        span{P}\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length !== n\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009450238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,8 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        span{P}\r\n+        span\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length !== n\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1733009465175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,8 @@\n         </tbody>\r\n     </table>\r\n     <div class=\"btn-center\" role=\"group\">\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n-        <span>{{c}}</span>\r\n+        <span>{{cu}}</span>\r\n         <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages/n || merchants.length !== n\">Next</button>\r\n     </div>\r\n </div>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1733002341398,
+            "name": "Commit-0",
+            "content": "<div class=\"table-res\">\r\n        <div class=\"col-6 input-group mb-3 w-50\">\r\n                <input class=\"form-control\" style=\"width: 20px\" type=\"search\" [(ngModel)]=\"searchName\" placeholder=\"Search for a Merchant\" (click)=\"search()\">\r\n                <select class=\"form-select\" style=\"width: 5px;\" [(ngModel)]=\"searchField\">\r\n                    <option value=\"Merchant_Trade_Name\">Merchant Name</option>\r\n                    <option value=\"RC_Number\">Registration Number</option>\r\n                    <option value=\"Business_type\">Business Type</option>\r\n                </select>\r\n                <button class=\"btn btn-outline-secondary\" type=\"Button\" (click)=\"search()\">Search</button>\r\n    </div>\r\n    <table class=\"table table-hover\">\r\n        <thead>\r\n        <tr>\r\n            <th scope=\"col\">Merchant Id</th>\r\n            <th scope=\"col\">Merchant Name</th>\r\n            <th scope=\"col\">Registration Number</th>\r\n            <th scope=\"col\">Bussiness Type</th>\r\n            <th scope=\"col\">Merchant Location</th>\r\n            <th scope=\"col\">Action</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <tr *ngFor=\"let merchant of merchants | slice:(currentPage-1)*n:currentPage*n\">\r\n            <td>{{ merchant.MerchantID }}</td>\r\n            <td>{{ merchant.Merchant_Trade_Name }}</td>\r\n            <td>{{ merchant.RC_Number }}</td>\r\n            <td>{{ merchant.Business_type }}</td>\r\n            <td>{{ merchant.Business_location }}</td>\r\n            <td>\r\n            <span type=\"button\" class=\"bi bi-three-dots\"\r\n                        (click)=\"openDialog(merchant)\"\r\n            >\r\n        </span>\r\n            </td>\r\n        </tr>\r\n        </tbody>\r\n    </table>\r\n    <div class=\"btn-center\" role=\"group\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"previousPage()\" [disabled]=\"currentPage === 1\">Previous</button>\r\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"nextPage()\" [disabled]=\"currentPage === totalPages\">Ne</button>\r\n    </div>\r\n</div>"
+        }
+    ]
+}

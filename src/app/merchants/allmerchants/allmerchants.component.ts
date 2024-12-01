@@ -22,6 +22,7 @@ export class AllmerchantsComponent implements OnInit {
   searchName = '';
   searchField = 'Merchant_Trade_Name';
   user: any;
+  loading: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -91,11 +92,12 @@ export class AllmerchantsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loading = true
     this.user = this.sharedService.getUser();
     this.titleService.setTitle('All Merchants');
     this.apiService.getAllMerchants().subscribe((response: any) => {
       this.merchants = response.reverse() as Merchant[];
-      console.log(this.merchants)
+      this.loading = false
     },
     error => {
       console.error(error)
