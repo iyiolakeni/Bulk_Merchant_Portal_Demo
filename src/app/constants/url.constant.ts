@@ -1,5 +1,5 @@
-import { environment } from "../environments/environment";
-// import { environment } from "../environments/environment.prod";
+// import { environment } from "../environments/environment";
+import { environment } from "../environments/environment.prod";
 
 export const USERS = environment.apiUrl + 'users';
 export const EMAILS = environment.apiUrl + 'emails';
