@@ -74,11 +74,23 @@
 
               <!-- Dropdown menu -->
               <mat-menu #menu="matMenu" >
-                <button
+                <button *ngIf="posRequest.status !== 'Pending'"
+                  mat-menu-item (click)="serialDialog(posRequest)"
+                >
+                  <mat-icon>visibility</mat-icon>
+                  <span>View</span>
+                </button>
+                <button *ngIf="posRequest.status === 'Pending'"
                   mat-menu-item (click)="serialDialog(posRequest)"
                 >
                   <mat-icon>check_circle</mat-icon>
                   <span>Approve</span>
+                </button>
+                <button *ngIf="posRequest.status === 'Pending'"
+                  mat-menu-item (click)="serialDialog(posRequest)"
+                >
+                  <mat-icon>cancel</mat-icon>
+                  <span>Disapprove</span>
                 </button>
                 </mat-menu>
             </td>
